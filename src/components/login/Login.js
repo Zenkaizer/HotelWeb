@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './Login.css';
+import flechaImage from '../../assets/img/FlechaAtras-removebg-preview.png';
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -7,31 +8,38 @@ const Login = () => {
 
     return (
         <div className="background">
-            <div className="Login">
-                <h2>Iniciar sesión</h2>
-                <form>
-                    <div className="form-group">
-                        <label>Email</label>
-                        <input
-                            type="email"
-                            className="form-control"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label>Contraseña</label>
-                        <input
-                            type="password"
-                            className="form-control"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                        />
-                    </div>
-                    <button className="btn btn-primary" onClick="">
-                        Iniciar sesión
-                    </button>
-                </form>
+            <a href="">
+                <img src={flechaImage} alt="Flecha Atrás" className="img-flecha" />
+            </a>
+            <div className="backgroundcomponents">
+                <div className="Login">
+
+                    <form>
+                        <div className="form-group">
+                            <label className="text">Correo</label>
+                            <input
+                                type="email"
+                                className="form-control"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                            />
+                        </div>
+                        <div className="form-group">
+                            <label className="text">Contraseña</label>
+                            <input
+                                type="password"
+                                className="form-control"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                            />
+                        </div>
+
+                        <button className="iniciar-sesion" onClick="">
+                            Iniciar sesión
+                        </button>
+                    </form>
+
+                </div>
             </div>
         </div>
     );
