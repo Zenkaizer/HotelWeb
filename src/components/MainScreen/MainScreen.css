@@ -1,6 +1,3 @@
-.Login {
-    text-align: center;
-}
 
 .background {
     background-color: #0E21A0;
@@ -22,7 +19,7 @@
     font-family: Rockwell, sans-serif;
 }
 
-.iniciar-sesion {
+.buttons {
     background-color: #9D44C0;
     color: white;
     font-size: 16px;
@@ -32,23 +29,13 @@
     cursor: pointer;
     margin-top: 10px;
     font-family: Rockwell, sans-serif;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
 .text{
     font-family: Rockwell, sans-serif;
     font-weight: bold;
     margin-bottom: 10px;
-}
-.form-group {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 40px;
-}
-
-.img-flecha {
-    width: 50px;
-    height: auto;
-    position: absolute;
-    top: 10px;
-    left: 10px;
 }
