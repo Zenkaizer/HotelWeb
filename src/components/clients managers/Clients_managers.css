@@ -1,0 +1,62 @@
+.navbar {
+    background-color: #0E21A0;
+    min-height: 65px;
+    width: 100%;
+    overflow: hidden;
+
+}
+
+.tree_stripe, .user_logon{
+    max-height: 45px;
+    top: 10px; /* Ajusta la posición desde la parte superior */
+    position: absolute;
+}
+
+.tree_stripe {
+
+    left: 10px; /* Ajusta la posición desde la derecha */
+}
+
+.user_logon {
+
+    right: 10px; /* Ajusta la posición desde la derecha */
+
+}
+
+@font-face {
+    font-family: 'MiFuentePersonalizada';
+    src: url('C:/Users/Matias/WebstormProjects/orellana/src/assets/fonts/Homenaje-Regular.ttf') format('Homenaje-Regular');
+}
+
+.option1, .option2, .option3{
+
+    color: white;
+    font-family: 'Arial Narrow', sans-serif;
+    position: absolute;
+    top: 1px; /* Ajusta la posición desde la parte superior */
+    transform: translateX(-50%);
+    width: 237px;
+    height: 44px;
+}
+
+.option1{
+    left: 35%; /* Centra el texto horizontalmente */
+}
+.option2{
+    left: 50%; /* Centra el texto horizontalmente */
+}
+.option3{
+    left: 65%; /* Centra el texto horizontalmente */
+}
+
+.container-fluid{
+
+    text-align: center; /* Centrar el contenido horizontalmente */
+    padding: 20px; /* Añade espacio alrededor de los elementos */
+    display: flex;
+    position: relative;
+
+
+}
+
+
