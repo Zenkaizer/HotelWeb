@@ -3,14 +3,12 @@
 }
 
 .background {
-
     background-color: #0E21A0;
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     font-family: Rockwell, sans-serif;
-
 }
 
 .div {
@@ -18,12 +16,12 @@
     border-radius: 20px;
     width: auto;
     height: auto;
-    padding: 40px;
+    padding: 3ch;
     display: flex;
     justify-content: center;
     align-items: center;
     font-family: Rockwell, sans-serif;
-    font-size: 20px;
+    font-size: 18px;
 }
 
 .div2 {
@@ -36,15 +34,20 @@
     border-radius: 8px;
     margin-bottom: 8px;
     padding: 4px;
-    font-size: 20px;
+    font-size: 18px;
     width: 40ch;
     border: 1px solid #969c9b;
 }
 
 .input:hover{
-    box-shadow: 0 0 1px #515a59, 0 0 1px #515a59, 0 0 10px #515a59;
+    box-shadow: 0 0 1px #EC53B0, 0 0 1px #EC53B0, 0 0 10px #EC53B0;
 }
 
+.input:focus{
+    outline: none !important;
+    border-color: #EC53B0;
+    box-shadow: 0 0 6px #EC53B0;
+}
 
 .button{
     background-color: #9D44C0;
@@ -53,7 +56,7 @@
     border-radius: 10px;
     color: white;
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 20px;
+    font-size: 18px;
     margin-top: 10px;
     cursor: pointer;
     width: 40ch;
