@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import './Register.css';
+import axios from 'axios';
+import bcrypt from 'bcryptjs';
 
 function Register() {
   const [formData, setFormData] = useState({
@@ -19,7 +21,7 @@ function Register() {
   };
 
   /**
-   * Makes the validations for submitting the information
+   * Makes the validations for submitting the information if is correct proceed to make a put petition to the backend.
    * @param {rutOrDni, email, password, name, lastName, phone, nationality, dateOfBirth}
    */
   const handleSubmit = (e) => {
@@ -30,7 +32,31 @@ function Register() {
     if (ageDifference < 18) {
       alert("Debes ser mayor de 18 años para registrarte.");
     }else{
-        console.log(formData);
+      bcrypt.hash(formData.password, 10, (err, hashedPassword) => {
+        if (err) {
+          console.error("Error al hashear la contraseña:", err);
+          return;
+        }
+
+        const user = {
+          rutOrDni: formData.rutOrDni,
+          email: formData.email,
+          password: hashedPassword,
+          name: formData.name,
+          lastName: formData.lastName,
+          phone: formData.phone,
+          nationality: formData.nationality,
+          dateOfBirth: formData.dateOfBirth,
+        };
+
+        axios.post('/api/register', user)
+          .then((response) => {
+            console.log("Registro exitoso:", response.data);
+          })
+          .catch((error) => {
+            console.error("Error en el registro:", error);
+          });
+      });
     }
 
   };
