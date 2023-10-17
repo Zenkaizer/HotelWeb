@@ -2,9 +2,20 @@ import React from 'react';
 import Navbar from './Navbar';
 
 function CustomerHome() {
+  const mostrarEditarPerfil = () => {
+  };
+
+  const opciones = [
+    {
+      label: 'Reservar habitación',
+      onClick: () => {
+      },
+    },
+  ];
+
   return (
     <div>
-      <Navbar />
+      <Navbar opciones={opciones} mostrarEditarPerfil={mostrarEditarPerfil} />
     </div>
   );
 }
