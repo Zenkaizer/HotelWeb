@@ -32,6 +32,7 @@
     cursor: pointer;
     margin-top: 10px;
     font-family: Rockwell, sans-serif;
+    text-align: center;
 }
 
 .text{
@@ -43,6 +44,7 @@
     display: flex;
     flex-direction: column;
     margin-bottom: 40px;
+    text-align: left;
 }
 
 .img-flecha {
@@ -50,3 +52,4 @@
     top: 10px;
     left: 10px;
 }
+

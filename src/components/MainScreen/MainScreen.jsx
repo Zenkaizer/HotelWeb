@@ -3,6 +3,7 @@ import '../login/Login';
 import '../Register/Register';
 import React from 'react';
 import { useNavigate} from "react-router-dom";
+import hotelImage from "../../assets/img/HOTEL.png";
 
 const MainScreen = () => {
     const navigate = useNavigate();
@@ -15,7 +16,12 @@ const MainScreen = () => {
     }
 
     return (
-        <div className="backgroundmain">
+        <div className="background">
+
+            <div>
+                <img src={hotelImage} alt="Hotel Logo" />
+            </div>
+
             <div className="container-lg">
                 <div>
                     <button className="buttons" onClick={redirectToLogin}   style={{ display: 'block' }}>

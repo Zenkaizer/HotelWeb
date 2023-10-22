@@ -3,7 +3,9 @@ import './Login.css';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import IconButton from "@mui/material/IconButton";
 import { useNavigate} from "react-router-dom";
-
+import axios from "axios";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -14,9 +16,33 @@ const Login = () => {
         navigate("/");
     }
 
+
     const iconStyle = {
         fontSize: 50,
     };
+
+    const handleLogin = (e) => {
+        e.preventDefault();
+
+        const user = {
+            email,
+            password,
+        };
+
+        axios.post('/api/login', user)
+            .then((response) => {
+                if (response.status === 200) {
+                    console.log('Inicio de sesión exitoso:', response.data);
+                    navigate("/"); // PANTALLA
+                } else {
+                    toast.error("Credenciales incorrectas. Inténtalo de nuevo.");
+                }
+            })
+            .catch((error) => {
+                console.error('Error en el inicio de sesión:', error);
+                toast.error("Ha ocurrido un error. Inténtalo de nuevo más tarde.");
+            });
+    }
 
     return (
         <div className="background">
@@ -29,28 +55,27 @@ const Login = () => {
 
             <div className="backgroundcomponents">
                 <div className="Login">
-
                     <form>
                         <div className="form-group">
-                            <label className="text">Correo</label>
+                            <label htmlFor="name">Correo</label>
                             <input
                                 type="email"
-                                className="form-control"
+                                className="input"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                             />
                         </div>
                         <div className="form-group">
-                            <label className="text">Contraseña</label>
+                            <label htmlFor="name">Contraseña</label>
                             <input
                                 type="password"
-                                className="form-control"
+                                className="input"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                             />
                         </div>
 
-                        <button className="iniciar-sesion" onClick="">
+                        <button className="iniciar-sesion" onClick={handleLogin}>
                             Iniciar sesión
                         </button>
                     </form>
