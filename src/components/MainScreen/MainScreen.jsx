@@ -1,5 +1,6 @@
 import './MainScreen.css';
 import '../login/Login';
+import '../Register/Register';
 import React from 'react';
 import { useNavigate} from "react-router-dom";
 
@@ -10,11 +11,11 @@ const MainScreen = () => {
         navigate("/login");
     }
     const redirectToRegister = () => {
-        navigate("");
+        navigate("/register");
     }
 
     return (
-        <div className="background">
+        <div className="backgroundmain">
             <div className="container-lg">
                 <div>
                     <button className="buttons" onClick={redirectToLogin}   style={{ display: 'block' }}>

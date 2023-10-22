@@ -2,8 +2,23 @@ import React, { useState } from 'react';
 import './Register.css';
 import axios from 'axios';
 import bcrypt from 'bcryptjs';
+import IconButton from "@mui/material/IconButton";
+import { useNavigate} from "react-router-dom";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 function Register() {
+
+    const navigate = useNavigate();
+
+    const redirectToMain = () => {
+        navigate("/");
+    }
+
+    const iconStyle = {
+        fontSize: 50,
+    };
+
+
   const [formData, setFormData] = useState({
     rutOrDni: '',
     email: '',
@@ -83,6 +98,12 @@ function Register() {
 
   return (
     <div className='background'>
+        <div className ='img-flecha'>
+            <IconButton onClick={redirectToMain}>
+                <ArrowBackIcon style={iconStyle} />
+            </IconButton>
+        </div>
+
         <div className='div'>
         <form onSubmit={handleSubmit}>
         <div className='div2'>

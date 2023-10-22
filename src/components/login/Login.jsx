@@ -1,16 +1,32 @@
 import React, { useState } from 'react';
 import './Login.css';
-import flechaImage from '../../assets/img/FlechaAtras-removebg-preview.png';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import IconButton from "@mui/material/IconButton";
+import { useNavigate} from "react-router-dom";
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
+    const navigate = useNavigate();
+
+    const redirectToMain = () => {
+        navigate("/");
+    }
+
+    const iconStyle = {
+        fontSize: 50,
+    };
+
     return (
         <div className="background">
-            <a href="">
-                <img src={flechaImage} alt="Flecha Atrás" className="img-flecha" />
-            </a>
+
+            <div className="img-flecha">
+                <IconButton onClick={redirectToMain}>
+                    <ArrowBackIcon style={iconStyle} />
+                </IconButton>
+            </div>
+
             <div className="backgroundcomponents">
                 <div className="Login">
 
