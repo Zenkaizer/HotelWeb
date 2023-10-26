@@ -6,6 +6,13 @@
 
 }
 
+.edit_logon{
+
+    width: 25px; /* Establece el ancho deseado en píxeles */
+    height: 25px;
+    left: 50%;
+}
+
 .tree_stripe, .user_logon{
     max-height: 45px;
     top: 10px; /* Ajusta la posición desde la parte superior */
@@ -35,15 +42,46 @@
     position: absolute;
     top: 1px; /* Ajusta la posición desde la parte superior */
     transform: translateX(-50%);
-    width: 237px;
+    width: 200px;
     height: 44px;
+}
+.titulo_listado, .registrarCliente{
+
+    text-align: center;
+}
+.table1{
+
+    background-color: #e3aacd;
+    margin: 20px auto;
+    width: 100%;
+    max-width: 800px;
+    border-collapse: collapse;
+
+
+}
+
+.registrarCliente{
+
+    padding: 10px 20px; /* Espacio alrededor del texto del botón */
+    border: none; /* Sin borde */
+    border-radius: 5px; /* Bordes redondeados */
+    width: 200px;
+    left: 50%;
+    margin: 0 auto;
+    display: block;
+    text-align: center;
+    transform: translateX(-50%);
+    color: #ffffff;
+    background-color: #9D44C0;
+
 }
 
 .option1{
     left: 35%; /* Centra el texto horizontalmente */
 }
-.option2{
+.option2, .titulo_listado{
     left: 50%; /* Centra el texto horizontalmente */
+    right: 50%;
 }
 .option3{
     left: 65%; /* Centra el texto horizontalmente */
@@ -59,4 +97,10 @@
 
 }
 
+
+th, td, thead{
+    border: 2px solid #000;
+    text-align: center;
+    vertical-align: top;
+}
 
