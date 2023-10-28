@@ -6,6 +6,18 @@ import IconButton from "@mui/material/IconButton";
 import { useNavigate} from "react-router-dom";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
+const onSubmit = async (values) => {
+  axios
+    .post("/api/register", values)
+    .then((response) => {
+      console.log("Registro exitoso:", response.data);
+    })
+    .catch((error) => {
+      console.error("Error en el registro:", error);
+    });
+};
+
+
 function Register() {
 
     const navigate = useNavigate();
@@ -19,15 +31,20 @@ function Register() {
     };
 
 
-  const [formData, setFormData] = useState({
-    rutOrDni: '',
-    email: '',
-    password: '',
-    name: '',
-    lastName: '',
-    phone: '',
-    nationality: '',
-    dateOfBirth: ''
+    const { values, errors, touched, isSubmitting, handleBlur, handleChange, handleSubmit } = useFormik({
+      initialValues: {
+        rutOrDni: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+        name: "",
+        lastName: "",
+        phone: "",
+        nationality: "",
+        dateOfBirth: "",
+      },
+      validationSchema: registerSchema,
+      onSubmit,
   });
 
   return (
