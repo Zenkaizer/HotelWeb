@@ -1,191 +1,163 @@
-import React, { useState } from 'react';
-import './Register.css';
-import axios from 'axios';
-import bcrypt from 'bcryptjs';
+import React, { useState } from "react";
+import "./Register.css";
+import axios from "axios";
+import bcrypt from "bcryptjs";
+import { Formik, useFormik } from "formik";
+import { registerSchema } from "../../schemas";
+
+const onSubmit = async (values) => {
+  axios
+    .post("/api/register", values)
+    .then((response) => {
+      console.log("Registro exitoso:", response.data);
+    })
+    .catch((error) => {
+      console.error("Error en el registro:", error);
+    });
+};
 
 function Register() {
-  const [formData, setFormData] = useState({
-    rutOrDni: '',
-    email: '',
-    password: '',
-    name: '',
-    lastName: '',
-    phone: '',
-    nationality: '',
-    dateOfBirth: ''
+  const { values, errors, touched, isSubmitting, handleBlur, handleChange, handleSubmit } = useFormik({
+    initialValues: {
+      rutOrDni: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+      name: "",
+      lastName: "",
+      phone: "",
+      nationality: "",
+      dateOfBirth: "",
+    },
+    validationSchema: registerSchema,
+    onSubmit,
   });
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
-  /**
-   * Makes the validations for submitting the information if is correct proceed to make a put petition to the backend.
-   * @param {rutOrDni, email, password, name, lastName, phone, nationality, dateOfBirth}
-   */
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const currentDate = new Date();
-    const birthDate = new Date(formData.dateOfBirth);
-    const ageDifference = currentDate.getFullYear() - birthDate.getFullYear();
-    if (ageDifference < 18) {
-      alert("Debes ser mayor de 18 años para registrarte.");
-    }else{
-      bcrypt.hash(formData.password, 10, (err, hashedPassword) => {
-        if (err) {
-          console.error("Error al hashear la contraseña:", err);
-          return;
-        }
-
-        const user = {
-          rutOrDni: formData.rutOrDni,
-          email: formData.email,
-          password: hashedPassword,
-          name: formData.name,
-          lastName: formData.lastName,
-          phone: formData.phone,
-          nationality: formData.nationality,
-          dateOfBirth: formData.dateOfBirth,
-        };
-
-        axios.post('/api/register', user)
-          .then((response) => {
-            console.log("Registro exitoso:", response.data);
-          })
-          .catch((error) => {
-            console.error("Error en el registro:", error);
-          });
-      });
-    }
-
-  };
-
-  /**
-   * Function calculates the date.
-   * @returns the actual date.
-   */
-  function getCurrentDate() {
-    const today = new Date();
-    const year = today.getFullYear();
-    let month = today.getMonth() + 1;
-    let day = today.getDate();
-
-    if (month < 10) {
-      month = '0' + month;
-    }
-    if (day < 10) {
-      day = '0' + day;
-    }
-
-    return `${year}-${month}-${day}`;
-  }
-
   return (
-    <div className='background'>
-        <div className='div'>
+    <div className="background">
+      <div className="div">
         <form onSubmit={handleSubmit}>
-        <div className='div2'>
-          <label htmlFor='rutOrDni'>RUT/DNI</label>
-          <input
-            className='input'
-            type="text"
-            id="rutOrDni"
-            name="rutOrDni"
-            value={formData.rutOrDni}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className='div2'>
-          <label htmlFor="email">Correo electrónico</label>
-          <input
-            className='input'
-            type="email"
-            id="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className='div2'>
-          <label htmlFor="password">Contraseña</label>
-          <input
-            className='input'
-            type="password"
-            id="password"
-            name="password"
-            pattern='[A-Za-z0-9@$]{8,}'
-            value={formData.password}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className='div2'>
-          <label htmlFor="name">Nombre</label>
-          <input
-            className='input'
-            type="text"
-            id="name"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className='div2'>
-          <label htmlFor="lastName">Apellido(s)</label>
-          <input
-            className='input'
-            type="text"
-            id="lastName"
-            name="lastName"
-            value={formData.lastName}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className='div2'>
-          <label htmlFor="phone">Teléfono</label>
-          <input
-            className='input'
-            type='tel'
-            pattern='[0-9]{9}'
-            id="phone"
-            name="phone"
-            value={formData.phone}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className='div2'>
-          <label htmlFor="nationality">Nacionalidad</label>
-          <input
-            className='input'
-            type="text"
-            id="nationality"
-            name="nationality"
-            value={formData.nationality}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className='div2'>
-          <label htmlFor="dateOfBirth">Fecha de nacimiento</label>
-          <input
-            className='input'
-            type="date"
-            id="dateOfBirth"
-            name="dateOfBirth"
-            value={formData.dateOfBirth}
-            onChange={handleChange}
-            required
-            max={getCurrentDate()}
-          />
-        </div>
-        <button type="submit" className='button'>Registrarse</button>
-      </form>
+          <div className="div2">
+            <label htmlFor="rutOrDni">RUT/DNI</label>
+            <input
+              className={errors.rutOrDni && touched.rutOrDni ? "input-error": ""}
+              type="text"
+              id="rutOrDni"
+              name="rutOrDni"
+              value={values.rutOrDni}
+              onChange={handleChange}
+              onBlur={handleBlur}
+            />
+            {errors.rutOrDni && touched.rutOrDni && <p className="error">{errors.rutOrDni}</p>}
+          </div>
+          <div className="div2">
+            <label htmlFor="email">Correo electrónico</label>
+            <input
+              className={errors.email && touched.email ? "input-error": ""}
+              type="email"
+              id="email"
+              name="email"
+              value={values.email}
+              onChange={handleChange}
+              onBlur={handleBlur}
+            />
+            {errors.email && touched.email && <p className="error">{errors.email}</p>}
+          </div>
+          <div className="div2">
+            <label htmlFor="password">Contraseña</label>
+            <input
+              className={errors.password && touched.password ? "input-error": ""}
+              type="password"
+              id="password"
+              name="password"
+              value={values.password}
+              onChange={handleChange}
+              onBlur={handleBlur}
+            />
+            {errors.password && touched.password && <p className="error">{errors.password}</p>}
+          </div>
+          <div className="div2">
+            <label htmlFor="confirmPassword">Confirmar contraseña</label>
+            <input
+              className={errors.confirmPassword && touched.confirmPassword ? "input-error": ""}
+              type="password"
+              id="confirmPassword"
+              name="confirmPassword"
+              value={values.confirmPassword}
+              onChange={handleChange}
+              onBlur={handleBlur}
+            />
+            {errors.confirmPassword && touched.confirmPassword && <p className="error">{errors.confirmPassword}</p>}
+          </div>
+          <div className="div2">
+            <label htmlFor="name">Nombre</label>
+            <input
+              className={errors.name && touched.name ? "input-error": ""}
+              type="text"
+              id="name"
+              name="name"
+              value={values.name}
+              onChange={handleChange}
+              onBlur={handleBlur}
+            />
+            {errors.name && touched.name && <p className="error">{errors.name}</p>}
+          </div>
+          <div className="div2">
+            <label htmlFor="lastName">Apellido(s)</label>
+            <input
+              className={errors.lastName && touched.lastName ? "input-error": ""}
+              type="text"
+              id="lastName"
+              name="lastName"
+              value={values.lastName}
+              onChange={handleChange}
+              onBlur={handleBlur}
+            />
+            {errors.lastName && touched.lastName && <p className="error">{errors.lastName}</p>}
+          </div>
+          <div className="div2">
+            <label htmlFor="phone">Teléfono</label>
+            <input
+              className={errors.phone && touched.phone ? "input-error": ""}
+              type="tel"
+              id="phone"
+              name="phone"
+              value={values.phone}
+              onChange={handleChange}
+              onBlur={handleBlur}
+            />
+            {errors.phone && touched.phone && <p className="error">{errors.phone}</p>}
+          </div>
+          <div className="div2">
+            <label htmlFor="nationality">Nacionalidad</label>
+            <input
+              className={errors.nationality && touched.nationality ? "input-error": ""}
+              type="text"
+              id="nationality"
+              name="nationality"
+              value={values.nationality}
+              onChange={handleChange}
+              onBlur={handleBlur}
+            />
+            {errors.nationality && touched.nationality && <p className="error">{errors.nationality}</p>}
+          </div>
+          <div className="div2">
+            <label htmlFor="dateOfBirth">Fecha de nacimiento</label>
+            <input
+              className={errors.dateOfBirth && touched.dateOfBirth ? "input-error": ""}
+              type="date"
+              id="dateOfBirth"
+              name="dateOfBirth"
+              value={values.dateOfBirth}
+              onChange={handleChange}
+              onBlur={handleBlur}
+            />
+            {errors.dateOfBirth && touched.dateOfBirth && <p className="error">{errors.dateOfBirth}</p>}
+          </div>
+          <button disabled={isSubmitting} type="submit" className="button">
+            Registrarse
+          </button>
+        </form>
       </div>
     </div>
   );
