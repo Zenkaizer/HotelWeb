@@ -52,7 +52,11 @@ function Clients_managers() {
                             <td className="text-gray-600 pr-4">Chilena</td>
                             <td className="text-gray-600 pr-4">949494949</td>
                             <td className="text-gray-600 pr-4">
-                                <img src={edit_logo} className="edit_logon" alt="edit_logon" />
+                                <div className="button_cliente">
+                                    <button className="editar_cliente">
+                                        <img src={edit_logo} className="edit_logon" alt="edit_logon" />
+                                    </button>
+                                </div>
                             </td>
 
                         </tr>
@@ -63,7 +67,11 @@ function Clients_managers() {
                             <td className="text-gray-600 pr-4">Venezolana</td>
                             <td className="text-gray-600 pr-4">928372612</td>
                             <td className="text-gray-600 pr-4">
-                                <img src={edit_logo} className="edit_logon" alt="edit_logon" />
+                                <div className="button_cliente">
+                                    <button className="editar_cliente">
+                                        <img src={edit_logo} className="edit_logon" alt="edit_logon" />
+                                    </button>
+                                </div>
                             </td>
 
                         </tr>
@@ -74,7 +82,11 @@ function Clients_managers() {
                             <td className="text-gray-600 pr-4">Estadounidense</td>
                             <td className="text-gray-600 pr-4">982618364</td>
                             <td className="text-gray-600 pr-4">
-                                <img src={edit_logo} className="edit_logon" alt="edit_logon" />
+                                <div className="button_cliente">
+                                    <button className="editar_cliente">
+                                        <img src={edit_logo} className="edit_logon" alt="edit_logon" />
+                                    </button>
+                                </div>
                             </td>
 
                         </tr>
@@ -85,7 +97,11 @@ function Clients_managers() {
                             <td className="text-gray-600 pr-4">Brasileña</td>
                             <td className="text-gray-600 pr-4">982618364</td>
                             <td className="text-gray-600 pr-4">
-                                <img src={edit_logo} className="edit_logon" alt="edit_logon" />
+                                <div className="button_cliente">
+                                    <button className="editar_cliente">
+                                        <img src={edit_logo} className="edit_logon" alt="edit_logon" />
+                                    </button>
+                                </div>
                             </td>
 
                         </tr>
@@ -96,7 +112,11 @@ function Clients_managers() {
                             <td className="text-gray-600 pr-4">Argentina</td>
                             <td className="text-gray-600 pr-4">928372817</td>
                             <td className="text-gray-600 pr-4">
-                                <img src={edit_logo} className="edit_logon" alt="edit_logon" />
+                                <div className="button_cliente">
+                                    <button className="editar_cliente">
+                                        <img src={edit_logo} className="edit_logon" alt="edit_logon" />
+                                    </button>
+                                </div>
                             </td>
 
                         </tr>
@@ -107,7 +127,11 @@ function Clients_managers() {
                             <td className="text-gray-600 pr-4">Mexicana</td>
                             <td className="text-gray-600 pr-4">927826482</td>
                             <td className="text-gray-600 pr-4">
-                                <img src={edit_logo} className="edit_logon" alt="edit_logon" />
+                                <div className="button_cliente">
+                                    <button className="editar_cliente">
+                                        <img src={edit_logo} className="edit_logon" alt="edit_logon" />
+                                    </button>
+                                </div>
                             </td>
 
                         </tr>
@@ -118,15 +142,19 @@ function Clients_managers() {
                             <td className="text-gray-600 pr-4">Chilena</td>
                             <td className="text-gray-600 pr-4">928273612</td>
                             <td className="text-gray-600 pr-4">
-                                <img src={edit_logo} className="edit_logon" alt="edit_logon" />
+                                <div className="button_cliente">
+                                    <button className="editar_cliente">
+                                        <img src={edit_logo} className="edit_logon" alt="edit_logon" />
+                                    </button>
+                                </div>
                             </td>
                         </tr>
                         </tbody>
                     </table>
                 </section>
-                <div className="Button">
-                    <Button className="registrarCliente">Registrar Cliente
-                    </Button>
+                <div className="button_cliente">
+                    <button className="registrar_cliente">Registrar Cliente
+                    </button>
                 </div>
 
                 {/*<TextField />*/}
