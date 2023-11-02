@@ -1,52 +1,54 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './Login.css';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import IconButton from "@mui/material/IconButton";
-import { useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { Formik, Field, ErrorMessage, Form } from 'formik';
+import * as Yup from 'yup';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-const Login = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
 
+const LoginSchema = Yup.object().shape({
+    email: Yup.string()
+        .email('Ingrese un correo válido')
+        .required('El correo es obligatorio'),
+    password: Yup.string()
+        .required('La contraseña es obligatoria'),
+});
+
+const Login = () => {
     const navigate = useNavigate();
 
     const redirectToMain = () => {
         navigate("/");
     }
 
-
     const iconStyle = {
         fontSize: 50,
     };
 
-    const handleLogin = (e) => {
-        e.preventDefault();
-
-        const user = {
-            email,
-            password,
-        };
-
-        axios.post('/api/login', user)
+    const handleLogin = (values) => {
+        axios.post('http://localhost:9000/auth/login', values)
             .then((response) => {
                 if (response.status === 200) {
                     console.log('Inicio de sesión exitoso:', response.data);
-                    navigate("/"); // PANTALLA
+                    const token = response.data.token;
+                    localStorage.setItem('token', token);
+                    toast.success('Inicio de sesión exitoso');
+                    navigate("/home"); // PANTALLA
                 } else {
                     toast.error("Credenciales incorrectas. Inténtalo de nuevo.");
                 }
             })
             .catch((error) => {
                 console.error('Error en el inicio de sesión:', error);
-                toast.error("Ha ocurrido un error. Inténtalo de nuevo más tarde.");
+                toast.error("Credenciales incorrectas. Inténtalo de nuevo");
             });
     }
 
     return (
         <div className="background">
-
             <div className="img-flecha">
                 <IconButton onClick={redirectToMain}>
                     <ArrowBackIcon style={iconStyle} />
@@ -55,34 +57,42 @@ const Login = () => {
 
             <div className="backgroundcomponents">
                 <div className="Login">
-                    <form>
-                        <div className="form-group">
-                            <label htmlFor="name">Correo</label>
-                            <input
-                                type="email"
-                                className="input"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                            />
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="name">Contraseña</label>
-                            <input
-                                type="password"
-                                className="input"
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                            />
-                        </div>
-
-                        <button className="iniciar-sesion" onClick={handleLogin}>
-                            Iniciar sesión
-                        </button>
-                    </form>
-
+                    <Formik
+                        initialValues={{
+                            email: '',
+                            password: '',
+                        }}
+                        validationSchema={LoginSchema}
+                        onSubmit={handleLogin}
+                    >
+                        <Form>
+                            <div className="form-group">
+                                <label htmlFor="email">Correo</label>
+                                <Field
+                                    type="email"
+                                    name="email"
+                                    className="input"
+                                />
+                                <ErrorMessage name="email" component="div" className="error" />
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="password">Contraseña</label>
+                                <Field
+                                    type="password"
+                                    name="password"
+                                    className="input"
+                                />
+                                <ErrorMessage name="password" component="div" className="error" />
+                            </div>
+                            <button type="submit" className="iniciar-sesion">
+                                Iniciar sesión
+                            </button>
+                        </Form>
+                    </Formik>
                 </div>
             </div>
         </div>
     );
 };
+
 export default Login;
