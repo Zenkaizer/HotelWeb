@@ -29,19 +29,21 @@ const Login = () => {
     };
 
     const handleLogin = (values) => {
-        axios.post('/api/login', values)
+        axios.post('http://localhost:9000/auth/login', values)
             .then((response) => {
                 if (response.status === 200) {
                     console.log('Inicio de sesión exitoso:', response.data);
+                    const token = response.data.token;
+                    localStorage.setItem('token', token);
                     toast.success('Inicio de sesión exitoso');
-                    navigate("/"); // PANTALLA
+                    navigate("/home"); // PANTALLA
                 } else {
                     toast.error("Credenciales incorrectas. Inténtalo de nuevo.");
                 }
             })
             .catch((error) => {
                 console.error('Error en el inicio de sesión:', error);
-                toast.error("Ha ocurrido un error. Inténtalo de nuevo más tarde.");
+                toast.error("Credenciales incorrectas. Inténtalo de nuevo");
             });
     }
 

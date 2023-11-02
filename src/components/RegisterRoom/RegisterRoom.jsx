@@ -9,7 +9,7 @@ import {useNavigate} from "react-router-dom";
 
 const onSubmit = async (values) => {
     axios
-        .post("/api/register-room", values) // Debes ajustar la URL del endpoint para el registro de habitaciones.
+        .post("http://localhost:9000/rooms", values)
         .then((response) => {
             console.log("Registro de habitación exitoso:", response.data);
         })
