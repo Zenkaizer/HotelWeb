@@ -6,6 +6,7 @@ import Register from "./components/Register/Register";
 import 'react-toastify/dist/ReactToastify.css';
 import CustomerHome from "./components/CustomerHome"
 import Clients_managers from "./components/clients managers/Clients_managers"
+import RegisterRoom from "./components/RegisterRoom/RegisterRoom";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/home" element={<CustomerHome />} />
             <Route path="/clients" element={<Clients_managers />} />
+            <Route path="/register-room" element={<RegisterRoom />} />
         </Routes>
       </BrowserRouter>
     </div>
