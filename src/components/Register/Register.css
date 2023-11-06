@@ -29,7 +29,7 @@
     flex-direction: column;
 }
 
-.input{
+input{
     border-color: black;
     border-radius: 8px;
     margin-bottom: 8px;
@@ -62,6 +62,22 @@
     width: 40ch;
 }
 
+.button:disabled{
+    opacity: 0.35;
+}
+
 .button:active{
     background-color:  #EC53B0;
+}
+
+input.input-error,
+select.input-error {
+    border-color: red;
+}
+
+.error{
+    font-size: 14px;
+    color: red;
+    font-family: Arial;
+    margin-top: -0.7ch;
 }
