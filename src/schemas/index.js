@@ -18,10 +18,6 @@ export const registerSchema = yup.object().shape({
       message:
         "La contraseña debe contener 1 número, 1 carácter especial, mayúsculas y minúsculas",
     }),
-  confirmPassword: yup
-    .string()
-    .oneOf([yup.ref("password"), null], "Las contraseñas no coinciden")
-    .required("La confirmación de contraseña es obligatoria"),
   name: yup.string().required("El nombre es obligatorio"),
   lastName: yup.string().required("El apellido es obligatorio"),
   phone: yup

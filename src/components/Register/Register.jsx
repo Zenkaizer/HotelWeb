@@ -6,7 +6,7 @@ import { registerSchema } from "../../schemas";
 
 const onSubmit = async (values) => {
   axios
-    .post("/api/register", values)
+    .post("http://localhost:9000/auth/register", values)
     .then((response) => {
       console.log("Registro exitoso:", response.data);
     })
@@ -21,7 +21,6 @@ function Register() {
       rutOrDni: "",
       email: "",
       password: "",
-      confirmPassword: "",
       name: "",
       lastName: "",
       phone: "",
@@ -74,19 +73,6 @@ function Register() {
               onBlur={handleBlur}
             />
             {errors.password && touched.password && <p className="error">{errors.password}</p>}
-          </div>
-          <div className="div2">
-            <label htmlFor="confirmPassword">Confirmar contraseña</label>
-            <input
-              className={errors.confirmPassword && touched.confirmPassword ? "input-error": ""}
-              type="password"
-              id="confirmPassword"
-              name="confirmPassword"
-              value={values.confirmPassword}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-            {errors.confirmPassword && touched.confirmPassword && <p className="error">{errors.confirmPassword}</p>}
           </div>
           <div className="div2">
             <label htmlFor="name">Nombre</label>
