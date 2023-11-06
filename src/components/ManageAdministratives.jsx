@@ -17,7 +17,7 @@ import DialogContent from "@mui/material/DialogContent";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import { useFormik } from "formik";
-import { registerSchema } from "../../schemas";
+import { registerSchema } from "../schemas/index";
 
 const onSubmit = async(values) => {
   
