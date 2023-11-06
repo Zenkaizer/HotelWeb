@@ -7,26 +7,25 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { useFormik } from "formik";
 import { registerSchema } from "../../schemas";
 
-const onSubmit = async (values) => {
-  axios
-    .post("http://localhost:9000/auth/register", values)
-    .then((response) => {
-      const navigate = useNavigate();
-      console.log("Registro exitoso:", response.data);
-      const token = response.data.token;
-      localStorage.setItem('token', token);
-      navigate("/home");
-    })
-    .catch((error) => {
-      console.error("Error en el registro:", error);
-    });
-};
-
 function Register() {
   const navigate = useNavigate();
 
   const redirectToMain = () => {
     navigate("/");
+  };
+
+  const onSubmit = async (values) => {
+    axios
+      .post("http://localhost:9000/auth/register", values)
+      .then((response) => {
+        console.log("Registro exitoso:", response.data);
+        const token = response.data.token;
+        localStorage.setItem('token', token);
+        navigate("/home");
+      })
+      .catch((error) => {
+        console.error("Error en el registro:", error);
+      });
   };
 
   const iconStyle = {
