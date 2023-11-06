@@ -1,15 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import { ToastContainer } from 'react-toastify'; // Importa ToastContainer de react-toastify
+import Clients_managers from './components/clients managers/Clients_managers';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-      <App />
-      <ToastContainer />
+      <Clients_managers />
   </React.StrictMode>,
     document.getElementById('root')
 );
@@ -17,4 +14,4 @@ root.render(
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+

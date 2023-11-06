@@ -6,7 +6,7 @@
 
 }
 
-.edit_logon, .registrar_cliente, .option2, .titulo_listado{
+.edit_logon, .register_client, .option2, .titulo_listado{
 
     left: 50%; /* Centra el texto horizontalmente */
 
@@ -35,7 +35,7 @@
 
 }
 
-.option1, .option2, .option3, .registrar_cliente{
+.option1, .option2, .option3, .register_client{
 
     position: absolute;
     transform: translateX(-50%);
@@ -50,7 +50,7 @@
     width: 200px;
     height: 44px;
 }
-.titulo_listado, .registrar_cliente, .container-fluid, th, td, thead{
+.titulo_listado, .register_client, .container-fluid, th, td, thead{
 
     text-align: center;/* Centrar el contenido horizontalmente */
 }
@@ -64,24 +64,22 @@
 
 
 }
-.registrar_cliente{
+.register_client{
 
     padding: 8px 50px;
     background-color: #9D44C0;
-    border: 3px solid #4D2DB7;
     color: white;
 
 }
 
-.editar_cliente{
+.edit_client{
 
     background-color: #ef7fc3;
-    border: 3px solid #EC53B0;
     color: white;
 
 }
 
-.editar_cliente, .registrar_cliente{
+.edit_client, .register_client{
 
 
     border-radius:8px  8px;
@@ -90,11 +88,11 @@
 
 }
 
-.registrar_cliente:hover{
+.register_client:hover{
     opacity: 0.6; /* Cambiar la opacidad del botón cuando se pasa el cursor sobre él */
 }
 
-.editar_cliente:hover{
+.edit_client:hover{
     opacity: 0.4;
 }
 
