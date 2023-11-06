@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import "./Register.css";
 import axios from "axios";
-import bcrypt from "bcryptjs";
-import { Formik, useFormik } from "formik";
+import { useFormik } from "formik";
 import { registerSchema } from "../../schemas";
 
 const onSubmit = async (values) => {

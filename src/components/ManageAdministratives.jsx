@@ -16,9 +16,30 @@ import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
+import { useFormik } from "formik";
+import { registerSchema } from "../../schemas";
+
+const onSubmit = async(values) => {
+  
+}
 
 function ManageAdministratives() {
   const [openModal, setOpenModal] = useState(false);
+  const { values, errors, touched, isSubmitting, handleBlur, handleChange, handleSubmit } = useFormik({
+    initialValues: {
+      rutOrDni: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+      name: "",
+      lastName: "",
+      phone: "",
+      nationality: "",
+      dateOfBirth: "",
+    },
+    validationSchema: registerSchema,
+    onSubmit,
+  });
   const administratives = [
     /* Lista de administrativos */
   ];
@@ -115,7 +136,7 @@ function ManageAdministratives() {
           </IconButton>
         </DialogTitle>
         <DialogContent>
-          <form>
+          <form onSubmit={handleSubmit}>
             <TextField
               label="RUT/DNI"
               variant="outlined"
