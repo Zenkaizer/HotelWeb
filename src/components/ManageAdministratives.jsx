@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
@@ -18,31 +18,72 @@ import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import { useFormik } from "formik";
 import { registerSchema } from "../schemas/index";
-
-const onSubmit = async(values) => {
-  
-}
+import { toast } from "react-toastify";
+import axios from "axios";
+import "./Register/Register.css";
 
 function ManageAdministratives() {
+  const onSubmit = async (values) => {
+    axios
+      .post("http://localhost:9000/administratives", values)
+      .then(async (response) => {
+        if (response.status === 200) {
+          toast.success("Administrativo agregado correctamente");
+          fetchAdministratives();
+          handleCloseModal();
+        } else {
+          toast.error(
+            "Error en el ingreso del administrativo. Inténtalo de nuevo."
+          );
+        }
+      })
+      .catch((error) => {
+        console.error("Error en el ingreso del administrativo:", error);
+        toast.error(
+          "Error en el ingreso del administrativo. Inténtalo de nuevo."
+        );
+      });
+  };
+
+  const fetchAdministratives = async () => {
+    try {
+      const response = await axios.get("http://localhost:9000/administratives");
+      setAdministratives(response.data);
+    } catch (error) {
+      console.error("Error al obtener la lista de administrativos:", error);
+    }
+  };
+
   const [openModal, setOpenModal] = useState(false);
-  const { values, errors, touched, isSubmitting, handleBlur, handleChange, handleSubmit } = useFormik({
+  const [administratives, setAdministratives] = useState([]);
+
+  useEffect(() => {
+    fetchAdministratives();
+  }, []);
+
+  const {
+    values,
+    errors,
+    touched,
+    isSubmitting,
+    handleBlur,
+    handleChange,
+    handleSubmit,
+  } = useFormik({
     initialValues: {
-      rutOrDni: "",
+      dni: "",
       email: "",
-      password: "",
-      confirmPassword: "",
-      name: "",
+      password: "Example123",
+      firstName: "",
       lastName: "",
       phone: "",
-      nationality: "",
-      dateOfBirth: "",
+      nationality: "No asignada",
+      birthDate: "",
     },
     validationSchema: registerSchema,
     onSubmit,
   });
-  const administratives = [
-    /* Lista de administrativos */
-  ];
+
   const rowsPerPage = 5;
   const [page, setPage] = React.useState(0);
 
@@ -58,11 +99,6 @@ function ManageAdministratives() {
     setOpenModal(false);
   };
 
-  const handleAddAdministrative = () => {
-    // Agrega el nuevo administrativo a la lista
-    handleCloseModal();
-  };
-
   return (
     <Container style={{ marginTop: "30px" }}>
       <Typography className="text" variant="h4" gutterBottom>
@@ -73,7 +109,7 @@ function ManageAdministratives() {
         <Button
           variant="contained"
           color="primary"
-          style={{ marginLeft: "1ch" }}
+          style={{ marginLeft: "1ch", padding: "2ch" }}
           onClick={handleOpenModal}
         >
           Agregar
@@ -95,9 +131,9 @@ function ManageAdministratives() {
               {administratives
                 .slice(page * rowsPerPage, (page + 1) * rowsPerPage)
                 .map((administrative) => (
-                  <TableRow key={administrative.rutOrDni}>
-                    <TableCell>{administrative.rutOrDni}</TableCell>
-                    <TableCell>{administrative.name}</TableCell>
+                  <TableRow key={administrative.dni}>
+                    <TableCell>{administrative.dni}</TableCell>
+                    <TableCell>{administrative.firstName}</TableCell>
                     <TableCell>{administrative.lastName}</TableCell>
                     <TableCell>{administrative.phone}</TableCell>
                     <TableCell>
@@ -137,60 +173,112 @@ function ManageAdministratives() {
         </DialogTitle>
         <DialogContent>
           <form onSubmit={handleSubmit}>
-            <TextField
-              label="RUT/DNI"
-              variant="outlined"
-              fullWidth
-              margin="normal"
-            />
-            <TextField
-              label="Correo Electrónico"
-              variant="outlined"
-              fullWidth
-              margin="normal"
-            />
-            <TextField
-              label="Nombre/s"
-              variant="outlined"
-              fullWidth
-              margin="normal"
-            />
-            <TextField
-              label="Apellido/s"
-              variant="outlined"
-              fullWidth
-              margin="normal"
-            />
-            <TextField
-              label="Teléfono"
-              variant="outlined"
-              fullWidth
-              margin="normal"
-            />
-            <TextField
-              label="Nacionalidad"
-              variant="outlined"
-              fullWidth
-              margin="normal"
-            />
-            <TextField
-              label="Fecha de Nacimiento"
-              type="date"
-              variant="outlined"
-              fullWidth
-              margin="normal"
-              InputLabelProps={{
-                shrink: true,
-              }}
-            />
+            <div className="div2">
+              <label htmlFor="dni">RUT/DNI</label>
+              <input
+                className={errors.dni && touched.dni ? "input-error" : ""}
+                type="text"
+                id="dni"
+                name="dni"
+                value={values.dni}
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
+              {errors.dni && touched.dni && (
+                <p className="error">{errors.dni}</p>
+              )}
+            </div>
+            <div className="div2">
+              <label htmlFor="email">Correo electrónico</label>
+              <input
+                className={errors.email && touched.email ? "input-error" : ""}
+                type="email"
+                id="email"
+                name="email"
+                value={values.email}
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
+              {errors.email && touched.email && (
+                <p className="error">{errors.email}</p>
+              )}
+            </div>
+            <div className="div2">
+              <label htmlFor="firstName">Nombre</label>
+              <input
+                className={
+                  errors.firstName && touched.firstName ? "input-error" : ""
+                }
+                type="text"
+                id="firstName"
+                name="firstName"
+                value={values.firstName}
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
+              {errors.firstName && touched.firstName && (
+                <p className="error">{errors.firstName}</p>
+              )}
+            </div>
+            <div className="div2">
+              <label htmlFor="lastName">Apellido(s)</label>
+              <input
+                className={
+                  errors.lastName && touched.lastName ? "input-error" : ""
+                }
+                type="text"
+                id="lastName"
+                name="lastName"
+                value={values.lastName}
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
+              {errors.lastName && touched.lastName && (
+                <p className="error">{errors.lastName}</p>
+              )}
+            </div>
+            <div className="div2">
+              <label htmlFor="phone">Teléfono</label>
+              <input
+                className={errors.phone && touched.phone ? "input-error" : ""}
+                type="tel"
+                id="phone"
+                name="phone"
+                value={values.phone}
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
+              {errors.phone && touched.phone && (
+                <p className="error">{errors.phone}</p>
+              )}
+            </div>
+            <div className="div2">
+              <label htmlFor="birthDate">Fecha de nacimiento</label>
+              <input
+                className={
+                  errors.dateOfBirth && touched.dateOfBirth ? "input-error" : ""
+                }
+                type="date"
+                id="birthDate"
+                name="birthDate"
+                value={values.birthDate}
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
+              {errors.birthDate && touched.birthDate && (
+                <p className="error">{errors.birthDate}</p>
+              )}
+            </div>
           </form>
-          <Button
+          <button
             variant="contained"
             color="primary"
-            onClick={() => handleAddAdministrative()}
+            disabled={isSubmitting}
+            type="submit"
+            className="button"
           >
             Agregar
-          </Button>
+          </button>
         </DialogContent>
       </Dialog>
     </Container>

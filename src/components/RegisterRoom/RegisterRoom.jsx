@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import "./RegisterRoom.css";
 import axios from "axios";
-import IconButton from "@mui/material/IconButton";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { Formik, useFormik } from "formik";
 import * as Yup from "yup";
 import {useNavigate} from "react-router-dom";
@@ -20,14 +18,6 @@ const onSubmit = async (values) => {
 
 function RegisterRoom() {
     const navigate = useNavigate();
-
-    const redirectToMain = () => {
-        navigate("/");
-    };
-
-    const iconStyle = {
-        fontSize: 50,
-    };
 
     const {
         values,
@@ -69,12 +59,6 @@ function RegisterRoom() {
 
     return (
         <div className="background">
-            <div className="img-flecha">
-                <IconButton onClick={redirectToMain}>
-                    <ArrowBackIcon style={iconStyle} />
-                </IconButton>
-            </div>
-
             <div className="div">
                 <form onSubmit={handleSubmit}>
                     <div className="div2">
