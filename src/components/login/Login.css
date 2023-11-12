@@ -14,9 +14,10 @@
 .backgroundcomponents{
     background-color: #D9D9D9;
     border-radius: 20px;
-    width: 500px;
-    height: 350px;
+    width: auto;
+    height: auto;
     display: flex;
+    padding: 3ch;
     justify-content: center;
     align-items: center;
     font-family: Rockwell, sans-serif;
@@ -37,13 +38,14 @@
 
 .text{
     font-family: Rockwell, sans-serif;
+    font-size: 18px;
     font-weight: bold;
     margin-bottom: 10px;
 }
 .form-group {
     display: flex;
     flex-direction: column;
-    margin-bottom: 40px;
+    margin-bottom: 1ch;
     text-align: left;
 }
 
@@ -52,4 +54,5 @@
     top: 10px;
     left: 10px;
 }
+
 
