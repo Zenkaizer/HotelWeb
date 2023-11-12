@@ -8,7 +8,7 @@ import { Formik, Field, ErrorMessage, Form } from 'formik';
 import * as Yup from 'yup';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import {jwtDecode} from "jwt-decode";
 const LoginSchema = Yup.object().shape({
     email: Yup.string()
         .email('Ingrese un correo válido')
@@ -32,11 +32,24 @@ const Login = () => {
         axios.post('http://localhost:9000/auth/login', values)
             .then((response) => {
                 if (response.status === 200) {
-                    console.log('Inicio de sesión exitoso:', response.data);
                     const token = response.data.token;
                     localStorage.setItem('token', token);
+
+                    const decodedToken = jwtDecode(token);
+                    const userRole = decodedToken.role;
+
                     toast.success('Inicio de sesión exitoso');
-                    navigate("/home"); // PANTALLA
+
+                    if (userRole === 'CLIENT') {
+                        navigate("/home");
+                    } else if (userRole === 'ADMINISTRATIVE') {
+                        navigate("/administrativo");
+                    } else if (userRole === 'ADMINISTRATOR') {
+                        navigate("/administrador");
+                    } else {
+                        navigate("/default");
+                        console.log(decodedToken);
+                    }
                 } else {
                     toast.error("Credenciales incorrectas. Inténtalo de nuevo.");
                 }
@@ -45,7 +58,7 @@ const Login = () => {
                 console.error('Error en el inicio de sesión:', error);
                 toast.error("Credenciales incorrectas. Inténtalo de nuevo");
             });
-    }
+    };
 
     return (
         <div className="background">
