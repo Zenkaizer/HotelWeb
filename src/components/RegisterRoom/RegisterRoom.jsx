@@ -5,6 +5,9 @@ import { Formik, useFormik } from "formik";
 import * as Yup from "yup";
 import {useNavigate} from "react-router-dom";
 
+const token = localStorage.getItem("token");
+axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+
 const onSubmit = async (values) => {
     axios
         .post("http://localhost:9000/rooms", values)
@@ -58,8 +61,8 @@ function RegisterRoom() {
     });
 
     return (
-        <div className="background">
-            <div className="div">
+        <div className="background-room">
+            <div className="div-room">
                 <form onSubmit={handleSubmit}>
                     <div className="div2">
                         <label htmlFor="maxCapacity">Capacidad máxima de personas</label>

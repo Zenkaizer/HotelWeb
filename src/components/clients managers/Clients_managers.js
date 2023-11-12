@@ -32,16 +32,12 @@ function Clients_managers() {
           fetchClients();
           handleCloseModal();
         } else {
-          toast.error(
-            "Error en el ingreso del cliente. Inténtalo de nuevo."
-          );
+          toast.error("Error en el ingreso del cliente. Inténtalo de nuevo.");
         }
       })
       .catch((error) => {
         console.error("Error en el ingreso del cliente:", error);
-        toast.error(
-          "Error en el ingreso del cliente. Inténtalo de nuevo."
-        );
+        toast.error("Error en el ingreso del cliente. Inténtalo de nuevo.");
       });
   };
 
@@ -288,16 +284,10 @@ function Clients_managers() {
                 <p className="error">{errors.birthDate}</p>
               )}
             </div>
+            <button disabled={isSubmitting} type="submit" className="button">
+              Agregar
+            </button>
           </form>
-          <button
-            variant="contained"
-            color="primary"
-            disabled={isSubmitting}
-            type="submit"
-            className="button"
-          >
-            Agregar
-          </button>
         </DialogContent>
       </Dialog>
     </Container>

@@ -23,6 +23,11 @@ import axios from "axios";
 import "./Register/Register.css";
 
 function ManageAdministratives() {
+  const token = localStorage.getItem("token");
+  axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+
+  console.log(token);
+
   const onSubmit = async (values) => {
     axios
       .post("http://localhost:9000/administratives", values)
@@ -77,7 +82,7 @@ function ManageAdministratives() {
       firstName: "",
       lastName: "",
       phone: "",
-      nationality: "No asignada",
+      nationality: "working",
       birthDate: "",
     },
     validationSchema: registerSchema,
@@ -172,113 +177,107 @@ function ManageAdministratives() {
           </IconButton>
         </DialogTitle>
         <DialogContent>
-          <form onSubmit={handleSubmit}>
-            <div className="div2">
-              <label htmlFor="dni">RUT/DNI</label>
-              <input
-                className={errors.dni && touched.dni ? "input-error" : ""}
-                type="text"
-                id="dni"
-                name="dni"
-                value={values.dni}
-                onChange={handleChange}
-                onBlur={handleBlur}
-              />
-              {errors.dni && touched.dni && (
-                <p className="error">{errors.dni}</p>
-              )}
-            </div>
-            <div className="div2">
-              <label htmlFor="email">Correo electrónico</label>
-              <input
-                className={errors.email && touched.email ? "input-error" : ""}
-                type="email"
-                id="email"
-                name="email"
-                value={values.email}
-                onChange={handleChange}
-                onBlur={handleBlur}
-              />
-              {errors.email && touched.email && (
-                <p className="error">{errors.email}</p>
-              )}
-            </div>
-            <div className="div2">
-              <label htmlFor="firstName">Nombre</label>
-              <input
-                className={
-                  errors.firstName && touched.firstName ? "input-error" : ""
-                }
-                type="text"
-                id="firstName"
-                name="firstName"
-                value={values.firstName}
-                onChange={handleChange}
-                onBlur={handleBlur}
-              />
-              {errors.firstName && touched.firstName && (
-                <p className="error">{errors.firstName}</p>
-              )}
-            </div>
-            <div className="div2">
-              <label htmlFor="lastName">Apellido(s)</label>
-              <input
-                className={
-                  errors.lastName && touched.lastName ? "input-error" : ""
-                }
-                type="text"
-                id="lastName"
-                name="lastName"
-                value={values.lastName}
-                onChange={handleChange}
-                onBlur={handleBlur}
-              />
-              {errors.lastName && touched.lastName && (
-                <p className="error">{errors.lastName}</p>
-              )}
-            </div>
-            <div className="div2">
-              <label htmlFor="phone">Teléfono</label>
-              <input
-                className={errors.phone && touched.phone ? "input-error" : ""}
-                type="tel"
-                id="phone"
-                name="phone"
-                value={values.phone}
-                onChange={handleChange}
-                onBlur={handleBlur}
-              />
-              {errors.phone && touched.phone && (
-                <p className="error">{errors.phone}</p>
-              )}
-            </div>
-            <div className="div2">
-              <label htmlFor="birthDate">Fecha de nacimiento</label>
-              <input
-                className={
-                  errors.dateOfBirth && touched.dateOfBirth ? "input-error" : ""
-                }
-                type="date"
-                id="birthDate"
-                name="birthDate"
-                value={values.birthDate}
-                onChange={handleChange}
-                onBlur={handleBlur}
-              />
-              {errors.birthDate && touched.birthDate && (
-                <p className="error">{errors.birthDate}</p>
-              )}
-            </div>
-          </form>
-          <button
-            variant="contained"
-            color="primary"
-            disabled={isSubmitting}
-            type="submit"
-            className="button"
-          >
-            Agregar
+        <form onSubmit={handleSubmit}>
+          <div className="div2">
+            <label htmlFor="dni">RUT/DNI</label>
+            <input
+              className={
+                errors.dni && touched.dni ? "input-error" : ""
+              }
+              type="text"
+              id="dni"
+              name="dni"
+              value={values.dni}
+              onChange={handleChange}
+              onBlur={handleBlur}
+            />
+            {errors.dni && touched.dni && (
+              <p className="error">{errors.dni}</p>
+            )}
+          </div>
+          <div className="div2">
+            <label htmlFor="email">Correo electrónico</label>
+            <input
+              className={errors.email && touched.email ? "input-error" : ""}
+              type="email"
+              id="email"
+              name="email"
+              value={values.email}
+              onChange={handleChange}
+              onBlur={handleBlur}
+            />
+            {errors.email && touched.email && (
+              <p className="error">{errors.email}</p>
+            )}
+          </div>
+          <div className="div2">
+            <label htmlFor="firstName">Nombre</label>
+            <input
+              className={errors.firstName && touched.firstName ? "input-error" : ""}
+              type="text"
+              id="firstName"
+              name="firstName"
+              value={values.firstName}
+              onChange={handleChange}
+              onBlur={handleBlur}
+            />
+            {errors.firstName && touched.firstName && (
+              <p className="error">{errors.firstName}</p>
+            )}
+          </div>
+          <div className="div2">
+            <label htmlFor="lastName">Apellido(s)</label>
+            <input
+              className={
+                errors.lastName && touched.lastName ? "input-error" : ""
+              }
+              type="text"
+              id="lastName"
+              name="lastName"
+              value={values.lastName}
+              onChange={handleChange}
+              onBlur={handleBlur}
+            />
+            {errors.lastName && touched.lastName && (
+              <p className="error">{errors.lastName}</p>
+            )}
+          </div>
+          <div className="div2">
+            <label htmlFor="phone">Teléfono</label>
+            <input
+              className={errors.phone && touched.phone ? "input-error" : ""}
+              type="tel"
+              id="phone"
+              name="phone"
+              value={values.phone}
+              onChange={handleChange}
+              onBlur={handleBlur}
+            />
+            {errors.phone && touched.phone && (
+              <p className="error">{errors.phone}</p>
+            )}
+          </div>
+          <div className="div2">
+            <label htmlFor="birthDate">Fecha de nacimiento</label>
+            <input
+              className={
+                errors.dateOfBirth && touched.dateOfBirth ? "input-error" : ""
+              }
+              type="date"
+              id="birthDate"
+              name="birthDate"
+              value={values.birthDate}
+              onChange={handleChange}
+              onBlur={handleBlur}
+            />
+            {errors.birthDate && touched.birthDate && (
+              <p className="error">{errors.birthDate}</p>
+            )}
+          </div>
+          <button disabled={isSubmitting} type="submit" className="button">
+            Registrarse
           </button>
+        </form>
         </DialogContent>
       </Dialog>
     </Container>
