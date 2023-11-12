@@ -1,29 +1,31 @@
 import React, { useState } from "react";
 import "./Register.css";
 import axios from "axios";
-import bcrypt from "bcryptjs";
 import IconButton from "@mui/material/IconButton";
 import { useNavigate } from "react-router-dom";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import { Formik, useFormik } from "formik";
+import { useFormik } from "formik";
 import { registerSchema } from "../../schemas";
-
-const onSubmit = async (values) => {
-  axios
-    .post("/api/register", values)
-    .then((response) => {
-      console.log("Registro exitoso:", response.data);
-    })
-    .catch((error) => {
-      console.error("Error en el registro:", error);
-    });
-};
 
 function Register() {
   const navigate = useNavigate();
 
   const redirectToMain = () => {
     navigate("/");
+  };
+
+  const onSubmit = async (values) => {
+    axios
+      .post("http://localhost:9000/auth/register", values)
+      .then((response) => {
+        console.log("Registro exitoso:", response.data);
+        const token = response.data.token;
+        localStorage.setItem('token', token);
+        navigate("/home");
+      })
+      .catch((error) => {
+        console.error("Error en el registro:", error);
+      });
   };
 
   const iconStyle = {
@@ -40,15 +42,14 @@ function Register() {
     handleSubmit,
   } = useFormik({
     initialValues: {
-      rutOrDni: "",
+      dni: "",
       email: "",
       password: "",
-      confirmPassword: "",
-      name: "",
+      firstName: "",
       lastName: "",
       phone: "",
       nationality: "",
-      dateOfBirth: "",
+      birthDate: "",
     },
     validationSchema: registerSchema,
     onSubmit,
@@ -65,20 +66,20 @@ function Register() {
       <div className="div">
         <form onSubmit={handleSubmit}>
           <div className="div2">
-            <label htmlFor="rutOrDni">RUT/DNI</label>
+            <label htmlFor="dni">RUT/DNI</label>
             <input
               className={
-                errors.rutOrDni && touched.rutOrDni ? "input-error" : ""
+                errors.dni && touched.dni ? "input-error" : ""
               }
               type="text"
-              id="rutOrDni"
-              name="rutOrDni"
-              value={values.rutOrDni}
+              id="dni"
+              name="dni"
+              value={values.dni}
               onChange={handleChange}
               onBlur={handleBlur}
             />
-            {errors.rutOrDni && touched.rutOrDni && (
-              <p className="error">{errors.rutOrDni}</p>
+            {errors.dni && touched.dni && (
+              <p className="error">{errors.dni}</p>
             )}
           </div>
           <div className="div2">
@@ -114,37 +115,18 @@ function Register() {
             )}
           </div>
           <div className="div2">
-            <label htmlFor="confirmPassword">Confirmar contraseña</label>
+            <label htmlFor="firstName">Nombre</label>
             <input
-              className={
-                errors.confirmPassword && touched.confirmPassword
-                  ? "input-error"
-                  : ""
-              }
-              type="password"
-              id="confirmPassword"
-              name="confirmPassword"
-              value={values.confirmPassword}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-            {errors.confirmPassword && touched.confirmPassword && (
-              <p className="error">{errors.confirmPassword}</p>
-            )}
-          </div>
-          <div className="div2">
-            <label htmlFor="name">Nombre</label>
-            <input
-              className={errors.name && touched.name ? "input-error" : ""}
+              className={errors.firstName && touched.firstName ? "input-error" : ""}
               type="text"
-              id="name"
-              name="name"
-              value={values.name}
+              id="firstName"
+              name="firstName"
+              value={values.firstName}
               onChange={handleChange}
               onBlur={handleBlur}
             />
-            {errors.name && touched.name && (
-              <p className="error">{errors.name}</p>
+            {errors.firstName && touched.firstName && (
+              <p className="error">{errors.firstName}</p>
             )}
           </div>
           <div className="div2">
@@ -197,20 +179,20 @@ function Register() {
             )}
           </div>
           <div className="div2">
-            <label htmlFor="dateOfBirth">Fecha de nacimiento</label>
+            <label htmlFor="birthDate">Fecha de nacimiento</label>
             <input
               className={
                 errors.dateOfBirth && touched.dateOfBirth ? "input-error" : ""
               }
               type="date"
-              id="dateOfBirth"
-              name="dateOfBirth"
-              value={values.dateOfBirth}
+              id="birthDate"
+              name="birthDate"
+              value={values.birthDate}
               onChange={handleChange}
               onBlur={handleBlur}
             />
-            {errors.dateOfBirth && touched.dateOfBirth && (
-              <p className="error">{errors.dateOfBirth}</p>
+            {errors.birthDate && touched.birthDate && (
+              <p className="error">{errors.birthDate}</p>
             )}
           </div>
           <button disabled={isSubmitting} type="submit" className="button">

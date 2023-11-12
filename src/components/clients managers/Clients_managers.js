@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import './Clients_managers.css';
 import user_logo from '../../assets/images/user_logo.png';
 import edit_logo from '../../assets/images/edit_logo.png';
@@ -7,24 +7,31 @@ import Table from '@mui/material/Table';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Button';
+import axios from "axios";
 
 function Clients_managers() {
-    return (
 
+    const [clients, setClients] = useState([]);
+
+    useEffect(() => {
+        axios.get('http://localhost:9000/users')
+            .then((response) => {
+                setClients(response.data);
+            })
+            .catch((error) => {
+                console.error('Error fetching clients:', error);
+            });
+    }, []);
+    return (
         <div>
             <div className="navbar">
                 <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                    {/*<img src={tree_stripe} className="tree_stripe" alt="tree_stripe" />*/}
                     <img src={user_logo} className="user_logon" alt="user_logon" />
                     <div className="container-fluid">
-
                         <div className="container-text"></div>
-
                         <h1 className="option1">Gestionar clientes</h1>
                         <h1 className="option2">Registrar Habitación</h1>
                         <h1 className="option3">Gestionar reservas</h1>
-
-                        {/*<a className="navbar-brand" href="#">Navbar</a>*/}
                     </div>
                 </nav>
             </div>
@@ -45,82 +52,18 @@ function Clients_managers() {
                             </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td className="text-gray-600 pr-4">210292187</td>
-                            <td className="text-gray-600 pr-4">Christian</td>
-                            <td className="text-gray-600 pr-4">San Juan</td>
-                            <td className="text-gray-600 pr-4">Chilena</td>
-                            <td className="text-gray-600 pr-4">949494949</td>
-                            <td className="text-gray-600 pr-4">
-                                <img src={edit_logo} className="edit_logon" alt="edit_logon" />
-                            </td>
-
-                        </tr>
-                        <tr>
-                            <td className="text-gray-600 pr-4">230384323</td>
-                            <td className="text-gray-600 pr-4">Juan</td>
-                            <td className="text-gray-600 pr-4">Cruz</td>
-                            <td className="text-gray-600 pr-4">Venezolana</td>
-                            <td className="text-gray-600 pr-4">928372612</td>
-                            <td className="text-gray-600 pr-4">
-                                <img src={edit_logo} className="edit_logon" alt="edit_logon" />
-                            </td>
-
-                        </tr>
-                        <tr>
-                            <td className="text-gray-600 pr-4">234567899</td>
-                            <td className="text-gray-600 pr-4">Emily</td>
-                            <td className="text-gray-600 pr-4">Smith</td>
-                            <td className="text-gray-600 pr-4">Estadounidense</td>
-                            <td className="text-gray-600 pr-4">982618364</td>
-                            <td className="text-gray-600 pr-4">
-                                <img src={edit_logo} className="edit_logon" alt="edit_logon" />
-                            </td>
-
-                        </tr>
-                        <tr>
-                            <td className="text-gray-600 pr-4">3456789012</td>
-                            <td className="text-gray-600 pr-4">Luisa</td>
-                            <td className="text-gray-600 pr-4">Silva</td>
-                            <td className="text-gray-600 pr-4">Brasileña</td>
-                            <td className="text-gray-600 pr-4">982618364</td>
-                            <td className="text-gray-600 pr-4">
-                                <img src={edit_logo} className="edit_logon" alt="edit_logon" />
-                            </td>
-
-                        </tr>
-                        <tr>
-                            <td className="text-gray-600 pr-4">345322368</td>
-                            <td className="text-gray-600 pr-4">Elena</td>
-                            <td className="text-gray-600 pr-4">Martinez</td>
-                            <td className="text-gray-600 pr-4">Argentina</td>
-                            <td className="text-gray-600 pr-4">928372817</td>
-                            <td className="text-gray-600 pr-4">
-                                <img src={edit_logo} className="edit_logon" alt="edit_logon" />
-                            </td>
-
-                        </tr>
-                        <tr>
-                            <td className="text-gray-600 pr-4">453654723</td>
-                            <td className="text-gray-600 pr-4">Fernando</td>
-                            <td className="text-gray-600 pr-4">Prado</td>
-                            <td className="text-gray-600 pr-4">Mexicana</td>
-                            <td className="text-gray-600 pr-4">927826482</td>
-                            <td className="text-gray-600 pr-4">
-                                <img src={edit_logo} className="edit_logon" alt="edit_logon" />
-                            </td>
-
-                        </tr>
-                        <tr>
-                            <td className="text-gray-600 pr-4">198273927</td>
-                            <td className="text-gray-600 pr-4">Catalina</td>
-                            <td className="text-gray-600 pr-4">Perez</td>
-                            <td className="text-gray-600 pr-4">Chilena</td>
-                            <td className="text-gray-600 pr-4">928273612</td>
-                            <td className="text-gray-600 pr-4">
-                                <img src={edit_logo} className="edit_logon" alt="edit_logon" />
-                            </td>
-                        </tr>
+                        {clients.map(client => (
+                            <tr key={client.id}>
+                                <td className="text-gray-600 pr-4">{client.rut}</td>
+                                <td className="text-gray-600 pr-4">{client.nombre}</td>
+                                <td className="text-gray-600 pr-4">{client.apellido}</td>
+                                <td className="text-gray-600 pr-4">{client.nacionalidad}</td>
+                                <td className="text-gray-600 pr-4">{client.telefono}</td>
+                                <td className="text-gray-600 pr-4">
+                                    <img src={edit_logo} className="edit_logon" alt="edit_logon" />
+                                </td>
+                            </tr>
+                        ))}
                         </tbody>
                     </table>
                 </section>
@@ -128,14 +71,8 @@ function Clients_managers() {
                     <Button className="registrarCliente">Registrar Cliente
                     </Button>
                 </div>
-
-                {/*<TextField />*/}
-
-
             </body>
         </div>
-
-
 
     );
 }
