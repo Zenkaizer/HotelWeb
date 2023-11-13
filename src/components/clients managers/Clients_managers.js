@@ -46,7 +46,7 @@ function Clients_managers() {
     validationSchema: registerSchema,
     onSubmit: (values) => {
       axios
-        .post("http://localhost:9000/users", values)
+        .post("http://localhost:9000/clients", values)
         .then((response) => {
           console.log("Cliente registrado:", response.data);
           closeModal();
