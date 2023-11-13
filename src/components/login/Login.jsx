@@ -9,6 +9,8 @@ import * as Yup from 'yup';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {jwtDecode} from "jwt-decode";
+import {loginSchema} from "../../schemas/loginSchema";
+
 const LoginSchema = Yup.object().shape({
     email: Yup.string()
         .email('Ingrese un correo válido')
@@ -75,7 +77,7 @@ const Login = () => {
                             email: '',
                             password: '',
                         }}
-                        validationSchema={LoginSchema}
+                        validationSchema={loginSchema}
                         onSubmit={handleLogin}
                     >
                         <Form>
