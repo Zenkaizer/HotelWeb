@@ -40,24 +40,6 @@
 
 }
 
-<<<<<<< HEAD
-@font-face {
-    /*font-family: 'MiFuentePersonalizada';
-    src: url('C:/Users/Matias/WebstormProjects/orellana/src/assets/fonts/Homenaje-Regular.ttf') format('Homenaje-Regular'); */
-=======
-.option1, .option2, .option3, .register_client{
-
-    position: absolute;
-    transform: translateX(-50%);
-
->>>>>>> orellana
-}
-
-.option1, .option2, .option3{
-
-    color: white;
-<<<<<<< HEAD
-
     position: absolute;
 =======
     font-family: 'Arial Narrow', sans-serif;
