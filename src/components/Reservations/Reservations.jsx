@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./Bedrooms.css";
+import "./Reservations.css";
 import Table from "@mui/material/Table";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
@@ -28,7 +28,7 @@ import MenuItem from "@mui/material/MenuItem";
 import {Link} from "react-router-dom";
 import AppBar from "@mui/material/AppBar";
 
-function Bedrooms() {
+function Reservations() {
 
     /**agregado por matias*/
         // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -44,32 +44,32 @@ function Bedrooms() {
 
     const onSubmit = async (values) => {
         axios
-            .post("http://localhost:9000/rooms", values)
+            .post("http://localhost:9000/reserves", values)
             .then(async (response) => {
                 if (response.status === 200) {
-                    toast.success("Habitación agregada correctamente");
-                    fetch_rooms();
+                    toast.success("Su habitación fue reservada con éxito");
+                    fetch_reserves();
                     handleCloseModal();
                 } else {
                     toast.error(
-                        "Error en el ingreso de la habitación. Inténtalo de nuevo."
+                        "Error en reservar la habitación. Inténtalo de nuevo."
                     );
                 }
             })
             .catch((error) => {
-                console.error("Error en el ingreso de la habitación:", error);
+                console.error("Error en la reserva:", error);
                 toast.error(
-                    "Error en el ingreso de la habitación. Inténtalo de nuevo."
+                    "Error en reservar la habitación. Inténtalo de nuevo."
                 );
             });
     };
 
     const [openModal, setOpenModal] = useState(false);
-    const [rooms, setClients] = useState([]);
+    const [reserves, setClients] = useState([]);
 
-    const fetch_rooms = async () => {
+    const fetch_reserves = async () => {
         try {
-            const response = await axios.get("http://localhost:9000/rooms");
+            const response = await axios.get("http://localhost:9000/reserves");
             setClients(response.data);
         } catch (error) {
             console.error("Error al obtener la lista de habitaciones:", error);
@@ -77,7 +77,7 @@ function Bedrooms() {
     };
 
     useEffect(() => {
-        fetch_rooms();
+        fetch_reserves();
     }, []);
 
     const {
@@ -91,10 +91,12 @@ function Bedrooms() {
     } = useFormik({
         initialValues: {
 
-            id: "",
-            individualBeds: "",
-            dualBeds: "",
-            haveBathroom: "",
+            roomNumber: "",
+            userDni: "",
+            firstName: "",
+            lastName: "",
+            arriveDateTime: "",
+            leaveDateTime: "",
             price: ""
         },
         validationSchema: registerSchema,
@@ -120,7 +122,7 @@ function Bedrooms() {
         <div>
             <AppBar className="appbar" position="static">
                 <Toolbar>
-                    <Button color="inherit">Reservar Habitación</Button>
+                    <Button color="inherit"></Button>
                     <div style={{ flexGrow: 1 }}></div>
                     <IconButton
                         color="inherit"
@@ -147,7 +149,7 @@ function Bedrooms() {
 
             <Container style={{ marginTop: "30px" }}>
                 <Typography className="text" variant="h4" gutterBottom>
-                    Listado de habitaciones
+                    Listado de reservas
                 </Typography>
                 <div style={{ marginBottom: "1ch" }}>
                     <TextField label="Buscar" variant="outlined" />
@@ -166,21 +168,27 @@ function Bedrooms() {
                             <TableHead>
                                 <TableRow>
                                     <TableCell>ID Habitación</TableCell>
-                                    <TableCell>Camas ind</TableCell>
-                                    <TableCell>Camas dobles</TableCell>
-                                    <TableCell>Baño</TableCell>
+                                    <TableCell>ID Cliente</TableCell>
+                                    <TableCell>Nombre</TableCell>
+                                    <TableCell>Apellido</TableCell>
+                                    <TableCell>Inicio</TableCell>
+                                    <TableCell>Término</TableCell>
                                     <TableCell>Precio</TableCell>
+                                    <TableCell>Acciones</TableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {rooms
+                                {reserves
                                     .slice(page * rowsPerPage, (page + 1) * rowsPerPage)
-                                    .map((room) => (
-                                        <TableRow key={room.id}>
-                                            <TableCell>{room.individualBeds}</TableCell>
-                                            <TableCell>{room.dualBeds}</TableCell>
-                                            <TableCell>{room.haveBathroom}</TableCell>
-                                            <TableCell>{room.price}</TableCell>
+                                    .map((reserve) => (
+                                        <TableRow key={reserve}>
+                                            <TableCell>{reserve.roomNumber}</TableCell>
+                                            <TableCell>{reserve.userDni}</TableCell>
+                                            <TableCell>{reserve.firstName}</TableCell>
+                                            <TableCell>{reserve.lastName}</TableCell>
+                                            <TableCell>{reserve.arriveDateTime}</TableCell>
+                                            <TableCell>{reserve.leaveDateTime}</TableCell>
+                                            <TableCell>{reserve.price}</TableCell>
                                             <TableCell>
                                                 <Button variant="contained" color="primary">
                                                     Editar
@@ -198,14 +206,14 @@ function Bedrooms() {
                 <TablePagination
                     rowsPerPageOptions={[rowsPerPage]}
                     component="div"
-                    count={rooms.length}
+                    count={reserves.length}
                     rowsPerPage={rowsPerPage}
                     page={page}
                     onPageChange={handleChangePage}
                 />
                 <Dialog open={openModal} onClose={handleCloseModal}>
                     <DialogTitle>
-                        Agregar Habitación
+                        Añadir Reserva
                         <IconButton
                             edge="end"
                             color="inherit"
@@ -219,67 +227,97 @@ function Bedrooms() {
                     <DialogContent>
                         <form onSubmit={handleSubmit}>
                             <div className="div2">
-                                <label htmlFor="id">ID</label>
+                                <label htmlFor="roomNumber">ID Habitación</label>
                                 <input
-                                    className={errors.id && touched.id ? "input-error" : ""}
+                                    className={errors.roomNumber && touched.roomNumber ? "input-error" : ""}
                                     type="text"
-                                    id="id"
-                                    name="id"
-                                    value={values.id}
+                                    id="roomNumber"
+                                    name="roomNumber"
+                                    value={values.roomNumber}
                                     onChange={handleChange}
                                     onBlur={handleBlur}
                                 />
-                                {errors.id && touched.id && (
-                                    <p className="error">{errors.id}</p>
+                                {errors.roomNumber && touched.roomNumber && (
+                                    <p className="error">{errors.roomNumber}</p>
                                 )}
                             </div>
                             <div className="div2">
-                                <label htmlFor="individualBeds">Camas indiv</label>
+                                <label htmlFor="userDni">ID Cliente</label>
                                 <input
-                                    className={errors.individualBeds && touched.individualBeds ? "input-error" : ""}
+                                    className={errors.userDni && touched.userDni ? "input-error" : ""}
                                     type="text"
-                                    id="individualBeds"
-                                    name="individualBeds"
-                                    value={values.individualBeds}
+                                    id="userDni"
+                                    name="userDni"
+                                    value={values.userDni}
                                     onChange={handleChange}
                                     onBlur={handleBlur}
                                 />
-                                {errors.individualBeds && touched.individualBeds && (
-                                    <p className="error">{errors.individualBeds}</p>
+                                {errors.userDni && touched.userDni && (
+                                    <p className="error">{errors.userDni}</p>
                                 )}
                             </div>
                             <div className="div2">
-                                <label htmlFor="dualBeds">Camas dobles</label>
+                                <label htmlFor="firstName">Nombre</label>
                                 <input
                                     className={
-                                        errors.dualBeds && touched.dualBeds ? "input-error" : ""
+                                        errors.firstName && touched.firstName ? "input-error" : ""
                                     }
                                     type="text"
-                                    id="dualBeds"
-                                    name="dualBeds"
-                                    value={values.dualBeds}
+                                    id="firstName"
+                                    name="firstName"
+                                    value={values.firstName}
                                     onChange={handleChange}
                                     onBlur={handleBlur}
                                 />
-                                {errors.dualBeds && touched.dualBeds && (
-                                    <p className="error">{errors.dualBeds}</p>
+                                {errors.firstName && touched.firstName && (
+                                    <p className="error">{errors.firstName}</p>
                                 )}
                             </div>
                             <div className="div2">
-                                <label htmlFor="haveBathroom">Baño</label>
+                                <label htmlFor="lastName">Apellido</label>
                                 <input
                                     className={
-                                        errors.haveBathroom && touched.haveBathroom ? "input-error" : ""
+                                        errors.lastName && touched.lastName ? "input-error" : ""
                                     }
                                     type="text"
-                                    id="haveBathroom"
-                                    name="haveBathroom"
+                                    id="lastName"
+                                    name="lastName"
                                     value={values.lastName}
                                     onChange={handleChange}
                                     onBlur={handleBlur}
                                 />
-                                {errors.haveBathroom && touched.haveBathroom && (
-                                    <p className="error">{errors.haveBathroom}</p>
+                                {errors.lastName && touched.lastName && (
+                                    <p className="error">{errors.lastName}</p>
+                                )}
+                            </div>
+                            <div className="div2">
+                                <label htmlFor="arriveDateTime">Inicio</label>
+                                <input
+                                    className={errors.arriveDateTime && touched.arriveDateTime ? "input-error" : ""}
+                                    type="text"
+                                    id="arriveDateTime"
+                                    name="arriveDateTime"
+                                    value={values.arriveDateTime}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                />
+                                {errors.arriveDateTime && touched.arriveDateTime && (
+                                    <p className="error">{errors.arriveDateTime}</p>
+                                )}
+                            </div>
+                            <div className="div2">
+                                <label htmlFor="leaveDateTime">Final</label>
+                                <input
+                                    className={errors.leaveDateTime && touched.leaveDateTime ? "input-error" : ""}
+                                    type="text"
+                                    id="leaveDateTime"
+                                    name="leaveDateTime"
+                                    value={values.leaveDateTime}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                />
+                                {errors.leaveDateTime && touched.leaveDateTime && (
+                                    <p className="error">{errors.leaveDateTime}</p>
                                 )}
                             </div>
                             <div className="div2">
@@ -297,7 +335,6 @@ function Bedrooms() {
                                     <p className="error">{errors.price}</p>
                                 )}
                             </div>
-
                         </form>
                         <button
                             variant="contained"
@@ -315,4 +352,4 @@ function Bedrooms() {
     );
 }
 
-export default Bedrooms;
+export default Reservations;

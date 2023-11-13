@@ -8,6 +8,7 @@ import CustomerHome from "./components/CustomerHome"
 import Clients_managers from "./components/clients managers/Clients_managers"
 import RegisterRoom from "./components/RegisterRoom/RegisterRoom";
 import Bedrooms from "./components/bedrooms/Bedrooms";
+import Reservations from "./components/Reservations/Reservations";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
             <Route path="/clients" element={<Clients_managers />} />
             <Route path="/register-room" element={<RegisterRoom />} />
             <Route path="/rooms" element={<Bedrooms />} />
+            <Route path="/reserves" element={<Reservations />} />
         </Routes>
       </BrowserRouter>
     </div>

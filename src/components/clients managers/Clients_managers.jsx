@@ -146,7 +146,7 @@ function Clients_managers() {
 
         <Container style={{ marginTop: "30px" }}>
             <Typography className="text" variant="h4" gutterBottom>
-                Clientes
+                Listado de clientes
             </Typography>
             <div style={{ marginBottom: "1ch" }}>
                 <TextField label="Buscar" variant="outlined" />
