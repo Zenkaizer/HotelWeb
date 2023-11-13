@@ -22,7 +22,6 @@ const Login = () => {
   };
 
   const handleLogin = (values) => {
-    console.log(values);
     axios
       .post("http://localhost:9000/auth/login", values)
       .then(async (response) => {
