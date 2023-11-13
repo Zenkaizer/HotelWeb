@@ -16,7 +16,7 @@ const MainScreen = () => {
     }
 
     return (
-        <div className="background">
+        <div className="backgroundmain">
 
             <div>
                 <img src={hotelImage} alt="Hotel Logo" />

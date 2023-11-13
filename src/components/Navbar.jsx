@@ -5,9 +5,11 @@ import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import { useNavigate } from "react-router-dom";
 
 function Navbar({ options, showEditProfile }) {
   const [anchorEl, setAnchorEl] = useState(null);
+  const navigate = useNavigate();
 
   const handleMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -15,6 +17,12 @@ function Navbar({ options, showEditProfile }) {
 
   const handleMenuClose = () => {
     setAnchorEl(null);
+  };
+
+  const handleLogout = () => {
+    navigate("/");
+    localStorage.removeItem('token');
+    handleMenuClose();
   };
 
   return (
@@ -40,7 +48,7 @@ function Navbar({ options, showEditProfile }) {
             {showEditProfile && (
               <MenuItem onClick={showEditProfile}>Editar perfil</MenuItem>
             )}
-            <MenuItem onClick={handleMenuClose}>Cerrar sesión</MenuItem>
+            <MenuItem onClick={handleLogout}>Cerrar sesión</MenuItem>
           </Menu>
         </Toolbar>
       </AppBar>
