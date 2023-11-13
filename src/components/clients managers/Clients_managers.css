@@ -1,0 +1,142 @@
+.navbar {
+    background-color: #0E21A0;
+    min-height: 65px;
+    width: 100%;
+    overflow: hidden;
+
+}
+
+.edit_logon{
+
+    width: 25px; /* Establece el ancho deseado en píxeles */
+    height: 25px;
+    left: 50%;
+}
+
+.tree_stripe, .user_logon{
+    max-height: 45px;
+    top: 10px; /* Ajusta la posición desde la parte superior */
+    position: absolute;
+}
+
+.tree_stripe {
+
+    left: 10px; /* Ajusta la posición desde la derecha */
+}
+
+.user_logon {
+
+    right: 10px; /* Ajusta la posición desde la derecha */
+
+}
+
+@font-face {
+    /*font-family: 'MiFuentePersonalizada';
+    src: url('C:/Users/Matias/WebstormProjects/orellana/src/assets/fonts/Homenaje-Regular.ttf') format('Homenaje-Regular'); */
+}
+
+.option1, .option2, .option3{
+
+    color: white;
+    font-family: 'Arial Narrow', sans-serif;
+    position: absolute;
+    top: 1px; /* Ajusta la posición desde la parte superior */
+    transform: translateX(-50%);
+    width: 200px;
+    height: 44px;
+}
+.titulo_listado, .registrarCliente{
+
+    text-align: center;
+}
+.table1{
+
+    background-color: #e3aacd;
+    margin: 20px auto;
+    width: 100%;
+    max-width: 800px;
+    border-collapse: collapse;
+
+
+}
+
+.registrarCliente{
+
+    padding: 10px 20px; /* Espacio alrededor del texto del botón */
+    border: none; /* Sin borde */
+    border-radius: 5px; /* Bordes redondeados */
+    width: 200px;
+    left: 50%;
+    margin: 0 auto;
+    display: block;
+    text-align: center;
+    transform: translateX(-50%);
+    color: #ffffff;
+    background-color: #9D44C0;
+
+}
+
+.option1{
+    left: 35%; /* Centra el texto horizontalmente */
+}
+.option2, .titulo_listado{
+    left: 50%; /* Centra el texto horizontalmente */
+    right: 50%;
+}
+.option3{
+    left: 65%; /* Centra el texto horizontalmente */
+}
+
+.container-fluid{
+
+    text-align: center; /* Centrar el contenido horizontalmente */
+    padding: 20px; /* Añade espacio alrededor de los elementos */
+    display: flex;
+    position: relative;
+
+
+}
+
+
+th, td, thead{
+    border: 2px solid #000;
+    text-align: center;
+    vertical-align: top;
+}
+
+
+.modal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-contenido {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 80%; /* Ajusta según tus necesidades */
+    max-width: 500px; /* Establece un máximo si lo deseas */
+}
+
+.modal-contenido form {
+    width: 100%;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.modal-contenido form .MuiTextField-root {
+    width: 100%; /* Establece el ancho al 100% */
+    margin-bottom: 16px; /* Agrega un margen inferior para separar los campos */
+}
