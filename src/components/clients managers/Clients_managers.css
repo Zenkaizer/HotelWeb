@@ -11,11 +11,16 @@
 
 }
 
+.edit_logon, .register_client, .option2, .titulo_listado{
+
+    left: 50%; /* Centra el texto horizontalmente */
+
+}
+
 .edit_logon{
 
     width: 25px; /* Establece el ancho deseado en píxeles */
     height: 25px;
-    left: 50%;
 }
 
 .tree_stripe, .user_logon{
@@ -35,24 +40,35 @@
 
 }
 
+<<<<<<< HEAD
 @font-face {
     /*font-family: 'MiFuentePersonalizada';
     src: url('C:/Users/Matias/WebstormProjects/orellana/src/assets/fonts/Homenaje-Regular.ttf') format('Homenaje-Regular'); */
+=======
+.option1, .option2, .option3, .register_client{
+
+    position: absolute;
+    transform: translateX(-50%);
+
+>>>>>>> orellana
 }
 
 .option1, .option2, .option3{
 
     color: white;
+<<<<<<< HEAD
 
     position: absolute;
+=======
+    font-family: 'Arial Narrow', sans-serif;
+>>>>>>> orellana
     top: 1px; /* Ajusta la posición desde la parte superior */
-    transform: translateX(-50%);
     width: 200px;
     height: 44px;
 }
-.titulo_listado, .registrarCliente{
+.titulo_listado, .register_client, .container-fluid, th, td, thead{
 
-    text-align: center;
+    text-align: center;/* Centrar el contenido horizontalmente */
 }
 .table1{
 
@@ -64,28 +80,42 @@
 
 
 }
+.register_client{
 
-.registrarCliente{
-
-    padding: 10px 20px; /* Espacio alrededor del texto del botón */
-    border: none; /* Sin borde */
-    border-radius: 5px; /* Bordes redondeados */
-    width: 200px;
-    left: 50%;
-    margin: 0 auto;
-    display: block;
-    text-align: center;
-    transform: translateX(-50%);
-    color: #ffffff;
+    padding: 8px 50px;
     background-color: #9D44C0;
+    color: white;
 
+}
+
+.edit_client{
+
+    background-color: #ef7fc3;
+    color: white;
+
+}
+
+.edit_client, .register_client{
+
+
+    border-radius:8px  8px;
+    cursor: pointer;
+    transition: opacity 0.3s;
+
+}
+
+.register_client:hover{
+    opacity: 0.6; /* Cambiar la opacidad del botón cuando se pasa el cursor sobre él */
+}
+
+.edit_client:hover{
+    opacity: 0.4;
 }
 
 .option1{
     left: 35%; /* Centra el texto horizontalmente */
 }
 .option2, .titulo_listado{
-    left: 50%; /* Centra el texto horizontalmente */
     right: 50%;
 }
 .option3{
@@ -94,18 +124,17 @@
 
 .container-fluid{
 
-    text-align: center; /* Centrar el contenido horizontalmente */
     padding: 20px; /* Añade espacio alrededor de los elementos */
     display: flex;
     position: relative;
-
-
 }
 
 
 th, td, thead{
+
     border: 2px solid #000;
-    text-align: center;
     vertical-align: top;
 }
+
+
 
