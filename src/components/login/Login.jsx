@@ -77,7 +77,7 @@ const Login = () => {
                             email: '',
                             password: '',
                         }}
-                        validationSchema={loginSchema}
+                        validationSchema={LoginSchema}
                         onSubmit={handleLogin}
                     >
                         <Form>
