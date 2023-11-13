@@ -1,6 +1,9 @@
 import React from "react";
 import "./Login.css";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import React from "react";
+import "./Login.css";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import IconButton from "@mui/material/IconButton";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -8,8 +11,16 @@ import { Formik, Field, ErrorMessage, Form } from "formik";
 import * as Yup from "yup";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Formik, Field, ErrorMessage, Form } from "formik";
+import * as Yup from "yup";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const LoginSchema = Yup.object().shape({
+    email: Yup.string()
+        .email("Ingrese un correo válido")
+        .required("El correo es obligatorio"),
+    password: Yup.string().required("La contraseña es obligatoria"),
   email: Yup.string()
     .email("Ingrese un correo válido")
     .required("El correo es obligatorio"),
@@ -55,39 +66,39 @@ const Login = () => {
         </IconButton>
       </div>
 
-      <div className="backgroundcomponents">
-        <div className="Login">
-          <Formik
-            initialValues={{
-              email: "",
-              password: "",
-            }}
-            validationSchema={LoginSchema}
-            onSubmit={handleLogin}
-          >
-            <Form>
-              <div className="form-group">
-                <label htmlFor="email">Correo</label>
-                <Field type="email" name="email" className="input" />
-                <ErrorMessage name="email" component="div" className="error" />
-              </div>
-              <div className="form-group">
-                <label htmlFor="password">Contraseña</label>
-                <Field type="password" name="password" className="input" />
-                <ErrorMessage
-                  name="password"
-                  component="div"
-                  className="error"
-                />
-              </div>
-              <button type="submit" className="iniciar-sesion">
-                Iniciar sesión
-              </button>
-            </Form>
-          </Formik>
+            <div className="backgroundcomponents">
+                <div className="Login">
+                    <Formik
+                        initialValues={{
+                            email: "",
+                            password: "",
+                        }}
+                        validationSchema={LoginSchema}
+                        onSubmit={handleLogin}
+                    >
+                        <Form>
+                            <div className="form-group">
+                                <label htmlFor="email">Correo</label>
+                                <Field type="email" name="email" className="input" />
+                                <ErrorMessage name="email" component="div" className="error" />
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="password">Contraseña</label>
+                                <Field type="password" name="password" className="input" />
+                                <ErrorMessage
+                                    name="password"
+                                    component="div"
+                                    className="error"
+                                />
+                            </div>
+                            <button type="submit" className="iniciar-sesion">
+                                Iniciar sesión
+                            </button>
+                        </Form>
+                    </Formik>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
   );
 };
 
