@@ -8,14 +8,6 @@ import axios from "axios";
 import { useFormik } from "formik";
 import { registerSchema } from "../../schemas";
 import { InputLabel } from "@mui/material";
-import React, { useState, useEffect } from "react";
-import "./Clients_managers.css";
-import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
-import { useFormik } from "formik";
-import { registerSchema } from "../../schemas/index";
-import axios from "axios";
-
 function Clients_managers() {
   const [clients, setClients] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
