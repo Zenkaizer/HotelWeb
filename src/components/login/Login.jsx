@@ -1,31 +1,14 @@
 import React from "react";
 import "./Login.css";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import React from "react";
-import "./Login.css";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import IconButton from "@mui/material/IconButton";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Formik, Field, ErrorMessage, Form } from "formik";
-import * as Yup from "yup";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Formik, Field, ErrorMessage, Form } from "formik";
-import * as Yup from "yup";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import {loginSchema} from "../../schemas/loginSchema";
 
-const LoginSchema = Yup.object().shape({
-    email: Yup.string()
-        .email("Ingrese un correo válido")
-        .required("El correo es obligatorio"),
-    password: Yup.string().required("La contraseña es obligatoria"),
-  email: Yup.string()
-    .email("Ingrese un correo válido")
-    .required("El correo es obligatorio"),
-  password: Yup.string().required("La contraseña es obligatoria"),
-});
 
 const Login = () => {
   const navigate = useNavigate();
@@ -45,7 +28,6 @@ const Login = () => {
         if (response.status === 200) {
           const token = response.data.token;
           localStorage.setItem("token", token);
-          
           navigate("/home")
           toast.success("Inicio de sesión exitoso");
         } else {
@@ -73,7 +55,7 @@ const Login = () => {
                             email: "",
                             password: "",
                         }}
-                        validationSchema={LoginSchema}
+                        validationSchema={loginSchema}
                         onSubmit={handleLogin}
                     >
                         <Form>
