@@ -1,11 +1,17 @@
 import React, { useState } from "react";
+import Select from "react-select";
+import CountryList from "react-select-country-list";
 import "./Register.css";
 import axios from "axios";
 import IconButton from "@mui/material/IconButton";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { useFormik } from "formik";
 import { registerSchema } from "../../schemas";
+
+const countries = CountryList().getData();
 
 function Register() {
   const navigate = useNavigate();
@@ -18,13 +24,16 @@ function Register() {
     axios
       .post("http://localhost:9000/auth/register", values)
       .then((response) => {
-        console.log("Registro exitoso:", response.data);
         const token = response.data.token;
-        localStorage.setItem('token', token);
-        navigate("/home");
+        localStorage.setItem("token", token);
+        setTimeout(() => {
+          navigate("/home");
+          toast.success("Registro exitoso");
+        }, 1000);
       })
       .catch((error) => {
         console.error("Error en el registro:", error);
+        toast.error("Error al registrarse. Inténtalo de nuevo");
       });
   };
 
@@ -68,9 +77,7 @@ function Register() {
           <div className="div2">
             <label htmlFor="dni">RUT/DNI</label>
             <input
-              className={
-                errors.dni && touched.dni ? "input-error" : ""
-              }
+              className={errors.dni && touched.dni ? "input-error" : ""}
               type="text"
               id="dni"
               name="dni"
@@ -78,9 +85,7 @@ function Register() {
               onChange={handleChange}
               onBlur={handleBlur}
             />
-            {errors.dni && touched.dni && (
-              <p className="error">{errors.dni}</p>
-            )}
+            {errors.dni && touched.dni && <p className="error">{errors.dni}</p>}
           </div>
           <div className="div2">
             <label htmlFor="email">Correo electrónico</label>
@@ -117,7 +122,9 @@ function Register() {
           <div className="div2">
             <label htmlFor="firstName">Nombre</label>
             <input
-              className={errors.firstName && touched.firstName ? "input-error" : ""}
+              className={
+                errors.firstName && touched.firstName ? "input-error" : ""
+              }
               type="text"
               id="firstName"
               name="firstName"
@@ -163,16 +170,17 @@ function Register() {
           </div>
           <div className="div2">
             <label htmlFor="nationality">Nacionalidad</label>
-            <input
-              className={
-                errors.nationality && touched.nationality ? "input-error" : ""
-              }
-              type="text"
+            <Select
               id="nationality"
               name="nationality"
-              value={values.nationality}
-              onChange={handleChange}
+              value={countries.find(
+                (option) => option.value === values.nationality
+              )}
+              onChange={(selectedOption) =>
+                handleChange("nationality")(selectedOption.value)
+              }
               onBlur={handleBlur}
+              options={countries}
             />
             {errors.nationality && touched.nationality && (
               <p className="error">{errors.nationality}</p>

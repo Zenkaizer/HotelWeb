@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./Clients_managers.css";
-import user_logo from "../../assets/images/user_logo.png";
+import "./ClientsManager.css";
 import edit_logo from "../../assets/images/edit_logo.png";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";

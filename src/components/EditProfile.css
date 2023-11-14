@@ -1,13 +1,13 @@
-.background {
-    min-width: auto;
+.centerer{
     display: flex;
     flex-direction: column;
-    font-family: Rockwell, sans-serif;
+    align-items: center;
+    width: auto;
 }
 
 .div2 {
     display: flex;
-    min-width: 30ch;
+    width: auto;
     font-size: 18px;
     margin: 1ch;
     flex-direction: column;
@@ -21,5 +21,5 @@
     color: white;
     font-size: 18px;
     cursor: pointer;
-    width: auto;
+    width: 20ch;
 }

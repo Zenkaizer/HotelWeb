@@ -24,13 +24,14 @@ import "./Register/Register.css";
 
 function ManageAdministratives() {
   const token = localStorage.getItem("token");
-  axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-
-  console.log(token);
 
   const onSubmit = async (values) => {
     axios
-      .post("http://localhost:9000/administratives", values)
+      .post("http://localhost:9000/administratives", values, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then(async (response) => {
         if (response.status === 200) {
           toast.success("Administrativo agregado correctamente");
@@ -275,7 +276,7 @@ function ManageAdministratives() {
             )}
           </div>
           <button disabled={isSubmitting} type="submit" className="button">
-            Registrarse
+            Registrar
           </button>
         </form>
         </DialogContent>

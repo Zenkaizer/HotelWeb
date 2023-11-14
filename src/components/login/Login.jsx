@@ -24,12 +24,14 @@ const Login = () => {
   const handleLogin = (values) => {
     axios
       .post("http://localhost:9000/auth/login", values)
-      .then(async (response) => {
+      .then((response) => {
         if (response.status === 200) {
           const token = response.data.token;
           localStorage.setItem("token", token);
-          navigate("/home")
-          toast.success("Inicio de sesión exitoso");
+          setTimeout(() => {
+            navigate("/home");
+            toast.success("Inicio de sesión exitoso");
+          }, 1000);
         } else {
           toast.error("Credenciales incorrectas. Inténtalo de nuevo.");
         }
