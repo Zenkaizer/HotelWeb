@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import Navbar from "./Navbar";
-import ManageClients from "./clients managers/Clients_managers"
+import ManageClients from "./ClientsManager/ClientsManager"
 import RegisterRoom from "./RegisterRoom/RegisterRoom"
 
 function AdministrativeHome() {

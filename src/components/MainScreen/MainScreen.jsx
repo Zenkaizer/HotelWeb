@@ -1,5 +1,5 @@
 import './MainScreen.css';
-import '../login/Login';
+import '../Login/Login';
 import '../Register/Register';
 import React from 'react';
 import { useNavigate} from "react-router-dom";

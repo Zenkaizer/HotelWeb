@@ -2,7 +2,7 @@ import "./App.css";
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import MainScreen from "./components/MainScreen/MainScreen";
-import Login from "./components/login/Login";
+import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
 import "react-toastify/dist/ReactToastify.css";
 import CustomerHome from "./components/CustomerHome";

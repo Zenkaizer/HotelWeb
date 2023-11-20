@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./Clients_managers.css";
-import user_logo from "../../assets/images/user_logo.png";
+import "./ClientsManager.css";
 import edit_logo from "../../assets/images/edit_logo.png";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
@@ -8,6 +7,7 @@ import axios from "axios";
 import { useFormik } from "formik";
 import { registerSchema } from "../../schemas";
 import { InputLabel } from "@mui/material";
+
 function Clients_managers() {
   const [clients, setClients] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -45,7 +45,7 @@ function Clients_managers() {
     validationSchema: registerSchema,
     onSubmit: (values) => {
       axios
-        .post("http://localhost:9000/users", values)
+        .post("http://localhost:9000/clients", values)
         .then((response) => {
           console.log("Cliente registrado:", response.data);
           closeModal();
@@ -65,17 +65,6 @@ function Clients_managers() {
 
   return (
     <div>
-      <div className="navbar">
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
-          <img src={user_logo} className="user_logon" alt="user_logon" />
-          <div className="container-fluid">
-            <div className="container-text"></div>
-            <h1 className="option1">Gestionar clientes</h1>
-            <h1 className="option2">Registrar Habitación</h1>
-            <h1 className="option3">Gestionar reservas</h1>
-          </div>
-        </nav>
-      </div>
       <body>
         <h1 className="titulo_listado">Listado de clientes</h1>
         <section className="mt-8">

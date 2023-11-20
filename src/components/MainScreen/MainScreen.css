@@ -1,6 +1,6 @@
 
 .backgroundmain {
-    background-color: #0E21A0;
+    background-color: #e0e0e0;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -21,7 +21,7 @@
 }
 
 .buttons {
-    background-color: #9D44C0;
+    background-color: #007d80;
     color: white;
     font-size: 16px;
     padding: 10px 20px;

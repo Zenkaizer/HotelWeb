@@ -6,6 +6,7 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { useNavigate } from "react-router-dom";
+import { color } from '@mui/system';
 
 function Navbar({ options, showEditProfile }) {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -27,7 +28,7 @@ function Navbar({ options, showEditProfile }) {
 
   return (
     <div>
-      <AppBar position="static">
+      <AppBar position="static" style={{ background: '#007d80' }}>
         <Toolbar>
           {options.map((option, index) => (
             <IconButton key={index} color="inherit" onClick={option.onClick}>
