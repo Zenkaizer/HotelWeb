@@ -8,6 +8,7 @@ import "react-toastify/dist/ReactToastify.css";
 import CustomerHome from "./components/CustomerHome";
 import AdminHome from "./components/AdminHome";
 import AdministrativeHome from "./components/AdministrativeHome";
+import ReservationsManager from "./components/ReservationsManager/ReservationsManager";
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem("token"));
@@ -24,6 +25,7 @@ function App() {
           <Route path={"/"} element={<MainScreen />}></Route>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/reserves" element={<ReservationsManager />} />
           {token ? (
             <>
               <Route path="/home" element={<CustomerHome />} />
