@@ -85,6 +85,9 @@ function ReservationsManager() {
             <body>
             <h1 className="titulo_listado">Listado de reservas</h1>
             <section className="mt-8">
+                {reservations.length === 0 ? (
+                    <p>No hay reservas por mostrar</p>
+                ) : (
                 <table className="table1">
                     <thead>
                     <tr>
@@ -117,6 +120,7 @@ function ReservationsManager() {
                     ))}
                     </tbody>
                 </table>
+                    )}
             </section>
             {isEditModalOpen && selectedReservation && (
                 <div className="edit-modal">
