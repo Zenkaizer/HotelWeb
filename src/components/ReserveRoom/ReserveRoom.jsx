@@ -5,8 +5,8 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import axios from "axios";
 import { useFormik } from "formik";
-import { registerSchema } from "../../schemas";
 import { InputLabel } from "@mui/material";
+import {reserveSchema} from "../../schemas/reserveSchema";
 
 function ReserveRoom() {
     const [rooms, setRooms] = useState([]);
@@ -33,18 +33,14 @@ function ReserveRoom() {
 
     const formik = useFormik({
         initialValues: {
-            //cambiar
-            dni: "",
-            email: "",
-            password: "",
-            firstName: "",
-            lastName: "",
-            phone: "",
-            nationality: "",
-            birthDate: "",
+            user: "",
+            room: "",
+            reserveDateTime: "",
+            arriveDateTime: "",
+            leaveDateTime: "",
+            confirmed: "",
         },
-        ///cambiar
-        validationSchema: aaa,
+        validationSchema: reserveSchema,
         onSubmit: (values) => {
             axios
                 .post("http://localhost:9000/reserves", values)
