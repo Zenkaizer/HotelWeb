@@ -28,10 +28,12 @@ const Login = () => {
         if (response.status === 200) {
           const token = response.data.token;
           localStorage.setItem("token", token);
+          toast.success("Inicio de sesión exitoso");
           setTimeout(() => {
             navigate("/home");
-            toast.success("Inicio de sesión exitoso");
-          }, 1000);
+              window.location.href = "/home";
+          }, 1500);
+
         } else {
           toast.error("Credenciales incorrectas. Inténtalo de nuevo.");
         }

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Navbar from "../Navbar";
 import "./ReservationsManager.css";
 
 function ReservationsManager() {
@@ -64,27 +63,12 @@ function ReservationsManager() {
         }
     };
 
-    const options = [
-        {
-            label: "Gestionar Clientes",
-        },
-        {
-            label: "Registrar Habitación",
-        },
-        {
-            label: "Gestionar Reservas",
-            onClick: () =>{
-                //Logica
-            },
-        },
-    ];
 
     return (
         <div>
-            <Navbar options={options} />
             <body>
             <h1 className="titulo_listado">Listado de reservas</h1>
-            <section className="mt-8">
+            <section className="App">
                 {reservations.length === 0 ? (
                     <p>No hay reservas por mostrar</p>
                 ) : (
