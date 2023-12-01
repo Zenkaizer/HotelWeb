@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./ClientsManager.css";
+import "./ReserveRoom.css";
 import edit_logo from "../../assets/images/edit_logo.png";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
@@ -64,7 +64,7 @@ function ReserveRoom() {
     return (
         <div>
             <body>
-                <h1 className="titulo_listado">Listado de clientes</h1>
+                <h1 className="titulo_listado">Listado de habitaciones</h1>
                 <section className="mt-8">
                     <table className="table1">
                         <thead>
