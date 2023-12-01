@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import Navbar from "./Navbar";
 import ManageClients from "./ClientsManager/ClientsManager"
 import RegisterRoom from "./RegisterRoom/RegisterRoom"
+import ReservationsManager from "./ReservationsManager/ReservationsManager"
 
 function AdministrativeHome() {
     const [currentView, setCurrentView] = useState(null);
@@ -14,6 +15,9 @@ function AdministrativeHome() {
         setCurrentView("registerRoom");
     };
 
+    const showReservationsManager = () => {
+        setCurrentView("reservationsManager");
+    };
     const options = [
         {
             label: "Gestionar Clientes",
@@ -25,9 +29,7 @@ function AdministrativeHome() {
         },
         {
             label: "Gestionar Reservas",
-            onClick: () =>{
-                //Logica
-            },
+            onClick: showReservationsManager,
         },
     ];
 
@@ -37,6 +39,8 @@ function AdministrativeHome() {
             return <ManageClients />;
           case "registerRoom":
             return <RegisterRoom />;
+          case "reservationsManager":
+            return <ReservationsManager/>;
           default:
             return null;
         }

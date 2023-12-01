@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import "./ClientsManager.css";
+import "./ReserveRoom.css";
 import edit_logo from "../../assets/images/edit_logo.png";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import axios from "axios";
 import { useFormik } from "formik";
-import { registerSchema } from "../../schemas";
 import { InputLabel } from "@mui/material";
+import {reserveSchema} from "../../schemas/reserveSchema";
 
 function ReserveRoom() {
     const [rooms, setRooms] = useState([]);
@@ -33,18 +33,14 @@ function ReserveRoom() {
 
     const formik = useFormik({
         initialValues: {
-            //cambiar
-            dni: "",
-            email: "",
-            password: "",
-            firstName: "",
-            lastName: "",
-            phone: "",
-            nationality: "",
-            birthDate: "",
+            user: "",
+            room: "",
+            reserveDateTime: "",
+            arriveDateTime: "",
+            leaveDateTime: "",
+            confirmed: "",
         },
-        ///cambiar
-        validationSchema: aaa,
+        validationSchema: reserveSchema,
         onSubmit: (values) => {
             axios
                 .post("http://localhost:9000/reserves", values)
@@ -68,7 +64,7 @@ function ReserveRoom() {
     return (
         <div>
             <body>
-                <h1 className="titulo_listado">Listado de clientes</h1>
+                <h1 className="titulo_listado">Listado de habitaciones</h1>
                 <section className="mt-8">
                     <table className="table1">
                         <thead>
