@@ -13,6 +13,7 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { HomeComponent } from './_components/home/home.component';
 import { LoginComponent } from './_components/account/login/login.component';
 import { RegisterComponent } from './_components/account/register/register.component';
+import { EditAccountComponent } from './_components/account/edit-account/edit-account.component';
 import { TextInputComponent } from './_components/_forms/text-input/text-input.component';
 import { DateInputComponent } from './_components/_forms/date-input/date-input.component';
 import { SelectInputComponent } from './_components/_forms/select-input/select-input.component';
@@ -27,6 +28,7 @@ import { FooterComponent } from './_components/footer/footer.component';
     HomeComponent,
     LoginComponent,
     RegisterComponent,
+    EditAccountComponent,
     TextInputComponent,
     DateInputComponent,
     SelectInputComponent

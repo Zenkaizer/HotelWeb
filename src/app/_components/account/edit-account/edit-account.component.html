@@ -1,0 +1,41 @@
+<div class="row justify-content-center mt-3" *ngIf="account">
+    <div class="col-4">
+        <form [formGroup]="updateForm" (ngSubmit)="updateForm.valid && updateAccount()" autocomplete="off">
+            <h2 class="text-center text-primary">Editar credenciales</h2>
+
+            <hr>
+
+            <app-text-input
+                [formControl]="$any(updateForm.controls['email'])"
+                label="Correo electrónico"
+                type="email"
+                placeholder="Ingrese su correo electrónico"
+                requiredMessage="Correo electrónico es requerido"
+            > 
+            </app-text-input>
+
+            <app-text-input
+                [formControl]="$any(updateForm.controls['password'])"
+                label="Contraseña"
+                type="password"
+                placeholder="Ingrese su contraseña"
+                requiredMessage="La contraseña es obligatoria"
+            >
+            </app-text-input>
+
+            <app-text-input
+                [formControl]="$any(updateForm.controls['confirmPassword'])"
+                label="Repetir contraseña"
+                type="password"
+                placeholder="Repita su contraseña"
+                requiredMessage="La contraseña es obligatoria"
+            >
+            </app-text-input>
+
+            <div class="text-center">
+                <button [disabled]="!updateForm.valid" type="submit" class="btn btn-success">Editar</button>
+            </div>
+
+        </form>
+    </div>
+</div>

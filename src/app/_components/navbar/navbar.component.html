@@ -3,7 +3,7 @@
       <a class="navbar-brand" routerLink="/" routerLinkActive="active">Hotel R & URV</a>
   
       <ul class="navbar-nav me-auto mb-2 mb-md-0">
-        <ng-container *ngIf="(accountService.currentAccount$ | async)?.role == 'admin'">
+        <ng-container *ngIf="(accountService.currentAccount$ | async)?.role == 'ADMINISTRATIVE'">
           <li class="nav-item">
             <a class="nav-link" routerLink="/schedule" routerLinkActive="active">Mi Agenda</a>
           </li>
@@ -21,7 +21,7 @@
           </li>
         </ng-container>
   
-        <ng-container *ngIf="(accountService.currentAccount$ | async)?.role == 'client'">
+        <ng-container *ngIf="(accountService.currentAccount$ | async)?.role == 'CLIENT'">
           <li class="nav-item">
             <a class="nav-link" routerLink="/client/schedule" routerLinkActive="active">Ver disponibilidad</a>
           </li>

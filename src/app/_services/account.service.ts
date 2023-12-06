@@ -63,6 +63,10 @@ export class AccountService {
             })
         );
     }
+
+    update(model: any): Observable<Object> {
+        return this.http.post(this.baseUrl + "auth/account", model);
+    }
     
     /**
      * This method logout the current account.
