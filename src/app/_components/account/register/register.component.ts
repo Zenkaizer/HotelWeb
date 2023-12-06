@@ -13,6 +13,8 @@ export class RegisterComponent implements OnInit {
     registerForm: FormGroup = new FormGroup({});
     notification: Notification | null = null;
 
+    nationalities = ["Chilena", "Extranjera"];
+
     constructor(
         private router: Router,
         private formBuilder: FormBuilder,
@@ -28,7 +30,7 @@ export class RegisterComponent implements OnInit {
         this.registerForm = this.formBuilder.group({
             dni: ["", [
                 Validators.required,
-                this.validRut()]
+                this.validIdNumber()]
             ],
             email: ["", [
                 Validators.required, 
@@ -57,7 +59,7 @@ export class RegisterComponent implements OnInit {
             ],
             password: ["", [
                 Validators.required, 
-                Validators.minLength(8),
+                Validators.minLength(4),
                 Validators.minLength(20)]
             ],
             confirmPassword: ["", [
@@ -71,12 +73,13 @@ export class RegisterComponent implements OnInit {
         });
     }
     
-    validRut(): ValidatorFn {
+    validIdNumber(): ValidatorFn {
         return (control: AbstractControl) => {
-            const rut = control.value;
+            const value = control.value;
             const rutRegex: RegExp = /^(\d{7,8})-(\d|k|K)$/;
+            const passportRegex: RegExp = /^[A-Z0-9]{6,12}$/;
             
-            return rutRegex.test(rut) ? null : { invalidRut: true };
+            return rutRegex.test(value) || passportRegex.test(value) ? null : { invalidRut: true };
         };
     }
 
@@ -101,8 +104,9 @@ export class RegisterComponent implements OnInit {
     }
 
     register(): void {
-        const birthDate = this.getDateOnly(this.registerForm.controls['birthdate'].value);
-        const values = {...this.registerForm.value, birthdate: birthDate};
+        //const birthDate = this.getDateOnly(this.registerForm.controls['birthdate'].value);
+        const values = {...this.registerForm.value};
+        console.log(values);
 
         this.accountService.register(values).subscribe({
             next: () => this.router.navigateByUrl("/"),

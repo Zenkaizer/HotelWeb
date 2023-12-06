@@ -7,11 +7,15 @@ import { SharedModule } from './_modules/shared.module';
 import { JwtInterceptor } from './_interceptors/jwt.interceptor';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 //Components
 import { HomeComponent } from './_components/home/home.component';
 import { LoginComponent } from './_components/account/login/login.component';
 import { RegisterComponent } from './_components/account/register/register.component';
 import { TextInputComponent } from './_components/_forms/text-input/text-input.component';
+import { DateInputComponent } from './_components/_forms/date-input/date-input.component';
+import { SelectInputComponent } from './_components/_forms/select-input/select-input.component';
 import { NavbarComponent } from './_components/navbar/navbar.component';
 import { FooterComponent } from './_components/footer/footer.component';
 
@@ -23,7 +27,9 @@ import { FooterComponent } from './_components/footer/footer.component';
     HomeComponent,
     LoginComponent,
     RegisterComponent,
-    TextInputComponent
+    TextInputComponent,
+    DateInputComponent,
+    SelectInputComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +38,9 @@ import { FooterComponent } from './_components/footer/footer.component';
     SharedModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    BsDatepickerModule.forRoot()
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

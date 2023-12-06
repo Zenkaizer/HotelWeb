@@ -1,27 +1,30 @@
-import { Component, Input, Self } from '@angular/core';
-import { NgbAlertModule, NgbDatepickerModule, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
-import { ControlValueAccessor, FormControl, NgControl, FormsModule } from '@angular/forms';
-import { JsonPipe } from '@angular/common';
+import { Component, Input, Self } from "@angular/core";
+import { ControlValueAccessor, FormControl, NgControl } from "@angular/forms";
+import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
+
 
 @Component({
-	selector: 'app-date-input',
-	standalone: true,
-	imports: [NgbDatepickerModule, NgbAlertModule, FormsModule, JsonPipe],
-	templateUrl: './date-input.component.html',
+  selector: 'app-date-input',
+  templateUrl: 'date-input.component.html',
 })
-export class DateInputComponent implements ControlValueAccessor {
+export class DateInputComponent implements ControlValueAccessor{
 
-	@Input() label: string = '';
-	@Input() requiredMessage: string = '';
+	@Input() label = '';
+    @Input() placeholder: string = '';
+    @Input() requiredMessage: string = '';
 	@Input() invalidDateMessage: string = '';
+	bsConfig: Partial<BsDatepickerConfig> | undefined;
 
-	model: NgbDateStruct | undefined;
+	constructor(@Self() public ngControl: NgControl) {
+		this.ngControl.valueAccessor = this;
 
-	constructor(@Self() public controlDir: NgControl) {
-		this.controlDir.valueAccessor = this;
-
-
+		this.bsConfig = {
+			containerClass: 'theme-dark-blue',
+			dateInputFormat: 'DD/MM/YYYY',
+			showWeekNumbers: false
+		};
 	}
+
 	writeValue(obj: any): void {
 	}
 	registerOnChange(fn: any): void {
@@ -32,6 +35,7 @@ export class DateInputComponent implements ControlValueAccessor {
 	}
 
 	get control(): FormControl {
-		return this.controlDir.control as FormControl;
+		return this.ngControl.control as FormControl;
 	}
+
 }

@@ -7,9 +7,9 @@
 
             <app-text-input
                 [formControl]="$any(registerForm.controls['dni'])"
-                label="RUT"
+                label="RUT o Pasaporte"
                 placeholder="Ingrese su RUT (sin puntos y con guión)"
-                requiredMessage="El RUT/DNI es requerido"
+                requiredMessage="El número de identificación es requerido"
             >
             </app-text-input>
 
@@ -47,6 +47,25 @@
             >
             </app-text-input>
 
+            <app-select-input
+                [formControl]="$any(registerForm.controls['nationality'])"
+                label="Nacionalidad"
+                defaultOption="Seleccione su nacionalidad"
+                [values]="nationalities"
+                [options]="nationalities"
+                requiredMessage="La nacionalidad es obligatoria"
+            >
+            </app-select-input>
+
+            <app-date-input
+                [formControl]="$any(registerForm.controls['birthdate'])"
+                label="Fecha de nacimiento"
+                placeholder="Ingrese su fecha de nacimiento"
+                requiredMessage="La fecha de nacimiento es obligatoria"
+                invalidDateMessage="Fecha inválida"
+            >
+            </app-date-input>
+
             <app-text-input
                 [formControl]="$any(registerForm.controls['password'])"
                 label="Contraseña"
@@ -80,12 +99,12 @@
 
 
 
-
+            
 
 
 
         </form>
 
-    </div>
 
+    </div>
 </div>
