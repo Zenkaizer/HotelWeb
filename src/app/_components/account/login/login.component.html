@@ -1,0 +1,40 @@
+<div class="row justify-content-center mt-3">
+    <div class="col-4">
+        <form [formGroup]="loginForm" (ngSubmit)="loginForm.valid && login()" autocomplete="off">
+            <h2 class="text-center text-primary">Iniciar sesión</h2>
+
+            <hr>
+
+            <app-text-input
+                [formControl]="$any(loginForm.controls['email'])"
+                label="Correo electrónico"
+                type="email"
+                placeholder="Ingrese su correo electrónico"
+                requiredMessage="El correo electrónico es requerido"
+            >
+            </app-text-input>
+
+            <app-text-input
+                [formControl]="$any(loginForm.controls['password'])"
+                label="Contraseña"
+                type="password"
+                placeholder="Ingrese su contraseña"
+                requiredMessage="Contraseña obligatoria para ingresar"
+            >
+            </app-text-input>
+
+            <div class="mb-3" *ngIf="notification">
+                <div class="alert alert-dismissible mb-0" [ngClass]="notification.success ? 'alert-success' : 'alert-danger'">
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" (click)="closeNotification()"></button>
+                    {{ notification.message }}
+                </div>
+            </div>
+
+            <div class="text-center">
+                <button [disabled]="!loginForm.valid" type="submit" class="btn btn-success">
+                    Iniciar sesión
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

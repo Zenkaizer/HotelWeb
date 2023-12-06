@@ -1,0 +1,38 @@
+<div class="mb-3">
+    <label 
+        *ngIf="label"
+        class="form-label"
+    >
+        {{ label }}:
+    </label>
+
+
+
+</div>
+
+<div class="col-6">
+	<form class="row row-cols-sm-auto">
+		<div class="col-12">
+			<div class="input-group">
+				<input
+					class="form-control"
+					placeholder="dd/mm/yyyy"
+					name="d2"
+					#c2="ngModel"
+					[(ngModel)]="model"
+					ngbDatepicker
+					#d2="ngbDatepicker"
+				/>
+				<button class="btn btn-outline-secondary bi bi-calendar3" (click)="d2.toggle()" type="button"></button>
+			</div>
+		</div>
+	</form>
+
+	<hr />
+	<button class="btn btn-sm btn-outline-primary" (click)="model = today">Select Today</button>
+	<hr />
+
+	<pre>Model: {{ model | json }}</pre>
+	<pre>State: {{ c2.status }}</pre>
+</div>
+

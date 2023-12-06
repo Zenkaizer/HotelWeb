@@ -1,0 +1,13 @@
+<div class="mb-3">
+    @if (label) {
+        <label class="form-label">{{ label }}:</label>
+    }
+
+    <select
+        class="form-select"
+        [class.is-invalid]="control.invalid && control.touched"
+    >
+
+    </select>
+
+</div>

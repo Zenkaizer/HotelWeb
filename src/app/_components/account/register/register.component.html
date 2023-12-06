@@ -1,0 +1,91 @@
+<div class="row justify-content-center mt-3">
+    <div class="col-4">
+        <form [formGroup]="registerForm" (ngSubmit)="registerForm.valid && register()" autocomplete="off">
+            <h2 class="text-center text-primary">Registrarse</h2>
+            
+            <hr>
+
+            <app-text-input
+                [formControl]="$any(registerForm.controls['dni'])"
+                label="RUT"
+                placeholder="Ingrese su RUT (sin puntos y con guión)"
+                requiredMessage="El RUT/DNI es requerido"
+            >
+            </app-text-input>
+
+            <app-text-input
+                [formControl]="$any(registerForm.controls['email'])"
+                label="Correo electrónico"
+                type="email"
+                placeholder="Ingrese su correo electrónico"
+                requiredMessage="El correo electrónico es obligatorio"
+            >
+            </app-text-input>
+
+            <app-text-input
+                [formControl]="$any(registerForm.controls['firstName'])"
+                label="Nombre"
+                placeholder="Ingrese su nombre"
+                requiredMessage="El nombre es obligatorio"
+            >
+            </app-text-input>
+
+            <app-text-input
+                [formControl]="$any(registerForm.controls['lastName'])"
+                label="Apellido"
+                placeholder="Ingrese su apellido"
+                requiredMessage="El apellido es obligatorio"
+            >
+            </app-text-input>
+
+            <app-text-input
+                [formControl]="$any(registerForm.controls['phone'])"
+                label="Número de teléfono"
+                span="+569"
+                placeholder="Ingrese su número telefónico"
+                requiredMessage="El número de teléfono es obligatorio"
+            >
+            </app-text-input>
+
+            <app-text-input
+                [formControl]="$any(registerForm.controls['password'])"
+                label="Contraseña"
+                type="password"
+                placeholder="Ingrese su contraseña"
+                requiredMessage="La contraseña es obligatoria"
+            >
+            </app-text-input>
+
+            <app-text-input
+                [formControl]="$any(registerForm.controls['confirmPassword'])"
+                label="Repetir contraseña"
+                type="password"
+                placeholder="Repita su contraseña"
+                requiredMessage="La contraseña es obligatoria"
+            >
+            </app-text-input>
+            
+
+            <div class="mb-3" *ngIf="notification">
+                <div class="alert alert-dismissible mb-0" [ngClass]="notification.success ? 'alert-success' : 'alert-danger'">
+                    <button type="button" class="btn-close" data-bs-dimiss="alert" (click)="closeNotification()"></button>
+                    {{ notification.message }}
+                </div>
+            </div>
+
+            <div class="text-center">
+                <button [disabled]="!registerForm.valid" type="submit" class="btn btn-success">Registrarse</button>
+            </div>
+
+
+
+
+
+
+
+
+        </form>
+
+    </div>
+
+</div>

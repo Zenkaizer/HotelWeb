@@ -1,0 +1,55 @@
+<nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
+    <div class="container">
+      <a class="navbar-brand" routerLink="/" routerLinkActive="active">Hotel R & URV</a>
+  
+      <ul class="navbar-nav me-auto mb-2 mb-md-0">
+        <ng-container *ngIf="(accountService.currentAccount$ | async)?.role == 'admin'">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/schedule" routerLinkActive="active">Mi Agenda</a>
+          </li>
+  
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/clients" routerLinkActive="active">Clientes</a>
+          </li>
+  
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/services" routerLinkActive="active">Servicios</a>
+          </li>
+  
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/contact" routerLinkActive="active">Contacto</a>
+          </li>
+        </ng-container>
+  
+        <ng-container *ngIf="(accountService.currentAccount$ | async)?.role == 'client'">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/client/schedule" routerLinkActive="active">Ver disponibilidad</a>
+          </li>
+  
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/client/appointments" routerLinkActive="active">Ver citas agendadas</a>
+          </li>
+        </ng-container>
+      </ul>
+  
+      <div class="dropdown" *ngIf="(accountService.currentAccount$ | async) as account" dropdown>
+        <a class="dropdown-toggle text-light text-decoration-none ms-2" dropdownToggle>Bienvenido</a>
+  
+        <div class="dropdown-menu mt-3" *dropdownMenu>
+          <a class="dropdown-item" routerLink="/profile">Editar perfil</a>
+          <a class="dropdown-item" routerLink="/account">Configuración personal</a>
+          <a class="dropdown-item" (click)="logout()">Cerrar sesión</a>
+        </div>
+      </div>
+  
+      <ul class="navbar-nav ms-auto" *ngIf="!(accountService.currentAccount$ | async)">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/auth/login" routerLinkActive="active">Iniciar sesión</a>
+        </li>
+  
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/auth/register" routerLinkActive="active">Registrarse</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
