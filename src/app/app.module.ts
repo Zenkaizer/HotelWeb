@@ -9,6 +9,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { FilterPipe } from './_pipes/filter.pipe';
 //Components
 import { HomeComponent } from './_components/home/home.component';
 import { LoginComponent } from './_components/account/login/login.component';
@@ -19,10 +20,12 @@ import { DateInputComponent } from './_components/_forms/date-input/date-input.c
 import { SelectInputComponent } from './_components/_forms/select-input/select-input.component';
 import { NavbarComponent } from './_components/navbar/navbar.component';
 import { FooterComponent } from './_components/footer/footer.component';
+import { ClientListComponent } from './_components/manage-clients/client-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    FilterPipe,
     NavbarComponent,
     FooterComponent,
     HomeComponent,
@@ -31,7 +34,8 @@ import { FooterComponent } from './_components/footer/footer.component';
     EditAccountComponent,
     TextInputComponent,
     DateInputComponent,
-    SelectInputComponent
+    SelectInputComponent,
+    ClientListComponent
   ],
   imports: [
     BrowserModule,

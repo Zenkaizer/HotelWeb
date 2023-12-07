@@ -6,6 +6,7 @@ import { LoginComponent } from './_components/account/login/login.component';
 import { RegisterComponent } from './_components/account/register/register.component';
 import { EditAccountComponent } from './_components/account/edit-account/edit-account.component';
 import { HomeComponent } from './_components/home/home.component';
+import { ClientListComponent } from './_components/manage-clients/client-list.component';
 
 const routes: Routes = [
 
@@ -19,7 +20,8 @@ const routes: Routes = [
     children: [
       {path: 'account', component: EditAccountComponent}
     ]
-  }
+  },
+  {path: 'manage-clients', component: ClientListComponent}
 
 ];
 

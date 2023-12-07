@@ -5,19 +5,15 @@
       <ul class="navbar-nav me-auto mb-2 mb-md-0">
         <ng-container *ngIf="(accountService.currentAccount$ | async)?.role == 'ADMINISTRATIVE'">
           <li class="nav-item">
-            <a class="nav-link" routerLink="/schedule" routerLinkActive="active">Mi Agenda</a>
+            <a class="nav-link" routerLink="/manage-clients" routerLinkActive="active">Administrar Clientes</a>
           </li>
   
           <li class="nav-item">
-            <a class="nav-link" routerLink="/clients" routerLinkActive="active">Clientes</a>
+            <a class="nav-link" routerLink="/manage-rooms" routerLinkActive="active">Administrar Habitaciones</a>
           </li>
   
           <li class="nav-item">
-            <a class="nav-link" routerLink="/services" routerLinkActive="active">Servicios</a>
-          </li>
-  
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/contact" routerLinkActive="active">Contacto</a>
+            <a class="nav-link" routerLink="/manage-reserves" routerLinkActive="active">Administrar Reservas</a>
           </li>
         </ng-container>
   

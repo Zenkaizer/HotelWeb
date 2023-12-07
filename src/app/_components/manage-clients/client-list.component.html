@@ -1,0 +1,62 @@
+<div class="row justify-content-center mb-4">
+    <div class="col-10" style="margin-top: 16px;">
+        <button
+            type="button"
+            class="btn btn-outline-primary"
+            routerLink="/manage-clients/add-client"
+            routerLinkActive="active"
+        >
+            <i class="fa fa-user-plus fa-2x"></i>
+        </button>
+    </div>
+
+    <div class="col-10 mt-4" *ngIf="notification">
+        <div class="alert alert-dismissible mb-0" [ngClass]="notification.success ? 'alert-success' : 'alert-danger'">
+            <button type="button" class="btn-close" data-bs-dismiss="alert" (click)="closeNotification()"></button>
+            {{ notification.message }}
+        </div>
+    </div>
+</div>
+
+<div class="row justify-content-center">
+    <div class="col-10">
+        <pagination-controls 
+            (pageChange)="clientsPage = $event" 
+            previousLabel="Anterior" 
+            nextLabel="Siguiente">
+        </pagination-controls>
+
+        <table class="table table-hover table-responsive-xxl">
+            <thead>
+                <tr class="table-primary">
+                    <th scope="col" class="align-middle" style="width: 15%;">RUT/Pasaporte</th>
+                    <th scope="col" class="align-middle" style="width: 15%;">Nombre</th>
+                    <th scope="col" class="align-middle" style="width: 15%;">Apellido</th>
+                    <th scope="col" class="align-middle" style="width: 15%;">Nacionalidad</th>
+                    <th scope="col" class="align-middle" style="width: 15%;">Teléfono</th>
+                    <th scope="col" class="align-middle" style="width: 15%;">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let client of clients$ | filter | paginate: { itemsPerPage: 5, currentPage: clientsPage}">
+                    <td>{{client['dni'] | titlecase}}</td>
+                    <td>{{client['firstName'] | titlecase}}</td>
+                    <td>{{client['lastName'] | titlecase}}</td>
+                    <td>{{client['nationality'] | titlecase}}</td>
+                    <td>+56 9{{client['phone'] }}</td>
+                    <td>
+                        <div class="d-flex flex-row gap-2">
+                            <button
+                                type="button"
+                                class="btn btn-outline-secondary"
+                                routerLink="/manage-clients/{{client['id']}}"
+                            >
+                            Editar
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
