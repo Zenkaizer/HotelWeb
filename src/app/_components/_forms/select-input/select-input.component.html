@@ -1,0 +1,29 @@
+<div class="mb-3">
+    <label *ngIf="label" class="form-label">{{ label }}:</label>
+  
+    <select
+        class="form-select"
+        [formControl]="control"
+        [class.is-invalid]="control.touched && control.invalid && control.dirty"
+    >
+        <option
+            *ngIf="defaultOption"
+            disabled
+            [ngValue]="null"
+        >
+            {{ defaultOption }}
+        </option>
+  
+        <option
+            *ngFor="let option of options; let i = index"
+            [ngValue]="values[i]"
+        >
+            {{ option }}
+        </option>
+    </select>
+  
+    <div class="invalid-feedback" *ngIf="control.errors?.['required']">
+        {{ requiredMessage }}
+    </div>
+    
+</div>
