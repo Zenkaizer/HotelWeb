@@ -12,7 +12,7 @@ import { Router } from "@angular/router";
 })
 export class ClientListComponent implements OnInit, OnDestroy {
 
-    clients$: Array<Client> | undefined;
+    clients$ = new Array<Client>();
     notification: Notification | null = null;
     clientsPage: number = 1;
 
@@ -36,10 +36,15 @@ export class ClientListComponent implements OnInit, OnDestroy {
 
     getClients(): void {
 
+        console.log("getClients");
+
         this.clientService.getClients().subscribe({
             next:(dataResponse) => {
+                console.log(dataResponse);
               this.clients$ = dataResponse;
-            }, error:(e) =>{}
+            }, error:(e) =>{
+                console.log(e);
+            }
           }
         );
     }

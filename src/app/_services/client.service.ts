@@ -33,12 +33,12 @@ export class ClientService {
      * @returns All clients in the database.
      */
     getClients(): Observable<Client[]> {
-        return this.http.get<Client[]>(this.baseUrl + "clients").pipe(
-            map(clients => {
-                this.clients = clients;
-                return clients;
-            })
-        );
+
+        var clientes = this.http.get<Client[]>(this.baseUrl + "clients")
+
+        console.log(clientes);
+
+        return clientes;
     }
 
     /**

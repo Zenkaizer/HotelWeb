@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Account } from './_models/account';
 import { AccountService } from './_services/account.service';
 
@@ -7,15 +7,18 @@ import { AccountService } from './_services/account.service';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   title = 'hotelAngular';
 
-  constructor(private accountService: AccountService) {
+  constructor(public accountService: AccountService) {
   }
 
-  ngOnInit() {
+
+  ngOnInit(): void {
     this.setCurrentAccount();
   }
+
+  
 
   setCurrentAccount() {
     const accountStr = localStorage.getItem('account');

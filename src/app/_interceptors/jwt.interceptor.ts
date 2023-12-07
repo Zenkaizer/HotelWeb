@@ -31,11 +31,12 @@ export class JwtInterceptor implements HttpInterceptor {
                 if (account) {
                     req = req.clone({
                         setHeaders: {
-                            Authorization: `Bearer ${account.token}`
-                        }
+                            Authorization: `Bearer ${account.token}`,
+                        },
                     });
+                    console.log(req.headers.get('Authorization'));
                 }
-            }
+            },
         });
         return next.handle(req);
     }

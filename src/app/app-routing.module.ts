@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './_guards/auth.guard';
+import { ClientAuthGuard } from './_guards/client-auth.guard';
+import { AdministrativeAuthGuard } from './_guards/administrative-auth.guard';
 // Components
 import { LoginComponent } from './_components/account/login/login.component';
 import { RegisterComponent } from './_components/account/register/register.component';
@@ -21,8 +23,16 @@ const routes: Routes = [
       {path: 'account', component: EditAccountComponent}
     ]
   },
-  {path: 'manage-clients', component: ClientListComponent}
-
+  {
+    path: '',
+    runGuardsAndResolvers: 'always',
+    canActivate: [AdministrativeAuthGuard],
+    children: [
+      {path: 'manage-clients', component: ClientListComponent},
+      {path: 'manage-rooms', component: ClientListComponent},
+      {path: 'manage-reserves', component: ClientListComponent}
+    ]
+  }
 ];
 
 @NgModule({
