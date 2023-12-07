@@ -35,9 +35,6 @@ export class ClientService {
     getClients(): Observable<Client[]> {
 
         var clientes = this.http.get<Client[]>(this.baseUrl + "clients")
-
-        console.log(clientes);
-
         return clientes;
     }
 
