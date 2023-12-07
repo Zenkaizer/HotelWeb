@@ -1,0 +1,49 @@
+<div class="mb-3">
+    <label 
+        *ngIf="label"
+        class="form-label"
+    >
+        {{ label }}:
+    </label>
+
+    <div class="input-group">
+        <span
+            *ngIf="span"
+            class="input-group-text"
+        >
+            {{ span }}
+        </span>
+
+        <input
+            type="{{ type }}"
+            class="form-control"
+            [class.is-invalid]="control.touched && control.invalid && control.dirty"
+            [formControl]="control"
+            placeholder = "{{placeholder}}"
+        >
+
+        <!--Error messages-->
+
+        <div class="invalid-feedback" *ngIf="control.errors?.['required']">
+            {{ requiredMessage }}
+        </div>
+
+        <div class="invalid-feedback" *ngIf="control.errors?.['minlength']">
+            Mínimo {{ control.errors?.['minlength'].requiredLength }} caracteres.
+        </div>
+
+        <div class="invalid-feedback" *ngIf="control.errors?.['maxlength']">
+            Máximo {{ control.errors?.['maxlength'].requiredLength }} caracteres.
+        </div>
+
+        <div class="invalid-feedback" *ngIf="control.errors?.['email']">
+            Correo electrónico inválido.
+        </div>
+
+        <div class="invalid-feedback" *ngIf="control.errors?.['invalidPhone'] && !control.errors?.['required']">
+            Número telefónico inválido.
+        </div>
+
+    </div>
+
+</div>
