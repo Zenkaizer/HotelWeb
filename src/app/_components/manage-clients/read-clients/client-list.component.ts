@@ -1,9 +1,9 @@
-import { Notification } from "../../_models/notification";
-import { NotificationService } from "../../_services/notification.service";
+import { Notification } from "../../../_models/notification";
+import { NotificationService } from "../../../_services/notification.service";
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { Observable } from "rxjs";
-import { Client } from "../../_models/client";
-import { ClientService } from "../../_services/client.service";
+import { Client } from "../../../_models/client";
+import { ClientService } from "../../../_services/client.service";
 import { Router } from "@angular/router";
 
 @Component({
