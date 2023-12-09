@@ -10,7 +10,7 @@ import { EditAccountComponent } from './_components/account/edit-account/edit-ac
 import { HomeComponent } from './_components/home/home.component';
 import { ClientListComponent } from './_components/manage-clients/client-list.component';
 import { RoomListComponent } from './_components/manage-rooms/room-list.component';
-
+import { ReserveListComponent } from './_components/manage-reserves/reserves-list.component';
 const routes: Routes = [
 
   {path: '', component: HomeComponent},  
@@ -31,7 +31,7 @@ const routes: Routes = [
     children: [
       {path: 'manage-clients', component: ClientListComponent},
       {path: 'manage-rooms', component: RoomListComponent},
-      {path: 'manage-reserves', component: ClientListComponent}
+      {path: 'manage-reserves', component: ReserveListComponent}
     ]
   }
 ];
