@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { environment } from "../../enviroments/enviroment";
-import { Client } from "../_models/client";
+import {Room} from "../_models/room";
 import { User } from "../_models/user";
 import { HttpClient } from "@angular/common/http";
 import { map, Observable } from "rxjs";
@@ -16,9 +16,9 @@ export class RoomService {
      */
     baseUrl = environment.apiUrl;
     /**
-     * List of clients.
+     * List of rooms.
      */
-    clients: Client[] = [];
+    rooms: Room[] = [];
 
     /**
      * Constructor of the class.
@@ -30,52 +30,52 @@ export class RoomService {
 
     /**
      * This method calls the API to get all the clients.
-     * @returns All clients in the database.
+     * @returns All rooms in the database.
      */
-    getClients(): Observable<Client[]> {
+    getRooms(): Observable<Room[]> {
 
-        var clientes = this.http.get<Client[]>(this.baseUrl + "clients")
+        var rooms = this.http.get<Room[]>(this.baseUrl + "rooms")
 
-        console.log(clientes);
+        console.log(rooms);
 
-        return clientes;
+        return rooms;
     }
 
     /**
-     * This method calls the API to get a client by its ID.
-     * @param id ID of the client to get.
-     * @returns Returns the client with the given ID.
+     * This method calls the API to get a room by its ID.
+     * @param id ID of the room to get.
+     * @returns Returns the room with the given ID.
      */
-    getClient(id: number): Observable<Client> {
-        return this.http.get<Client>(this.baseUrl + "clients/" + id);
+    getRoom(id: number): Observable<Room> {
+        return this.http.get<Room>(this.baseUrl + "rooms/" + id);
     }
 
     /**
-     * This method calls the API to create a new client.
-     * @param model All params of the new client.
-     * @returns Returns the new client.
+     * This method calls the API to create a new room.
+     * @param model All params of the new room.
+     * @returns Returns the new room.
      */
-    createClient(model: any): Observable<User> {
-        return this.http.post<User>(this.baseUrl + "clients", model);
+    createRoom(model: any): Observable<User> {
+        return this.http.post<User>(this.baseUrl + "rooms", model);
     }
 
     /**
-     * This method calls the API to update a client.
-     * @param id ID of the client to update.
-     * @param model All params of the client to update.
-     * @returns Returns the updated client.
+     * This method calls the API to update a room.
+     * @param id ID of the room to update.
+     * @param model All params of the room to update.
+     * @returns Returns the updated room.
      */
-    updateClient(id: number, model: any): Observable<Object> {
-        return this.http.put(this.baseUrl + "clients/" + id, model);
+    updateRoom(id: number, model: any): Observable<Object> {
+        return this.http.put(this.baseUrl + "rooms/" + id, model);
     }
 
     /**
-     * This method calls the API to delete a client.
-     * @param id ID of the client to delete.
-     * @returns Returns the deleted client.
+     * This method calls the API to delete a room.
+     * @param id ID of the room to delete.
+     * @returns Returns the deleted room.
      */
-    deleteClient(id: number): Observable<Object> {
-        return this.http.delete(this.baseUrl + "clients/" + id);
+    deleteRoom(id: number): Observable<Object> {
+        return this.http.delete(this.baseUrl + "rooms/" + id);
     }
 
 }
