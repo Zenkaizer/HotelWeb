@@ -7,8 +7,8 @@ import { ReserveService } from "../../_services/reserve.service";
 import { Router } from "@angular/router";
 
 @Component({
-    selector: "app-room-list",
-    templateUrl: "./room-list.component.html"
+    selector: "app-reserves-list",
+    templateUrl: "./reserves-list.component.html"
 })
 export class ReserveListComponent implements OnInit, OnDestroy {
 
