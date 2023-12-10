@@ -8,9 +8,12 @@ import { LoginComponent } from './_components/account/login/login.component';
 import { RegisterComponent } from './_components/account/register/register.component';
 import { EditAccountComponent } from './_components/account/edit-account/edit-account.component';
 import { HomeComponent } from './_components/home/home.component';
-import { ClientListComponent } from './_components/manage-clients/client-list.component';
+
 import { RoomListComponent } from './_components/manage-rooms/room-list.component';
 import { ReserveListComponent } from './_components/manage-reserves/reserves-list.component';
+import { ClientListComponent } from './_components/manage-clients/read-clients/client-list.component';
+import { CreateClientComponent } from './_components/manage-clients/create-clients/create-client.component';
+
 
 const routes: Routes = [
 
@@ -32,7 +35,8 @@ const routes: Routes = [
     children: [
       {path: 'manage-clients', component: ClientListComponent},
       {path: 'manage-rooms', component: RoomListComponent},
-      {path: 'manage-reserves', component: ReserveListComponent}
+      {path: 'manage-reserves', component: ReserveListComponent},
+      {path: 'manage-clients/create-client', component: CreateClientComponent},
     ]
   }
 ];

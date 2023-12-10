@@ -9,6 +9,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { FilterPipe } from './_pipes/filter.pipe';
 //Components
 import { HomeComponent } from './_components/home/home.component';
@@ -20,10 +21,10 @@ import { DateInputComponent } from './_components/_forms/date-input/date-input.c
 import { SelectInputComponent } from './_components/_forms/select-input/select-input.component';
 import { NavbarComponent } from './_components/navbar/navbar.component';
 import { FooterComponent } from './_components/footer/footer.component';
-import { ClientListComponent } from './_components/manage-clients/client-list.component';
 import { RoomListComponent } from './_components/manage-rooms/room-list.component';
 import { ReserveListComponent } from './_components/manage-reserves/reserves-list.component';
-
+import { ClientListComponent } from './_components/manage-clients/read-clients/client-list.component';
+import { CreateClientComponent } from './_components/manage-clients/create-clients/create-client.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { ReserveListComponent } from './_components/manage-reserves/reserves-lis
     SelectInputComponent,
     ClientListComponent,
     RoomListComponent,
-    ReserveListComponent
+    ReserveListComponent.
+    CreateClientComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +53,8 @@ import { ReserveListComponent } from './_components/manage-reserves/reserves-lis
     ReactiveFormsModule,
     FormsModule,
     BrowserAnimationsModule,
-    BsDatepickerModule.forRoot()
+    BsDatepickerModule.forRoot(),
+    BsDropdownModule.forRoot()
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

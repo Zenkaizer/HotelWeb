@@ -35,9 +35,6 @@ export class ClientService {
     getClients(): Observable<Client[]> {
 
         var clientes = this.http.get<Client[]>(this.baseUrl + "clients")
-
-        console.log(clientes);
-
         return clientes;
     }
 
@@ -56,7 +53,7 @@ export class ClientService {
      * @returns Returns the new client.
      */
     createClient(model: any): Observable<User> {
-        return this.http.post<User>(this.baseUrl + "clients", model);
+        return this.http.post<User>(this.baseUrl + "clients/new-client", model);
     }
 
     /**

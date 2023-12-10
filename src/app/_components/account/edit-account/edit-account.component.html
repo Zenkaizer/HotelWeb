@@ -32,6 +32,13 @@
             >
             </app-text-input>
 
+            <div class="mb-3" *ngIf="notification">
+                <div class="alert alert-dismissible mb-0" [ngClass]="notification.success ? 'alert-success' : 'alert-danger'">
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" (click)="closeNotification()"></button>
+                    {{ notification.message }}
+                </div>
+            </div>
+
             <div class="text-center">
                 <button [disabled]="!updateForm.valid" type="submit" class="btn btn-success">Editar</button>
             </div>
