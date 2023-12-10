@@ -14,6 +14,7 @@ import { ReserveListComponent } from './_components/manage-reserves/reserves-lis
 import { ClientListComponent } from './_components/manage-clients/read-clients/client-list.component';
 import { CreateClientComponent } from './_components/manage-clients/create-clients/create-client.component';
 import { CreateRoomComponent } from './_components/manage-rooms/create-rooms/create-room.component';
+import { EditRoomComponent } from './_components/manage-rooms/edit-rooms/edit-room.component';
 
 
 const routes: Routes = [
@@ -39,6 +40,7 @@ const routes: Routes = [
       {path: 'manage-reserves', component: ReserveListComponent},
       {path: 'manage-clients/create-client', component: CreateClientComponent},
       {path: 'manage-rooms/create-room', component: CreateRoomComponent},
+      {path: 'manage-rooms/:id', component: EditRoomComponent },
     ]
   }
 ];

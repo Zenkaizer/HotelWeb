@@ -26,6 +26,7 @@ import { ReserveListComponent } from './_components/manage-reserves/reserves-lis
 import { ClientListComponent } from './_components/manage-clients/read-clients/client-list.component';
 import { CreateClientComponent } from './_components/manage-clients/create-clients/create-client.component';
 import { CreateRoomComponent } from './_components/manage-rooms/create-rooms/create-room.component';
+import { EditRoomComponent } from './_components/manage-rooms/edit-rooms/edit-room.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { CreateRoomComponent } from './_components/manage-rooms/create-rooms/cre
     RoomListComponent,
     ReserveListComponent,
     CreateClientComponent,
-    CreateRoomComponent
+    CreateRoomComponent,
+    EditRoomComponent
   ],
   imports: [
     BrowserModule,

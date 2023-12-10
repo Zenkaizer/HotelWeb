@@ -66,6 +66,7 @@ export class RoomService {
      * @returns Returns the updated room.
      */
     updateRoom(id: number, model: any): Observable<Object> {
+        console.log("Actualizando una habitacion");
         return this.http.put(this.baseUrl + "rooms/" + id, model);
     }
 
