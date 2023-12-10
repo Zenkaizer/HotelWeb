@@ -41,7 +41,7 @@ import { CreateClientComponent } from './_components/manage-clients/create-clien
     SelectInputComponent,
     ClientListComponent,
     RoomListComponent,
-    ReserveListComponent.
+    ReserveListComponent,
     CreateClientComponent
   ],
   imports: [
