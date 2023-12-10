@@ -1,0 +1,64 @@
+<div class="row justify-content-center mb-4">
+    <div class="col-10" style="margin-top: 16px;">
+        <button
+            type="button"
+            class="btn btn-dark"
+            routerLink="/manage-reserves/create-reserve"
+            routerLinkActive="active"
+        >
+            Agregar nueva reserva
+        </button>
+    </div>
+
+    <div class="col-10 mt-4" *ngIf="notification">
+        <div class="alert alert-dismissible mb-0" [ngClass]="notification.success ? 'alert-success' : 'alert-danger'">
+            <button type="button" class="btn-close" data-bs-dismiss="alert" (click)="closeNotification()"></button>
+            {{ notification.message }}
+        </div>
+    </div>
+</div>
+
+<div class="row justify-content-center">
+    <div class="col-10">
+        <pagination-controls 
+            (pageChange)="reservesPage = $event" 
+            previousLabel="Anterior" 
+            nextLabel="Siguiente">
+        </pagination-controls>
+
+        <table class="table table-hover table-responsive-xxl">
+            <thead>
+                <tr class="table-primary">
+                    <th scope="col" class="align-middle" style="width: 15%;">ID</th>
+                    <th scope="col" class="align-middle" style="width: 15%;">Cliente</th>
+                    <th scope="col" class="align-middle" style="width: 15%;">Habitación</th>
+                    <th scope="col" class="align-middle" style="width: 15%;">Fecha de Llegada</th>
+                    <th scope="col" class="align-middle" style="width: 15%;">Fecha de Salida</th>
+                    <th scope="col" class="align-middle" style="width: 15%;">Confirmada</th>
+                    <th scope="col" class="align-middle" style="width: 15%;">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let reserve of reserves$ | filter | paginate: { itemsPerPage: 5, currentPage: reservesPage}">
+                    <td>{{ reserve.id.toString() }}</td>
+                    <td>{{ reserve.firstName + ' ' + reserve.lastName | titlecase}}</td>
+                    <td>{{ reserve.roomId.toString() }}</td>
+                    <td>{{ reserve.checkIn }}</td>
+                    <td>{{ reserve.checkOut}}</td>
+                    <td>{{ reserve.confirmed ? 'Sí' : 'No' }}</td>
+                    <td>
+                        <div class="d-flex flex-row gap-2">
+                            <button
+                                type="button"
+                                class="btn btn-outline-secondary"
+                                routerLink="/manage-reserves/{{ reserve.id }}"
+                            >
+                            Editar
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
