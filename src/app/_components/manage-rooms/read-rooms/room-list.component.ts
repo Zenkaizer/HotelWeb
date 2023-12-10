@@ -41,12 +41,16 @@ export class RoomListComponent implements OnInit, OnDestroy {
         this.roomService.getRooms().subscribe({
             next:(dataResponse) => {
                 console.log(dataResponse);
-              this.rooms$ = dataResponse;
+                this.rooms$ = dataResponse.filter(room => !room['deleted']);
             }, error:(e) =>{
                 console.log(e);
             }
           }
         );
+    }
+
+    get filteredRooms(): Room[] {
+        return this.rooms$;
     }
 
     getCurrentNavigation(): void {
