@@ -32,7 +32,15 @@ const routes: Routes = [
       {path: 'manage-clients', component: ClientListComponent},
       {path: 'manage-rooms', component: ClientListComponent},
       {path: 'manage-reserves', component: ClientListComponent},
-      {path: 'manage-clients/create-client', component: CreateClientComponent},
+      {path: 'manage-clients/create-client', component: CreateClientComponent}
+    ]
+  },
+  {
+    path: '',
+    runGuardsAndResolvers: 'always',
+    canActivate: [ClientAuthGuard],
+    children: [
+      {path: 'rooms', component: HomeComponent}
     ]
   }
 ];
