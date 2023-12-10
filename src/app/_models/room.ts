@@ -5,5 +5,6 @@ export interface Room {
     dualBeds: number;
     haveBathroom: boolean;
     price: number;
+    maxCapacity: number;
 
 }

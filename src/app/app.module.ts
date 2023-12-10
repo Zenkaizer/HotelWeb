@@ -21,10 +21,11 @@ import { DateInputComponent } from './_components/_forms/date-input/date-input.c
 import { SelectInputComponent } from './_components/_forms/select-input/select-input.component';
 import { NavbarComponent } from './_components/navbar/navbar.component';
 import { FooterComponent } from './_components/footer/footer.component';
-import { RoomListComponent } from './_components/manage-rooms/room-list.component';
+import { RoomListComponent } from './_components/manage-rooms/read-rooms/room-list.component';
 import { ReserveListComponent } from './_components/manage-reserves/reserves-list.component';
 import { ClientListComponent } from './_components/manage-clients/read-clients/client-list.component';
 import { CreateClientComponent } from './_components/manage-clients/create-clients/create-client.component';
+import { CreateRoomComponent } from './_components/manage-rooms/create-rooms/create-room.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { CreateClientComponent } from './_components/manage-clients/create-clien
     ClientListComponent,
     RoomListComponent,
     ReserveListComponent,
-    CreateClientComponent
+    CreateClientComponent,
+    CreateRoomComponent
   ],
   imports: [
     BrowserModule,
