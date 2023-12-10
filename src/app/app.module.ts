@@ -21,6 +21,9 @@ import { SelectInputComponent } from './_components/_forms/select-input/select-i
 import { NavbarComponent } from './_components/navbar/navbar.component';
 import { FooterComponent } from './_components/footer/footer.component';
 import { ClientListComponent } from './_components/manage-clients/client-list.component';
+import { RoomListComponent } from './_components/manage-rooms/room-list.component';
+import { ReserveListComponent } from './_components/manage-reserves/reserves-list.component';
+
 
 @NgModule({
   declarations: [
@@ -35,7 +38,9 @@ import { ClientListComponent } from './_components/manage-clients/client-list.co
     TextInputComponent,
     DateInputComponent,
     SelectInputComponent,
-    ClientListComponent
+    ClientListComponent,
+    RoomListComponent,
+    ReserveListComponent
   ],
   imports: [
     BrowserModule,
