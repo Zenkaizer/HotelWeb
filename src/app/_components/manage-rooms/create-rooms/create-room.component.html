@@ -1,0 +1,63 @@
+<div class="row justify-content-center mt-3">
+    <div class="col-4">
+        <form [formGroup]="createRoomForm" (ngSubmit)="createRoomForm.valid && createRoom()" autocomplete="off">
+            <h2 class="text-center text-primary">Añadir habitación</h2>
+            
+            <hr>
+
+            <app-text-input
+                [formControl]="$any(createRoomForm.controls['individualBeds'])"
+                label="Número de camas individuales"
+                placeholder="Ingrese la cantidad de camas individuales"
+                requiredMessage="La cantidad de camas es obligatoria"
+            >
+            </app-text-input>
+
+            <app-text-input
+                [formControl]="$any(createRoomForm.controls['dualBeds'])"
+                label="Número de camas dobles"
+                placeholder="Ingrese la cantidad de camas dobles"
+                requiredMessage="La cantidad de camas es obligatoria"
+            >
+            </app-text-input>
+
+            <app-text-input
+                [formControl]="$any(createRoomForm.controls['maxCapacity'])"
+                label="Capacidad máxima"
+                placeholder="Ingrese la capacidad máxima"
+                requiredMessage="La capacidad máxima es obligatoria"
+            >
+            </app-text-input>
+
+            <app-select-input
+                [formControl]="$any(createRoomForm.controls['haveBathroom'])"
+                label="¿Tiene baño?"
+                defaultOption="Seleccione una opción"
+                [values]="values"
+                [options]="values"
+                requiredMessage="La opción es obligatoria"
+            >
+            </app-select-input>
+
+            <app-text-input
+                [formControl]="$any(createRoomForm.controls['price'])"
+                label="Precio de la habitación"
+                span="CLP"
+                placeholder="Ingrese el precio de la habitación"
+                requiredMessage="El precio de la habitación es obligatorio"
+            >
+            </app-text-input>
+
+            <div class="mb-3" *ngIf="notification">
+                <div class="alert alert-dismissible mb-0" [ngClass]="notification.success ? 'alert-success' : 'alert-danger'">
+                    <button type="button" class="btn-close" data-bs-dimiss="alert" (click)="closeNotification()"></button>
+                    {{ notification.message }}
+                </div>
+            </div>
+
+            <div class="text-center">
+                <button [disabled]="!createRoomForm.valid" type="submit" class="btn btn-success">Añadir</button>
+            </div>
+        </form>
+    </div>
+</div>
