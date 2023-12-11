@@ -6,7 +6,7 @@ definitions:
          memory: 3072
 pipelines:
   branches:
-    main:
+    master:
       - step:
           name: Build and Test
           script:
