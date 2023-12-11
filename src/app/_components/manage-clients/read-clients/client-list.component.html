@@ -2,7 +2,7 @@
     <div class="col-10" style="margin-top: 16px;">
         <button
             type="button"
-            class="btn btn-dark"
+            class="btn btn-primary"
             routerLink="/manage-clients/create-client"
             routerLinkActive="active"
         >
@@ -48,10 +48,18 @@
                         <div class="d-flex flex-row gap-2">
                             <button
                                 type="button"
-                                class="btn btn-outline-secondary"
+                                class="btn btn-primary"
                                 routerLink="/manage-clients/{{client['id']}}"
                             >
                             Editar
+                            </button>
+
+                            <button
+                                type="button"
+                                class="btn btn-danger"
+                                (click)="deleteClient(client['id'])"
+                            >
+                            Borrar
                             </button>
                         </div>
                     </td>

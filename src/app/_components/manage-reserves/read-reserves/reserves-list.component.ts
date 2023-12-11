@@ -35,9 +35,6 @@ export class ReserveListComponent implements OnInit, OnDestroy {
     }
 
     getReserves(): void {
-
-        console.log("getReserves");
-
         this.reserveService.getReserves().subscribe({
             next:(dataResponse) => {
                 console.log(dataResponse);

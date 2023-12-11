@@ -60,4 +60,16 @@ export class ClientListComponent implements OnInit, OnDestroy {
         this.notificationService.clearNotification();
     }
 
+    deleteClient(id: number): void {
+        this.clientService.deleteClient(id).subscribe({
+            next: () => {
+                this.getClients();
+                this.notificationService.setNotification(true, "Cliente eliminado correctamente");
+            },
+            error: (error) => {
+                this.notificationService.setNotification(false, "Ha ocurrido un problema al eliminar el cliente");
+            }
+        });
+    }
+
 }

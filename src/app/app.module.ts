@@ -25,10 +25,11 @@ import { RoomListComponent } from './_components/manage-rooms/read-rooms/room-li
 import { ReserveListComponent } from './_components/manage-reserves/read-reserves/reserves-list.component';
 import { ClientListComponent } from './_components/manage-clients/read-clients/client-list.component';
 import { CreateClientComponent } from './_components/manage-clients/create-clients/create-client.component';
+import { EditClientComponent } from './_components/manage-clients/edit-clients/edit-client.component';
 import { CreateRoomComponent } from './_components/manage-rooms/create-rooms/create-room.component';
 import { EditRoomComponent } from './_components/manage-rooms/edit-rooms/edit-room.component';
-import { DeleteRoomComponent } from './_components/manage-rooms/delete-rooms/delete-room.component';
 import { ReserveRoomComponent } from './_components/reserve-room/reserve-room.component';
+import { AdministrativeListComponent } from './_components/manage-administratives/read-administratives/administrative-list.component';
 
 @NgModule({
   declarations: [
@@ -49,8 +50,9 @@ import { ReserveRoomComponent } from './_components/reserve-room/reserve-room.co
     CreateClientComponent,
     CreateRoomComponent,
     EditRoomComponent,
-    DeleteRoomComponent,
-    ReserveRoomComponent
+    ReserveRoomComponent,
+    AdministrativeListComponent,
+    EditClientComponent
   ],
   imports: [
     BrowserModule,

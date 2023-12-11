@@ -6,7 +6,6 @@ export interface Room {
     maxCapacity: number;
     haveBathroom: boolean;
     price: number;
-    maxCapacity: number;
     deleted: boolean;
 
 }

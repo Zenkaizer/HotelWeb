@@ -3,12 +3,12 @@ import { Room } from './room';
 
 export interface Reserve {
 
-  id: number;
   roomId: number;
+  clientRut: String;
   firstName: string;
   lastName: string;
   checkIn: string;
   chekOut: String;
-  price: String;
+  price: number;
   confirmed: boolean;
 }

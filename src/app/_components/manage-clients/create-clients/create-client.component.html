@@ -1,7 +1,7 @@
 <div class="row justify-content-center mt-3">
     <div class="col-4">
         <form [formGroup]="createClientForm" (ngSubmit)="createClientForm.valid && createClient()" autocomplete="off">
-            <h2 class="text-center text-primary">Registrarse</h2>
+            <h2 class="text-center text-primary">Registrar nuevo cliente</h2>
             
             <hr>
 
@@ -74,7 +74,7 @@
             </div>
 
             <div class="text-center">
-                <button [disabled]="!createClientForm.valid" type="submit" class="btn btn-success">Registrarse</button>
+                <button [disabled]="!createClientForm.valid" type="submit" class="btn btn-success">Agregar</button>
             </div>
         </form>
     </div>

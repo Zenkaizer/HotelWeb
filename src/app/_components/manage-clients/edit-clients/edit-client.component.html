@@ -1,0 +1,55 @@
+<div class="row justify-content-center mt-3">
+    <div class="col-4">
+      <form [formGroup]="editClientForm" (ngSubmit)="editClientForm.valid && updateClient()" autocomplete="off">
+        <h2 class="text-center text-primary">Editar Cliente</h2>
+  
+        <hr>
+  
+        <app-text-input
+            [formControl]="$any(editClientForm.controls['firstName'])"
+            label="Nombre"
+            placeholder="Ingrese su nombre"
+            requiredMessage="El nombre es obligatorio"
+        >
+        </app-text-input>
+
+        <app-text-input
+            [formControl]="$any(editClientForm.controls['lastName'])"
+            label="Apellido"
+            placeholder="Ingrese su apellido"
+            requiredMessage="El apellido es obligatorio"
+        >
+        </app-text-input>
+  
+        <app-select-input
+            [formControl]="$any(editClientForm.controls['nationality'])"
+            label="Nacionalidad"
+            defaultOption="Seleccione su nacionalidad"
+            [values]="nationalities"
+            [options]="nationalities"
+            requiredMessage="La nacionalidad es obligatoria"
+        >
+        </app-select-input>
+  
+        <app-text-input
+            [formControl]="$any(editClientForm.controls['phone'])"
+            label="Número de teléfono"
+            span="+569"
+            placeholder="Ingrese su número telefónico"
+            requiredMessage="El número de teléfono es obligatorio"
+        >
+        </app-text-input>
+  
+        <div class="mb-3" *ngIf="notification">
+          <div class="alert alert-dismissible mb-0" [ngClass]="notification.success ? 'alert-success' : 'alert-danger'">
+            <button type="button" class="btn-close" data-bs-dimiss="alert" (click)="closeNotification()"></button>
+            {{ notification.message }}
+          </div>
+        </div>
+  
+        <div class="text-center">
+          <button [disabled]="!editClientForm.valid" type="submit" class="btn btn-success">Actualizar Cliente</button>
+        </div>
+      </form>
+    </div>
+</div>

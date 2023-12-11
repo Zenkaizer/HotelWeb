@@ -66,4 +66,16 @@ export class RoomListComponent implements OnInit, OnDestroy {
         this.notificationService.clearNotification();
     }
 
+    deleteRoom(id: number): void {
+        this.roomService.deleteRoom(id).subscribe({
+            next: () => {
+                this.getRooms();
+                this.notificationService.setNotification(true, "La habitación se ha eliminado correctamente");
+            },
+            error: (error) => {
+                this.notificationService.setNotification(false, "Ha ocurrido un problema al eliminar la habitación");
+            }
+        });
+    }
+
 }

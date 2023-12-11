@@ -70,10 +70,7 @@ export class EditRoomComponent implements OnInit, OnDestroy {
 
   updateRoom(): void {
     const values = { ...this.editRoomForm.value };
-
-    console.log('Antes de llamar a updateRoom. Valores:', values);
-    console.log(this.roomId);
-  
+      
     this.roomService.updateRoom(this.roomId, values).subscribe({
       next: () => {
         this.router.navigateByUrl("/manage-rooms").then(() =>
