@@ -11,10 +11,6 @@
           <li class="nav-item">
             <a class="nav-link" routerLink="/manage-reserves" routerLinkActive="active">Administrar Reservas</a>
           </li>
-  
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/stats" routerLinkActive="active">Estadísticas</a>
-          </li>
         </ng-container>
 
         <ng-container *ngIf="(accountService.currentAccount$ | async)?.role == 'ADMINISTRATIVE'">
@@ -49,7 +45,7 @@
   
       <ul class="navbar-nav ms-auto" *ngIf="!(accountService.currentAccount$ | async)">
         <li class="nav-item">
-          <a class="nav-link" routerLink="/auth/login" routerLinkActive="active">Iniciar sesión</a>
+          <a class="nav-link" routerLink="/auth/login" routerLinkActive="active">Entrar</a>
         </li>
   
         <li class="nav-item">
