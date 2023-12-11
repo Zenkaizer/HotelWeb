@@ -1,0 +1,72 @@
+<div class="row justify-content-center mb-4">
+    <div class="col-10" style="margin-top: 16px;">
+        <button
+            type="button"
+            class="btn btn-primary"
+            routerLink="/manage-rooms/create-room"
+            routerLinkActive="active"
+        >
+            Agregar nueva habitación
+        </button>
+    </div>
+
+    <div class="col-10 mt-4" *ngIf="notification">
+        <div class="alert alert-dismissible mb-0" [ngClass]="notification.success ? 'alert-success' : 'alert-danger'">
+            <button type="button" class="btn-close" data-bs-dismiss="alert" (click)="closeNotification()"></button>
+            {{ notification.message }}
+        </div>
+    </div>
+</div>
+
+<div class="row justify-content-center">
+    <div class="col-10">
+        <pagination-controls 
+            (pageChange)="roomsPage = $event" 
+            previousLabel="Anterior" 
+            nextLabel="Siguiente">
+        </pagination-controls>
+
+        <table class="table table-hover table-responsive-xxl">
+            <thead>
+                <tr class="table-primary">
+                    <th scope="col" class="align-middle" style="width: 10%;">ID Habitación</th>
+                    <th scope="col" class="align-middle" style="width: 10%;">Camas 1 plaza</th>
+                    <th scope="col" class="align-middle" style="width: 10%;">Camas 2 plazas</th>
+                    <th scope="col" class="align-middle" style="width: 10%;">Capacidad máxima</th>
+                    <th scope="col" class="align-middle" style="width: 10%;">Baño</th>
+                    <th scope="col" class="align-middle" style="width: 10%;">Precio</th>
+                    <th scope="col" class="align-middle" style="width: 15%;">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let room of rooms$ | filter | paginate: { itemsPerPage: 5, currentPage: roomsPage}">
+                    <td>Habitación {{room['id'].toString() | titlecase}}</td>
+                    <td>{{room['individualBeds'].toString() | titlecase}}</td>
+                    <td>{{room['dualBeds'].toString() | titlecase}}</td>
+                    <td>{{room['maxCapacity'].toString() | titlecase}} personas</td>
+                    <td>{{ (room['haveBathroom'] ? 'Si' : 'No') | titlecase }}</td>
+                    <td>${{room['price'].toString() | titlecase}}</td>
+                    <td>
+                        <div class="d-flex flex-row gap-2">
+                            <button
+                                type="button"
+                                class="btn btn-primary"
+                                routerLink="/manage-rooms/{{room['id']}}"
+                            >
+                            Editar
+                            </button>
+
+                            <button
+                                type="button"
+                                class="btn btn-danger"
+                                (click)="deleteRoom(room['id'])"
+                            >
+                            Borrar
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,12 @@
+div.c-wrapper{
+    width: 60%; /* for example */
+    margin: auto;
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
+
+.carousel-inner > .item > img, 
+.carousel-inner > .item > a > img{
+width: 100%; /* use this, or not */
+margin: auto;
+}

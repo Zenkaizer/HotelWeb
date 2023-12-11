@@ -1,0 +1,62 @@
+<div class="row justify-content-center mt-3">
+    <div class="col-4">
+      <form [formGroup]="editRoomForm" (ngSubmit)="editRoomForm.valid && updateRoom()" autocomplete="off">
+        <h2 class="text-center text-primary">Editar Habitación</h2>
+  
+        <hr>
+  
+        <app-text-input
+          [formControl]="$any(editRoomForm.controls['individualBeds'])"
+          label="Camas individuales"
+          placeholder="Ingrese la cantidad de camas individuales"
+          requiredMessage="El número de camas individuales es requerido"
+        >
+        </app-text-input>
+  
+        <app-text-input
+          [formControl]="$any(editRoomForm.controls['dualBeds'])"
+          label="Camas dobles"
+          placeholder="Ingrese la cantidad de camas dobles"
+          requiredMessage="El número de camas dobles es requerido"
+        >
+        </app-text-input>
+  
+        <app-select-input
+          [formControl]="$any(editRoomForm.controls['haveBathroom'])"
+          label="¿Tiene baño?"
+          defaultOption="Seleccione"
+          [values]="['true', 'false']"
+          [options]="['Si', 'No']"
+          requiredMessage="La información sobre el baño es requerida"
+        >
+        </app-select-input>
+  
+        <app-text-input
+          [formControl]="$any(editRoomForm.controls['price'])"
+          label="Precio"
+          placeholder="Ingrese el precio"
+          requiredMessage="El precio es requerido"
+        >
+        </app-text-input>
+
+        <app-text-input
+          [formControl]="$any(editRoomForm.controls['maxCapacity'])"
+          label="Capacidad máxima"
+          placeholder="Ingresa la capacidad máxima"
+          requiredMessage="La capacidad es requerida"
+        >
+        </app-text-input>
+  
+        <div class="mb-3" *ngIf="notification">
+          <div class="alert alert-dismissible mb-0" [ngClass]="notification.success ? 'alert-success' : 'alert-danger'">
+            <button type="button" class="btn-close" data-bs-dimiss="alert" (click)="closeNotification()"></button>
+            {{ notification.message }}
+          </div>
+        </div>
+  
+        <div class="text-center">
+          <button [disabled]="!editRoomForm.valid" type="submit" class="btn btn-success">Actualizar Habitación</button>
+        </div>
+      </form>
+    </div>
+</div>

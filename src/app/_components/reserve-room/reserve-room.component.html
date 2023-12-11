@@ -1,0 +1,36 @@
+<div class="row justify-content-center mb-4">
+    <div class="col-10 mt-4" *ngIf="notification">
+        <div class="alert alert-dismissible mb-0" [ngClass]="notification.success ? 'alert-success' : 'alert-danger'">
+            <button type="button" class="btn-close" data-bs-dismiss="alert" (click)="closeNotification()"></button>
+            {{ notification.message }}
+        </div>
+    </div>
+</div>
+<div class="row justify-content-center">
+    <div class="col-10">
+        <h2 class="text-center mb-4">Listado de habitaciones</h2>
+        <pagination-controls (pageChange)="roomsPage = $event" previousLabel="Anterior" nextLabel="Siguiente">
+        </pagination-controls>
+        <div class="row">
+            <div class="col-4 mb-3" *ngFor="let room of rooms$ | filter | paginate: { itemsPerPage: 6, currentPage: roomsPage}">
+                <div class="card">
+                    <img src="assets/img/foto3.png" class="d-block w-100" alt="Imagen de la habitación">
+                    <h3 class="card-header">Habitación {{ room.id }}</h3>
+                    <div class="card-body">
+                        <h6 class="card-subtitle text-muted">Precio: {{ room.price.toString()}}</h6>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Camas individuales: {{ room.individualBeds }}</li>
+                        <li class="list-group-item">Camas dobles: {{ room.dualBeds }}</li>
+                        <li class="list-group-item">Baño: {{ room.haveBathroom ? 'Sí' : 'No' }}</li>
+                    </ul>
+                    <div class="card-body">
+                        <a href="/client/reserve/{{room['id']}}" class="card-link">Reservar</a>
+                    </div>
+                    <div class="card-footer text-muted">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
