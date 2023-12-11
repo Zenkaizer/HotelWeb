@@ -8,7 +8,7 @@ export interface Reserve {
   firstName: string;
   lastName: string;
   checkIn: string;
-  chekOut: String;
+  checkOut: String;
   price: String;
   confirmed: boolean;
 }

@@ -30,7 +30,7 @@ import { EditRoomComponent } from './_components/manage-rooms/edit-rooms/edit-ro
 import { DeleteRoomComponent } from './_components/manage-rooms/delete-rooms/delete-room.component';
 import { ReserveRoomComponent } from './_components/reserve-room/reserve-room.component';
 import { ReserveRoomidComponent } from './_components/reserve-roomid/reserve-roomid.component';
-
+import { EditReserveComponent } from './_components/manage-reserves/edit-reserves/edit-reserve.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,7 +52,8 @@ import { ReserveRoomidComponent } from './_components/reserve-roomid/reserve-roo
     EditRoomComponent,
     DeleteRoomComponent,
     ReserveRoomComponent,
-    ReserveRoomidComponent
+    ReserveRoomidComponent,
+    EditReserveComponent
   ],
   imports: [
     BrowserModule,

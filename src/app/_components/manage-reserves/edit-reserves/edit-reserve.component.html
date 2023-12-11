@@ -1,0 +1,42 @@
+<div class="row justify-content-center mt-3">
+    <div class="col-4">
+      <form [formGroup]="editReserveForm" (ngSubmit)="editReserveForm.valid && updateReserve()" autocomplete="off">
+        <h2 class="text-center text-primary">Editar Reserva</h2>
+  
+        <hr>
+  
+        <app-text-input
+          [formControl]="$any(editReserveForm.controls['checkIn'])"
+          label="Fecha de entrada"
+          placeholder="Seleccione la fecha de entrada"
+          requiredMessage="La fecha de entrada es requerida"
+        >
+        </app-text-input>
+  
+        <app-text-input
+          [formControl]="$any(editReserveForm.controls['checkOut'])"
+          label="Fecha de salida"
+          placeholder="Seleccione la fecha de salida"
+          requiredMessage="La fecha de salida es requerida"
+        >
+        </app-text-input>
+  
+        <app-checkbox-input
+          [formControl]="$any(editReserveForm.controls['confirmed'])"
+          label="Confirmada"
+        >
+        </app-checkbox-input>
+  
+        <div class="mb-3" *ngIf="notification">
+          <div class="alert alert-dismissible mb-0" [ngClass]="notification.success ? 'alert-success' : 'alert-danger'">
+            <button type="button" class="btn-close" data-bs-dimiss="alert" (click)="closeNotification()"></button>
+            {{ notification.message }}
+          </div>
+        </div>
+  
+        <div class="text-center">
+          <button [disabled]="!editReserveForm.valid" type="submit" class="btn btn-success">Actualizar Reserva</button>
+        </div>
+      </form>
+    </div>
+</div>
