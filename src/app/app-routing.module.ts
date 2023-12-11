@@ -17,6 +17,7 @@ import { CreateRoomComponent } from './_components/manage-rooms/create-rooms/cre
 import { EditRoomComponent } from './_components/manage-rooms/edit-rooms/edit-room.component';
 import { DeleteRoomComponent } from './_components/manage-rooms/delete-rooms/delete-room.component';
 import { ReserveRoomComponent } from './_components/reserve-room/reserve-room.component';
+import { ReserveRoomidComponent } from './_components/reserve-roomid/reserve-roomid.component';
 
 
 const routes: Routes = [
@@ -52,6 +53,7 @@ const routes: Routes = [
     canActivate: [ClientAuthGuard],
     children: [
       { path: 'client/schedule', component: ReserveRoomComponent },
+      { path: 'client/reserve/:id', component: ReserveRoomidComponent },
     ]
   }
 ];
