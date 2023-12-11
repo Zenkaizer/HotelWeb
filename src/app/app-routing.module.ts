@@ -20,6 +20,7 @@ import { CreateRoomComponent } from './_components/manage-rooms/create-rooms/cre
 import { EditClientComponent } from './_components/manage-clients/edit-clients/edit-client.component';
 import { EditProfileComponent } from './_components/account/edit-profile/edit-profile.component';
 import { CreateAdministrativeComponent } from './_components/manage-administratives/create-administratives/create-administrative.component';
+import { EditAdministrativesComponent } from './_components/manage-administratives/edit-administratives/edit-administratives.component';
 
 const routes: Routes = [
 
@@ -64,7 +65,8 @@ const routes: Routes = [
     children: [
       {path: 'stats', component: HomeComponent},
       {path: 'manage-administratives', component: AdministrativeListComponent},
-      {path: 'manage-administratives/create-administrative', component: CreateAdministrativeComponent}
+      {path: 'manage-administratives/create-administrative', component: CreateAdministrativeComponent},
+      {path: 'manage-administratives/:id', component: EditAdministrativesComponent}
     ]
   }
   ,

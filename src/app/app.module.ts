@@ -32,7 +32,7 @@ import { ReserveRoomComponent } from './_components/reserve-room/reserve-room.co
 import { AdministrativeListComponent } from './_components/manage-administratives/read-administratives/administrative-list.component';
 import { EditProfileComponent } from './_components/account/edit-profile/edit-profile.component';
 import { CreateAdministrativeComponent } from './_components/manage-administratives/create-administratives/create-administrative.component';
-
+import { EditAdministrativesComponent } from './_components/manage-administratives/edit-administratives/edit-administratives.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +57,8 @@ import { CreateAdministrativeComponent } from './_components/manage-administrati
     AdministrativeListComponent,
     EditClientComponent,
     EditProfileComponent,
-    CreateAdministrativeComponent
+    CreateAdministrativeComponent,
+    EditAdministrativesComponent
   ],
   imports: [
     BrowserModule,
