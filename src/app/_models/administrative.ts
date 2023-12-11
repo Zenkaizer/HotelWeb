@@ -2,6 +2,6 @@ export interface Administrative {
     dni: string;
     firstName: string;
     lastName: string;
-    nationality: string;
+    email: string;
     phone: string;
 }

@@ -15,6 +15,7 @@ import { ReserveListComponent } from './_components/manage-reserves/reserves-lis
 import { ClientListComponent } from './_components/manage-clients/read-clients/client-list.component';
 import { CreateClientComponent } from './_components/manage-clients/create-clients/create-client.component';
 import { CreateRoomComponent } from './_components/manage-rooms/create-rooms/create-room.component';
+import { AdministrativeListComponent } from './_components/manage-administratives/update-administratives/administrative-list.component';
 
 const routes: Routes = [
 
@@ -54,7 +55,7 @@ const routes: Routes = [
     runGuardsAndResolvers: 'always',
     canActivate: [AdminAuthGuard],
     children: [
-      {path: 'rooms', component: HomeComponent}
+      {path: 'manage-administratives', component: AdministrativeListComponent}
     ]
   }
 ];

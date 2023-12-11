@@ -1,30 +1,29 @@
 import { Notification } from "../../../_models/notification";
 import { NotificationService } from "../../../_services/notification.service";
-import { Component, OnDestroy, OnInit } from "@angular/core";
-import { Observable } from "rxjs";
-import { Client } from "../../../_models/client";
-import { ClientService } from "../../../_services/client.service";
 import { Router } from "@angular/router";
+import { Administrative } from "../../../_models/administrative";
+import { AdministrativeService } from "../../../_services/administrative.service";
+import { Component, OnInit, OnDestroy } from "@angular/core";
 
 @Component({
-    selector: "app-client-list",
-    templateUrl: "./client-list.component.html"
+    selector: "app-administrative-list",
+    templateUrl: "./administrative-list.component.html"
 })
-export class ClientListComponent implements OnInit, OnDestroy {
+export class AdministrativeListComponent implements OnInit, OnDestroy {
 
-    clients$ = new Array<Client>();
+    administratives$ = new Array<Administrative>();
     notification: Notification | null = null;
-    clientsPage: number = 1;
+    administrativesPage: number = 1;
 
     constructor(
-        private clientService: ClientService, 
+        private administrativeService: AdministrativeService, 
         private notificationService: NotificationService, 
         private router: Router) { 
     }
 
     ngOnInit() {
         this.getNotificacion();
-        this.getClients();
+        this.getAdministratives();
         this.getCurrentNavigation();
     }
 
@@ -34,12 +33,12 @@ export class ClientListComponent implements OnInit, OnDestroy {
         });
     }
 
-    getClients(): void {
+    getAdministratives(): void {
 
-        this.clientService.getClients().subscribe({
+        this.administrativeService.getAdministratives().subscribe({
             next:(dataResponse) => {
                 console.log(dataResponse);
-              this.clients$ = dataResponse;
+              this.administratives$ = dataResponse;
             }, error:(e) =>{
                 console.log(e);
             }
@@ -56,8 +55,7 @@ export class ClientListComponent implements OnInit, OnDestroy {
         this.notificationService.clearNotification();
     }
 
-    ngOnDestroy(): void {
+    ngOnDestroy() {
         this.notificationService.clearNotification();
     }
-
 }

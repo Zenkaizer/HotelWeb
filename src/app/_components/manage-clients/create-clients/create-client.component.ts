@@ -92,6 +92,8 @@ export class CreateClientComponent implements OnInit, OnDestroy {
         const birthDate = this.getDateOnly(this.createClientForm.controls['birthdate'].value);
         const values = {...this.createClientForm.value, birthDate};
 
+        console.log(values);
+
         this.clientService.createClient(values).subscribe({
             next: () => this.router.navigateByUrl("/manage-clients").then(() => 
                 this.notificationService.setNotification(true, "Cliente creado exitosamente")),
