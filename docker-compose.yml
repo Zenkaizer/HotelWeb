@@ -1,0 +1,10 @@
+version: "3.3"
+
+services:
+  angular-app:
+    container_name: spring-app
+    restart: always
+    image: marxx0103/hotelweb
+    build: .
+    ports:
+      - "80:4200"
