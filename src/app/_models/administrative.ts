@@ -1,7 +1,8 @@
 export interface Administrative {
+    id: number;
     dni: string;
     firstName: string;
     lastName: string;
-    nationality: string;
+    email: string;
     phone: string;
 }

@@ -1,33 +1,36 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
+import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
-import { FormBuilder, FormGroup, Validators,ValidatorFn, AbstractControl } from "@angular/forms";
+import { AdministrativeService } from "../../../_services/administrative.service";
+import { NotificationService } from "../../../_services/notification.service";
 import { Notification } from "../../../_models/notification";
-import { AccountService } from "../../../_services/account.service";
 
 @Component({
-    selector: "app-register",
-    templateUrl: "./register.component.html"
+    selector: "app-create-administrative",
+    templateUrl: "./create-administrative.component.html"
 })
-export class RegisterComponent implements OnInit {
+export class CreateAdministrativeComponent implements OnInit, OnDestroy {
 
-    registerForm: FormGroup = new FormGroup({});
+    createAdministrativeForm: FormGroup = new FormGroup({});
     notification: Notification | null = null;
 
     nationalities = ["Chilena", "Extranjera"];
 
     constructor(
-        private router: Router,
         private formBuilder: FormBuilder,
-        private accountService: AccountService
-    ) { }
+        private administrativeService: AdministrativeService,
+        private notificationService: NotificationService,
+        private router: Router) {
+
+    }
 
     ngOnInit(): void {
         this.initializeForm();
     }
 
-    initializeForm() {
+    initializeForm(): void {
 
-        this.registerForm = this.formBuilder.group({
+        this.createAdministrativeForm = this.formBuilder.group({
             dni: ["", [
                 Validators.required,
                 this.validIdNumber()]
@@ -56,23 +59,12 @@ export class RegisterComponent implements OnInit {
             birthdate: ["", [
                 Validators.required,
                 this.validDate()]
-            ],
-            password: ["", [
-                Validators.required, 
-                Validators.minLength(8),
-                Validators.maxLength(20)]
-            ],
-            confirmPassword: ["", [
-                Validators.required, 
-                this.matchValues("password")]
             ]
+
         });
 
-        this.registerForm.controls['password'].valueChanges.subscribe({
-            next: () => this.registerForm.controls['confirmPassword'].updateValueAndValidity()
-        });
     }
-    
+
     validIdNumber(): ValidatorFn {
         return (control: AbstractControl) => {
             const value = control.value;
@@ -91,31 +83,10 @@ export class RegisterComponent implements OnInit {
         };
     }
 
-    matchValues(matchTo: string): ValidatorFn {
-        return (control: AbstractControl) => {
-            return control.value === control.parent?.get(matchTo)?.value ? null : { noMatching: true };
-        };
-    }
-
     validDate(): ValidatorFn {
         return (control: AbstractControl) => {
             return control.value < new Date() ? null : { invalidDate: true };
         };
-    }
-
-    register(): void {
-        const birthDate = this.getDateOnly(this.registerForm.controls['birthdate'].value);
-        const values = {...this.registerForm.value, birthDate};
-
-        this.accountService.register(values).subscribe({
-            next: () => this.router.navigateByUrl("/"),
-            error: error => {
-                this.notification = {
-                    message: error.error,
-                    success: false
-                };
-            }
-        });
     }
 
     closeNotification(): void {
@@ -131,4 +102,29 @@ export class RegisterComponent implements OnInit {
         .toISOString()
         .slice(0, 10);
     }
+
+    ngOnDestroy(): void {
+        this.notificationService.clearNotification();
+    }
+
+    createAdministrative(): void {
+
+        const birthDate = this.getDateOnly(this.createAdministrativeForm.controls['birthdate'].value);
+        const values = {...this.createAdministrativeForm.value, birthDate};
+
+        console.log(values);
+
+        this.administrativeService.createAdministrative(values).subscribe({
+            next: () => this.router.navigateByUrl("/manage-administratives").then(() => 
+                this.notificationService.setNotification(true, "Administrativo creado exitosamente")),
+            error: error => {
+                this.notification = {
+                    message: error.error,
+                    success: false
+                };
+            }
+        });
+
+    }
+
 }

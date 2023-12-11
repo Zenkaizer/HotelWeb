@@ -1,30 +1,28 @@
-import { Notification } from "../../_models/notification";
-import { NotificationService } from "../../_services/notification.service";
-import { Component, OnDestroy, OnInit } from "@angular/core";
-import { Observable } from "rxjs";
-import { Reserve } from "../../_models/reserve";
-import { ReserveService } from "../../_services/reserve.service";
-import { Router } from "@angular/router";
-
+import { Component, OnInit } from '@angular/core';
+import { RoomService } from '../../_services/room.service';
+import { Router } from '@angular/router';
+import { Room } from '../../_models/room';
+import { NotificationService } from '../../_services/notification.service';
+import { Notification } from '../../_models/notification';
 @Component({
-    selector: "app-reserves-list",
-    templateUrl: "./reserves-list.component.html"
+  selector: 'app-reserve-room',
+  templateUrl: './reserve-room.component.html'
 })
-export class ReserveListComponent implements OnInit, OnDestroy {
+export class ReserveRoomComponent implements OnInit {
 
-    reserves$ = new Array<Reserve>();
+    rooms$ = new Array<Room>();
     notification: Notification | null = null;
-    reservesPage: number = 1;
+    roomsPage: number = 1;
 
     constructor(
-        private reserveService: ReserveService, 
+        private roomService: RoomService, 
         private notificationService: NotificationService, 
         private router: Router) { 
     }
 
     ngOnInit() {
         this.getNotificacion();
-        this.getReserves();
+        this.getRooms();
         this.getCurrentNavigation();
     }
 
@@ -34,19 +32,23 @@ export class ReserveListComponent implements OnInit, OnDestroy {
         });
     }
 
-    getReserves(): void {
+    getRooms(): void {
 
         console.log("getRooms");
 
-        this.reserveService.getReserves().subscribe({
+        this.roomService.getRooms().subscribe({
             next:(dataResponse) => {
                 console.log(dataResponse);
-              this.reserves$ = dataResponse;
+                this.rooms$ = dataResponse.filter(room => !room['deleted']);
             }, error:(e) =>{
                 console.log(e);
             }
           }
         );
+    }
+
+    get filteredRooms(): Room[] {
+        return this.rooms$;
     }
 
     getCurrentNavigation(): void {

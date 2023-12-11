@@ -1,30 +1,30 @@
-import { Notification } from "../../_models/notification";
-import { NotificationService } from "../../_services/notification.service";
+import { Notification } from "../../../_models/notification";
+import { NotificationService } from "../../../_services/notification.service";
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { Observable } from "rxjs";
-import { Client } from "../../_models/client";
-import { ClientService } from "../../_services/client.service";
+import { Reserve } from "../../../_models/reserve";
+import { ReserveService } from "../../../_services/reserve.service";
 import { Router } from "@angular/router";
 
 @Component({
-    selector: "app-client-list",
-    templateUrl: "./client-list.component.html"
+    selector: "app-reserves-list",
+    templateUrl: "./reserves-list.component.html"
 })
-export class ClientListComponent implements OnInit, OnDestroy {
+export class ReserveListComponent implements OnInit, OnDestroy {
 
-    clients$ = new Array<Client>();
+    reserves$ = new Array<Reserve>();
     notification: Notification | null = null;
-    clientsPage: number = 1;
+    reservesPage: number = 1;
 
     constructor(
-        private clientService: ClientService, 
+        private reserveService: ReserveService, 
         private notificationService: NotificationService, 
         private router: Router) { 
     }
 
     ngOnInit() {
         this.getNotificacion();
-        this.getClients();
+        this.getReserves();
         this.getCurrentNavigation();
     }
 
@@ -34,14 +34,11 @@ export class ClientListComponent implements OnInit, OnDestroy {
         });
     }
 
-    getClients(): void {
-
-        console.log("getClients");
-
-        this.clientService.getClients().subscribe({
+    getReserves(): void {
+        this.reserveService.getReserves().subscribe({
             next:(dataResponse) => {
                 console.log(dataResponse);
-              this.clients$ = dataResponse;
+              this.reserves$ = dataResponse;
             }, error:(e) =>{
                 console.log(e);
             }

@@ -60,7 +60,7 @@ export class LoginComponent implements OnInit {
             error: (error) => {
                 this.notification = {
                     success: false,
-                    message: error
+                    message: error.error
                 };
             }
         });

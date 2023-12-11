@@ -3,6 +3,7 @@ import { Router } from "@angular/router";
 import { Account } from "../../../_models/account";
 import { AccountService } from "../../../_services/account.service";
 import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from "@angular/forms";
+import { Notification } from "../../../_models/notification";
 
 @Component({
     selector: "app-edit-account",
@@ -12,6 +13,7 @@ export class EditAccountComponent implements OnInit {
 
     account: Account | null = null;
     updateForm: FormGroup = new FormGroup({});
+    notification: Notification | null = null;
 
     constructor(
         private router: Router,
@@ -41,6 +43,8 @@ export class EditAccountComponent implements OnInit {
 
         this.updateForm = this.formBuilder.group({
 
+            //Actual email is used to check if the user has changed the email.
+            actualEmail: [this.account.email],
             email: [this.account.email, [
                 Validators.required,
                 Validators.email]
@@ -68,7 +72,17 @@ export class EditAccountComponent implements OnInit {
         this.accountService.update(this.updateForm.value).subscribe({
             next: () => {
                 this.router.navigateByUrl("/").then(() => this.accountService.logout());
+            },
+            error: (error) => {
+                this.notification = {
+                    success: false,
+                    message: error.error
+                };
             }
         });
+    }
+
+    closeNotification(): void {
+        this.notification = null;
     }
 }

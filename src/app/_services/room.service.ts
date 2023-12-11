@@ -55,8 +55,9 @@ export class RoomService {
      * @param model All params of the new room.
      * @returns Returns the new room.
      */
-    createRoom(model: any): Observable<User> {
-        return this.http.post<User>(this.baseUrl + "rooms", model);
+    createRoom(model: any): Observable<Room> {
+        console.log(model);
+        return this.http.post<Room>(this.baseUrl + "rooms/create", model);
     }
 
     /**
@@ -66,6 +67,7 @@ export class RoomService {
      * @returns Returns the updated room.
      */
     updateRoom(id: number, model: any): Observable<Object> {
+        console.log("Actualizando una habitacion");
         return this.http.put(this.baseUrl + "rooms/" + id, model);
     }
 

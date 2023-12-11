@@ -1,0 +1,23 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+      <h2 class="text-center mb-4">Reserva de Habitación</h2>
+      <div class="card mb-3">
+        <h3 class="card-header">Detalles de la Reserva</h3>
+        <div class="card-body">
+          <p><strong>ID de Habitación:</strong> {{ roomId }}</p>
+          <p><strong>Email:</strong> {{ clientEmail }}</p>
+          <form [formGroup]="reserveForm" (ngSubmit)="onSubmit()">
+            <div class="mb-3">
+              <label for="checkIn" class="form-label">Fecha de Check-In</label>
+              <input type="date" class="form-control" id="checkIn" formControlName="checkIn" required>
+            </div>
+            <div class="mb-3">
+              <label for="checkOut" class="form-label">Fecha de Check-Out</label>
+              <input type="date" class="form-control" id="checkOut" formControlName="checkOut" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Confirmar Reserva</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>

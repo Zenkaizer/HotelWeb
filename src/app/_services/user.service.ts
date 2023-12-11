@@ -26,8 +26,9 @@ export class UserService {
      * This method calls the API to get the current user.
      * @returns Returns the current user.
      */
-    getCurrentUser(): Observable<User> {
-        return this.http.get<User>(this.baseUrl + "account/profile");
+    getCurrentUser(id: number): Observable<User> {
+
+        return this.http.get<User>(this.baseUrl + "auth/user/" + id);
     }
 
     /**
@@ -36,7 +37,7 @@ export class UserService {
      * @returns Returns the updated user.
      */
     updateCurrentUser(model: any): Observable<Object> {
-        return this.http.post(this.baseUrl + "account/profile", model);
+        return this.http.post(this.baseUrl + "auth/profile", model);
     }
 
 }

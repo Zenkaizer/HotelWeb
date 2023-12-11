@@ -1,9 +1,9 @@
-import { Notification } from "../../_models/notification";
-import { NotificationService } from "../../_services/notification.service";
+import { Notification } from "../../../_models/notification";
+import { NotificationService } from "../../../_services/notification.service";
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { Observable } from "rxjs";
-import { Room } from "../../_models/room";
-import { RoomService } from "../../_services/room.service";
+import { Room } from "../../../_models/room";
+import { RoomService } from "../../../_services/room.service";
 import { Router } from "@angular/router";
 
 @Component({
@@ -41,12 +41,16 @@ export class RoomListComponent implements OnInit, OnDestroy {
         this.roomService.getRooms().subscribe({
             next:(dataResponse) => {
                 console.log(dataResponse);
-              this.rooms$ = dataResponse;
+                this.rooms$ = dataResponse.filter(room => !room['deleted']);
             }, error:(e) =>{
                 console.log(e);
             }
           }
         );
+    }
+
+    get filteredRooms(): Room[] {
+        return this.rooms$;
     }
 
     getCurrentNavigation(): void {
@@ -60,6 +64,18 @@ export class RoomListComponent implements OnInit, OnDestroy {
 
     ngOnDestroy(): void {
         this.notificationService.clearNotification();
+    }
+
+    deleteRoom(id: number): void {
+        this.roomService.deleteRoom(id).subscribe({
+            next: () => {
+                this.getRooms();
+                this.notificationService.setNotification(true, "La habitación se ha eliminado correctamente");
+            },
+            error: (error) => {
+                this.notificationService.setNotification(false, "Ha ocurrido un problema al eliminar la habitación");
+            }
+        });
     }
 
 }

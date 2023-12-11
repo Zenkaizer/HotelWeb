@@ -1,33 +1,36 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
+import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
-import { FormBuilder, FormGroup, Validators,ValidatorFn, AbstractControl } from "@angular/forms";
+import { ClientService } from "../../../_services/client.service";
+import { NotificationService } from "../../../_services/notification.service";
 import { Notification } from "../../../_models/notification";
-import { AccountService } from "../../../_services/account.service";
 
 @Component({
-    selector: "app-register",
-    templateUrl: "./register.component.html"
+    selector: "app-create-client",
+    templateUrl: "./create-client.component.html"
 })
-export class RegisterComponent implements OnInit {
+export class CreateClientComponent implements OnInit, OnDestroy {
 
-    registerForm: FormGroup = new FormGroup({});
+    createClientForm: FormGroup = new FormGroup({});
     notification: Notification | null = null;
 
     nationalities = ["Chilena", "Extranjera"];
 
     constructor(
-        private router: Router,
         private formBuilder: FormBuilder,
-        private accountService: AccountService
-    ) { }
+        private clientService: ClientService,
+        private notificationService: NotificationService,
+        private router: Router) {
+
+    }
 
     ngOnInit(): void {
         this.initializeForm();
     }
 
-    initializeForm() {
+    initializeForm(): void {
 
-        this.registerForm = this.formBuilder.group({
+        this.createClientForm = this.formBuilder.group({
             dni: ["", [
                 Validators.required,
                 this.validIdNumber()]
@@ -56,23 +59,10 @@ export class RegisterComponent implements OnInit {
             birthdate: ["", [
                 Validators.required,
                 this.validDate()]
-            ],
-            password: ["", [
-                Validators.required, 
-                Validators.minLength(8),
-                Validators.maxLength(20)]
-            ],
-            confirmPassword: ["", [
-                Validators.required, 
-                this.matchValues("password")]
             ]
         });
-
-        this.registerForm.controls['password'].valueChanges.subscribe({
-            next: () => this.registerForm.controls['confirmPassword'].updateValueAndValidity()
-        });
     }
-    
+
     validIdNumber(): ValidatorFn {
         return (control: AbstractControl) => {
             const value = control.value;
@@ -91,24 +81,22 @@ export class RegisterComponent implements OnInit {
         };
     }
 
-    matchValues(matchTo: string): ValidatorFn {
-        return (control: AbstractControl) => {
-            return control.value === control.parent?.get(matchTo)?.value ? null : { noMatching: true };
-        };
-    }
-
     validDate(): ValidatorFn {
         return (control: AbstractControl) => {
             return control.value < new Date() ? null : { invalidDate: true };
         };
     }
 
-    register(): void {
-        const birthDate = this.getDateOnly(this.registerForm.controls['birthdate'].value);
-        const values = {...this.registerForm.value, birthDate};
+    createClient(): void {
 
-        this.accountService.register(values).subscribe({
-            next: () => this.router.navigateByUrl("/"),
+        const birthDate = this.getDateOnly(this.createClientForm.controls['birthdate'].value);
+        const values = {...this.createClientForm.value, birthDate};
+
+        console.log(values);
+
+        this.clientService.createClient(values).subscribe({
+            next: () => this.router.navigateByUrl("/manage-clients").then(() => 
+                this.notificationService.setNotification(true, "Cliente creado exitosamente")),
             error: error => {
                 this.notification = {
                     message: error.error,
@@ -116,6 +104,7 @@ export class RegisterComponent implements OnInit {
                 };
             }
         });
+
     }
 
     closeNotification(): void {
@@ -131,4 +120,10 @@ export class RegisterComponent implements OnInit {
         .toISOString()
         .slice(0, 10);
     }
+
+    ngOnDestroy(): void {
+        this.notificationService.clearNotification();
+    }
+
+
 }

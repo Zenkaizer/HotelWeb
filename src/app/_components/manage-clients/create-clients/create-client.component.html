@@ -1,12 +1,12 @@
 <div class="row justify-content-center mt-3">
     <div class="col-4">
-        <form [formGroup]="registerForm" (ngSubmit)="registerForm.valid && register()" autocomplete="off">
-            <h2 class="text-center text-primary">Registrarse</h2>
+        <form [formGroup]="createClientForm" (ngSubmit)="createClientForm.valid && createClient()" autocomplete="off">
+            <h2 class="text-center text-primary">Registrar nuevo cliente</h2>
             
             <hr>
 
             <app-text-input
-                [formControl]="$any(registerForm.controls['dni'])"
+                [formControl]="$any(createClientForm.controls['dni'])"
                 label="RUT o Pasaporte"
                 placeholder="Ingrese su RUT (sin puntos y con guión)"
                 requiredMessage="El número de identificación es requerido"
@@ -14,7 +14,7 @@
             </app-text-input>
 
             <app-text-input
-                [formControl]="$any(registerForm.controls['email'])"
+                [formControl]="$any(createClientForm.controls['email'])"
                 label="Correo electrónico"
                 type="email"
                 placeholder="Ingrese su correo electrónico"
@@ -23,7 +23,7 @@
             </app-text-input>
 
             <app-text-input
-                [formControl]="$any(registerForm.controls['firstName'])"
+                [formControl]="$any(createClientForm.controls['firstName'])"
                 label="Nombre"
                 placeholder="Ingrese su nombre"
                 requiredMessage="El nombre es obligatorio"
@@ -31,7 +31,7 @@
             </app-text-input>
 
             <app-text-input
-                [formControl]="$any(registerForm.controls['lastName'])"
+                [formControl]="$any(createClientForm.controls['lastName'])"
                 label="Apellido"
                 placeholder="Ingrese su apellido"
                 requiredMessage="El apellido es obligatorio"
@@ -39,7 +39,7 @@
             </app-text-input>
 
             <app-text-input
-                [formControl]="$any(registerForm.controls['phone'])"
+                [formControl]="$any(createClientForm.controls['phone'])"
                 label="Número de teléfono"
                 span="+569"
                 placeholder="Ingrese su número telefónico"
@@ -48,7 +48,7 @@
             </app-text-input>
 
             <app-select-input
-                [formControl]="$any(registerForm.controls['nationality'])"
+                [formControl]="$any(createClientForm.controls['nationality'])"
                 label="Nacionalidad"
                 defaultOption="Seleccione su nacionalidad"
                 [values]="nationalities"
@@ -58,32 +58,13 @@
             </app-select-input>
 
             <app-date-input
-                [formControl]="$any(registerForm.controls['birthdate'])"
+                [formControl]="$any(createClientForm.controls['birthdate'])"
                 label="Fecha de nacimiento"
                 placeholder="Ingrese su fecha de nacimiento"
                 requiredMessage="La fecha de nacimiento es obligatoria"
                 invalidDateMessage="Fecha inválida"
             >
             </app-date-input>
-
-            <app-text-input
-                [formControl]="$any(registerForm.controls['password'])"
-                label="Contraseña"
-                type="password"
-                placeholder="Ingrese su contraseña"
-                requiredMessage="La contraseña es obligatoria"
-            >
-            </app-text-input>
-
-            <app-text-input
-                [formControl]="$any(registerForm.controls['confirmPassword'])"
-                label="Repetir contraseña"
-                type="password"
-                placeholder="Repita su contraseña"
-                requiredMessage="La contraseña es obligatoria"
-            >
-            </app-text-input>
-            
 
             <div class="mb-3" *ngIf="notification">
                 <div class="alert alert-dismissible mb-0" [ngClass]="notification.success ? 'alert-success' : 'alert-danger'">
@@ -93,7 +74,7 @@
             </div>
 
             <div class="text-center">
-                <button [disabled]="!registerForm.valid" type="submit" class="btn btn-success">Registrarse</button>
+                <button [disabled]="!createClientForm.valid" type="submit" class="btn btn-success">Agregar</button>
             </div>
         </form>
     </div>
