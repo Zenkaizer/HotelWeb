@@ -58,4 +58,16 @@ export class AdministrativeListComponent implements OnInit, OnDestroy {
     ngOnDestroy() {
         this.notificationService.clearNotification();
     }
+
+    deleteAdministrative(id: number): void {
+        this.administrativeService.deleteAdministrative(id).subscribe({
+            next: () => {
+                this.getAdministratives();
+                this.notificationService.setNotification(true, "Administrativo eliminado correctamente");
+            },
+            error: (error) => {
+                this.notificationService.setNotification(false, "Ha ocurrido un problema al eliminar al administrativo");
+            }
+        });
+    }
 }

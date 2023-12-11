@@ -2,7 +2,7 @@
     <div class="col-10" style="margin-top: 16px;">
         <button
             type="button"
-            class="btn btn-dark"
+            class="btn btn-primary"
             routerLink="/manage-administratives/create-administrative"
             routerLinkActive="active"
         >
@@ -48,10 +48,18 @@
                         <div class="d-flex flex-row gap-2">
                             <button
                                 type="button"
-                                class="btn btn-outline-secondary"
+                                class="btn btn-primary"
                                 routerLink="/manage-administrative/{{administrative['id']}}"
                             >
                             Editar
+                            </button>
+
+                            <button
+                                type="button"
+                                class="btn btn-danger"
+                                (click)="deleteAdministrative(administrative['id'])"
+                            >
+                            Borrar
                             </button>
                         </div>
                     </td>

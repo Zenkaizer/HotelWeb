@@ -18,7 +18,8 @@ import { CreateClientComponent } from './_components/manage-clients/create-clien
 import { AdministrativeListComponent } from './_components/manage-administratives/read-administratives/administrative-list.component';
 import { CreateRoomComponent } from './_components/manage-rooms/create-rooms/create-room.component';
 import { EditClientComponent } from './_components/manage-clients/edit-clients/edit-client.component';
-
+import { EditProfileComponent } from './_components/account/edit-profile/edit-profile.component';
+import { CreateAdministrativeComponent } from './_components/manage-administratives/create-administratives/create-administrative.component';
 
 const routes: Routes = [
 
@@ -30,7 +31,8 @@ const routes: Routes = [
     runGuardsAndResolvers: 'always',
     canActivate: [AuthGuard],
     children: [
-      {path: 'account', component: EditAccountComponent}
+      {path: 'account', component: EditAccountComponent},
+      {path: 'profile', component: EditProfileComponent}
     ]
   },
   {
@@ -60,7 +62,9 @@ const routes: Routes = [
     runGuardsAndResolvers: 'always',
     canActivate: [AdminAuthGuard],
     children: [
-      {path: 'stats', component: HomeComponent}
+      {path: 'stats', component: HomeComponent},
+      {path: 'manage-administratives', component: AdministrativeListComponent},
+      {path: 'manage-administratives/create-administrative', component: CreateAdministrativeComponent}
     ]
   }
   ,
@@ -69,7 +73,6 @@ const routes: Routes = [
     runGuardsAndResolvers: 'always',
     canActivate: [CommonAdminGuard],
     children: [
-      {path: 'manage-administratives', component: AdministrativeListComponent},
       {path: 'manage-reserves', component: ReserveListComponent}
     ]
   }

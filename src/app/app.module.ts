@@ -30,6 +30,9 @@ import { CreateRoomComponent } from './_components/manage-rooms/create-rooms/cre
 import { EditRoomComponent } from './_components/manage-rooms/edit-rooms/edit-room.component';
 import { ReserveRoomComponent } from './_components/reserve-room/reserve-room.component';
 import { AdministrativeListComponent } from './_components/manage-administratives/read-administratives/administrative-list.component';
+import { EditProfileComponent } from './_components/account/edit-profile/edit-profile.component';
+import { CreateAdministrativeComponent } from './_components/manage-administratives/create-administratives/create-administrative.component';
+
 
 @NgModule({
   declarations: [
@@ -52,7 +55,9 @@ import { AdministrativeListComponent } from './_components/manage-administrative
     EditRoomComponent,
     ReserveRoomComponent,
     AdministrativeListComponent,
-    EditClientComponent
+    EditClientComponent,
+    EditProfileComponent,
+    CreateAdministrativeComponent
   ],
   imports: [
     BrowserModule,
