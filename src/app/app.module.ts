@@ -22,11 +22,13 @@ import { SelectInputComponent } from './_components/_forms/select-input/select-i
 import { NavbarComponent } from './_components/navbar/navbar.component';
 import { FooterComponent } from './_components/footer/footer.component';
 import { RoomListComponent } from './_components/manage-rooms/read-rooms/room-list.component';
-import { ReserveListComponent } from './_components/manage-reserves/reserves-list.component';
+import { ReserveListComponent } from './_components/manage-reserves/read-reserves/reserves-list.component';
 import { ClientListComponent } from './_components/manage-clients/read-clients/client-list.component';
 import { CreateClientComponent } from './_components/manage-clients/create-clients/create-client.component';
 import { CreateRoomComponent } from './_components/manage-rooms/create-rooms/create-room.component';
-import { AdministrativeListComponent } from './_components/manage-administratives/update-administratives/administrative-list.component';
+import { EditRoomComponent } from './_components/manage-rooms/edit-rooms/edit-room.component';
+import { DeleteRoomComponent } from './_components/manage-rooms/delete-rooms/delete-room.component';
+import { ReserveRoomComponent } from './_components/reserve-room/reserve-room.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +48,9 @@ import { AdministrativeListComponent } from './_components/manage-administrative
     ReserveListComponent,
     CreateClientComponent,
     CreateRoomComponent,
-    AdministrativeListComponent
+    EditRoomComponent,
+    DeleteRoomComponent,
+    ReserveRoomComponent
   ],
   imports: [
     BrowserModule,

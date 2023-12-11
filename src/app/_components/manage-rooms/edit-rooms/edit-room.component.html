@@ -1,12 +1,12 @@
 <div class="row justify-content-center mt-3">
     <div class="col-4">
-      <form [formGroup]="createRoomForm" (ngSubmit)="createRoomForm.valid && createRoom()" autocomplete="off">
-        <h2 class="text-center text-primary">Crear Habitación</h2>
+      <form [formGroup]="editRoomForm" (ngSubmit)="editRoomForm.valid && updateRoom()" autocomplete="off">
+        <h2 class="text-center text-primary">Editar Habitación</h2>
   
         <hr>
   
         <app-text-input
-          [formControl]="$any(createRoomForm.controls['individualBeds'])"
+          [formControl]="$any(editRoomForm.controls['individualBeds'])"
           label="Camas individuales"
           placeholder="Ingrese la cantidad de camas individuales"
           requiredMessage="El número de camas individuales es requerido"
@@ -14,7 +14,7 @@
         </app-text-input>
   
         <app-text-input
-          [formControl]="$any(createRoomForm.controls['dualBeds'])"
+          [formControl]="$any(editRoomForm.controls['dualBeds'])"
           label="Camas dobles"
           placeholder="Ingrese la cantidad de camas dobles"
           requiredMessage="El número de camas dobles es requerido"
@@ -22,17 +22,17 @@
         </app-text-input>
   
         <app-select-input
-          [formControl]="$any(createRoomForm.controls['haveBathroom'])"
+          [formControl]="$any(editRoomForm.controls['haveBathroom'])"
           label="¿Tiene baño?"
           defaultOption="Seleccione"
-          [values]="values"
+          [values]="['true', 'false']"
           [options]="['Si', 'No']"
           requiredMessage="La información sobre el baño es requerida"
         >
         </app-select-input>
   
         <app-text-input
-          [formControl]="$any(createRoomForm.controls['price'])"
+          [formControl]="$any(editRoomForm.controls['price'])"
           label="Precio"
           placeholder="Ingrese el precio"
           requiredMessage="El precio es requerido"
@@ -40,9 +40,9 @@
         </app-text-input>
 
         <app-text-input
-          [formControl]="$any(createRoomForm.controls['maxCapacity'])"
-          label="Precio"
-          placeholder="Ingresa la capacidad maxima"
+          [formControl]="$any(editRoomForm.controls['maxCapacity'])"
+          label="Capacidad máxima"
+          placeholder="Ingresa la capacidad máxima"
           requiredMessage="La capacidad es requerida"
         >
         </app-text-input>
@@ -55,8 +55,8 @@
         </div>
   
         <div class="text-center">
-          <button [disabled]="!createRoomForm.valid" type="submit" class="btn btn-success">Crear Habitación</button>
+          <button [disabled]="!editRoomForm.valid" type="submit" class="btn btn-success">Actualizar Habitación</button>
         </div>
       </form>
     </div>
-  </div>
+</div>

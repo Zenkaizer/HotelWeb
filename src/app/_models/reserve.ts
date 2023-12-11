@@ -2,11 +2,13 @@ import { Client } from './client';
 import { Room } from './room';  
 
 export interface Reserve {
+
   id: number;
-  user: Client;
-  room: Room;
-  reserveDateTime: Date;
-  arriveDateTime: Date;
-  leaveDateTime: Date;
+  roomId: number;
+  firstName: string;
+  lastName: string;
+  checkIn: string;
+  chekOut: String;
+  price: String;
   confirmed: boolean;
 }

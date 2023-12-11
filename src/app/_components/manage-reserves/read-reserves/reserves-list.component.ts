@@ -1,9 +1,9 @@
-import { Notification } from "../../_models/notification";
-import { NotificationService } from "../../_services/notification.service";
+import { Notification } from "../../../_models/notification";
+import { NotificationService } from "../../../_services/notification.service";
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { Observable } from "rxjs";
-import { Reserve } from "../../_models/reserve";
-import { ReserveService } from "../../_services/reserve.service";
+import { Reserve } from "../../../_models/reserve";
+import { ReserveService } from "../../../_services/reserve.service";
 import { Router } from "@angular/router";
 
 @Component({
@@ -36,7 +36,7 @@ export class ReserveListComponent implements OnInit, OnDestroy {
 
     getReserves(): void {
 
-        console.log("getRooms");
+        console.log("getReserves");
 
         this.reserveService.getReserves().subscribe({
             next:(dataResponse) => {

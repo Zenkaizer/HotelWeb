@@ -1,0 +1,90 @@
+<div class="row justify-content-center mb-4">
+    <div class="col-10" style="margin-top: 16px;">
+        <button
+            type="button"
+            class="btn btn-dark"
+<<<<<<<< HEAD:src/app/_components/manage-rooms/read-rooms/room-list.component.html
+            routerLink="/manage-rooms/create-room"
+            routerLinkActive="active"
+        >
+            Agregar nueva habitación
+========
+            routerLink="/manage-reserves/create-reserve"
+            routerLinkActive="active"
+        >
+            Agregar nueva reserva
+>>>>>>>> 4ee74acd0a8cc6db28e7c82d72647d281b104ac1:src/app/_components/manage-reserves/read-reserves/reserves-list.component.html
+        </button>
+    </div>
+
+    <div class="col-10 mt-4" *ngIf="notification">
+        <div class="alert alert-dismissible mb-0" [ngClass]="notification.success ? 'alert-success' : 'alert-danger'">
+            <button type="button" class="btn-close" data-bs-dismiss="alert" (click)="closeNotification()"></button>
+            {{ notification.message }}
+        </div>
+    </div>
+</div>
+
+<div class="row justify-content-center">
+    <div class="col-10">
+        <pagination-controls 
+            (pageChange)="reservesPage = $event" 
+            previousLabel="Anterior" 
+            nextLabel="Siguiente">
+        </pagination-controls>
+
+        <table class="table table-hover table-responsive-xxl">
+            <thead>
+                <tr class="table-primary">
+<<<<<<<< HEAD:src/app/_components/manage-rooms/read-rooms/room-list.component.html
+                    <th scope="col" class="align-middle" style="width: 15%;">ID Habitación</th>
+                    <th scope="col" class="align-middle" style="width: 15%;">Camas 1 plaza</th>
+                    <th scope="col" class="align-middle" style="width: 15%;">Camas 2 plazas</th>
+                    <th scope="col" class="align-middle" style="width: 15%;">Capacidad máxima</th>
+                    <th scope="col" class="align-middle" style="width: 15%;">Baño</th>
+                    <th scope="col" class="align-middle" style="width: 15%;">Precio</th>
+========
+                    <th scope="col" class="align-middle" style="width: 15%;">ID</th>
+                    <th scope="col" class="align-middle" style="width: 15%;">Cliente</th>
+                    <th scope="col" class="align-middle" style="width: 15%;">Habitación</th>
+                    <th scope="col" class="align-middle" style="width: 15%;">Fecha de Llegada</th>
+                    <th scope="col" class="align-middle" style="width: 15%;">Fecha de Salida</th>
+                    <th scope="col" class="align-middle" style="width: 15%;">Confirmada</th>
+>>>>>>>> 4ee74acd0a8cc6db28e7c82d72647d281b104ac1:src/app/_components/manage-reserves/read-reserves/reserves-list.component.html
+                    <th scope="col" class="align-middle" style="width: 15%;">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+<<<<<<<< HEAD:src/app/_components/manage-rooms/read-rooms/room-list.component.html
+                <tr *ngFor="let room of rooms$ | filter | paginate: { itemsPerPage: 5, currentPage: roomsPage}">
+                    <td>Habitación {{room['id'].toString() | titlecase}}</td>
+                    <td>{{room['individualBeds'].toString() | titlecase}}</td>
+                    <td>{{room['dualBeds'].toString() | titlecase}}</td>
+                    <td>{{room['maxCapacity'].toString() | titlecase}} personas</td>
+                    <td>{{ (room['haveBathroom'] ? 'Si' : 'No') | titlecase }}</td>
+                    <td>${{room['price'].toString() | titlecase}}</td>
+========
+                <tr *ngFor="let reserve of reserves$ | filter | paginate: { itemsPerPage: 5, currentPage: reservesPage}">
+                    <td>{{ reserve.id.toString() }}</td>
+                    <td>{{ reserve.firstName + ' ' + reserve.lastName | titlecase}}</td>
+                    <td>{{ reserve.roomId.toString() }}</td>
+                    <td>{{ reserve.checkIn }}</td>
+                    <td>{{ reserve.checkOut}}</td>
+                    <td>{{ reserve.confirmed ? 'Sí' : 'No' }}</td>
+>>>>>>>> 4ee74acd0a8cc6db28e7c82d72647d281b104ac1:src/app/_components/manage-reserves/read-reserves/reserves-list.component.html
+                    <td>
+                        <div class="d-flex flex-row gap-2">
+                            <button
+                                type="button"
+                                class="btn btn-outline-secondary"
+                                routerLink="/manage-reserves/{{ reserve.id }}"
+                            >
+                            Editar
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

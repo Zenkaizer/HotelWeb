@@ -1,16 +1,14 @@
-import { Notification } from "../../../_models/notification";
-import { NotificationService } from "../../../_services/notification.service";
-import { Component, OnDestroy, OnInit } from "@angular/core";
-import { Observable } from "rxjs";
-import { Room } from "../../../_models/room";
-import { RoomService } from "../../../_services/room.service";
-import { Router } from "@angular/router";
-
+import { Component, OnInit } from '@angular/core';
+import { RoomService } from '../../_services/room.service';
+import { Router } from '@angular/router';
+import { Room } from '../../_models/room';
+import { NotificationService } from '../../_services/notification.service';
+import { Notification } from '../../_models/notification';
 @Component({
-    selector: "app-room-list",
-    templateUrl: "./room-list.component.html"
+  selector: 'app-reserve-room',
+  templateUrl: './reserve-room.component.html'
 })
-export class RoomListComponent implements OnInit, OnDestroy {
+export class ReserveRoomComponent implements OnInit {
 
     rooms$ = new Array<Room>();
     notification: Notification | null = null;
