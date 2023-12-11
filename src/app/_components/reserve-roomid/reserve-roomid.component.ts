@@ -59,7 +59,7 @@ export class ReserveRoomidComponent implements OnInit, OnDestroy {
 
     this.reserveService.createReserve(values).subscribe({
       next: () => {
-        this.router.navigateByUrl("/client/schedule").then(() =>
+        this.router.navigateByUrl("/").then(() =>
           this.notificationService.setNotification(true, "Reserva creada exitosamente")
         );
       },

@@ -39,10 +39,9 @@
       </ul>
   
       <div class="dropdown" *ngIf="(accountService.currentAccount$ | async) as account" dropdown>
-        <a class="dropdown-toggle text-light text-decoration-none ms-2" dropdownToggle>Mi perfil</a>
+        <a class="dropdown-toggle text-light text-decoration-none ms-2" dropdownToggle>Opciones</a>
   
         <div class="dropdown-menu mt-3" *dropdownMenu>
-          <a class="dropdown-item" routerLink="/profile">Editar perfil</a>
           <a class="dropdown-item" routerLink="/account">Configuración personal</a>
           <a class="dropdown-item" (click)="logout()">Cerrar sesión</a>
         </div>
