@@ -55,8 +55,8 @@ export class ReserveService {
      * @param model All params of the new reserve.
      * @returns Returns the new reserve.
      */
-    createReserve(model: any): Observable<User> {
-        return this.http.post<User>(this.baseUrl + "reserves", model);
+    createReserve(model: any): Observable<Reserve> {
+        return this.http.post<Reserve>(this.baseUrl + "reserves/create", model);
     }
 
     /**

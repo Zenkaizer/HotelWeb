@@ -1,5 +1,4 @@
 <div class="row justify-content-center mb-4">
-    <!-- Notificación -->
     <div class="col-10 mt-4" *ngIf="notification">
         <div class="alert alert-dismissible mb-0" [ngClass]="notification.success ? 'alert-success' : 'alert-danger'">
             <button type="button" class="btn-close" data-bs-dismiss="alert" (click)="closeNotification()"></button>
@@ -7,36 +6,30 @@
         </div>
     </div>
 </div>
-
-<!-- Título de la lista de habitaciones -->
 <div class="row justify-content-center">
     <div class="col-10">
-        <h2 class="text-center mb-4">LISTA DE HABITACIONES</h2>
+        <h2 class="text-center mb-4">Listado de habitaciones</h2>
         <pagination-controls (pageChange)="roomsPage = $event" previousLabel="Anterior" nextLabel="Siguiente">
         </pagination-controls>
-
-        <!-- Iterar sobre las habitaciones y mostrar cada una como una tarjeta -->
-        <div class="card mb-3" *ngFor="let room of rooms$ | filter | paginate: { itemsPerPage: 5, currentPage: roomsPage}">
-            <h3 class="card-header">Habitación {{ room.id }}</h3>
-            <div class="card-body">
-                <h5 class="card-title">Tipo de habitación: {{ room.roomType }}</h5>
-                <h6 class="card-subtitle text-muted">Precio: {{ room.price.toString()}}</h6>
-            </div>
-            <!-- Agrega más detalles según sea necesario -->
-            <div class="card-body">
-                <p class="card-text">{{ room.description }}</p>
-            </div>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">Camas individuales: {{ room.individualBeds }}</li>
-                <li class="list-group-item">Camas dobles: {{ room.dualBeds }}</li>
-                <li class="list-group-item">Baño: {{ room.haveBathroom ? 'Sí' : 'No' }}</li>
-            </ul>
-            <div class="card-body">
-                <!-- Agrega más contenido según sea necesario -->
-                <a href="#" class="card-link">Reservar</a>
-                <a href="#" class="card-link">Otro enlace</a>
-            </div>
-            <div class="card-footer text-muted">
+        <div class="row">
+            <div class="col-4 mb-3" *ngFor="let room of rooms$ | filter | paginate: { itemsPerPage: 6, currentPage: roomsPage}">
+                <div class="card">
+                    <img src="assets/img/foto3.png" class="d-block w-100" alt="Imagen de la habitación">
+                    <h3 class="card-header">Habitación {{ room.id }}</h3>
+                    <div class="card-body">
+                        <h6 class="card-subtitle text-muted">Precio: {{ room.price.toString()}}</h6>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Camas individuales: {{ room.individualBeds }}</li>
+                        <li class="list-group-item">Camas dobles: {{ room.dualBeds }}</li>
+                        <li class="list-group-item">Baño: {{ room.haveBathroom ? 'Sí' : 'No' }}</li>
+                    </ul>
+                    <div class="card-body">
+                        <a href="/client/reserve/{{room['id']}}" class="card-link">Reservar</a>
+                    </div>
+                    <div class="card-footer text-muted">
+                    </div>
+                </div>
             </div>
         </div>
     </div>

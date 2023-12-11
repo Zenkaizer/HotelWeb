@@ -12,6 +12,7 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { FilterPipe } from './_pipes/filter.pipe';
 //Components
+import { ReserveRoomidComponent } from './_components/reserve-roomid/reserve-roomid.component';
 import { HomeComponent } from './_components/home/home.component';
 import { LoginComponent } from './_components/account/login/login.component';
 import { RegisterComponent } from './_components/account/register/register.component';
@@ -58,7 +59,8 @@ import { EditAdministrativesComponent } from './_components/manage-administrativ
     EditClientComponent,
     EditProfileComponent,
     CreateAdministrativeComponent,
-    EditAdministrativesComponent
+    EditAdministrativesComponent,
+    ReserveRoomidComponent
   ],
   imports: [
     BrowserModule,

@@ -33,7 +33,7 @@
   
         <ng-container *ngIf="(accountService.currentAccount$ | async)?.role == 'CLIENT'">
           <li class="nav-item">
-            <a class="nav-link" routerLink="/rooms" routerLinkActive="active">Reservar habitación</a>
+            <a class="nav-link" routerLink="/client/schedule" routerLinkActive="active">Reservar habitación</a>
           </li>
         </ng-container>
       </ul>

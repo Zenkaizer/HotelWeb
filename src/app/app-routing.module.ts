@@ -21,6 +21,8 @@ import { EditClientComponent } from './_components/manage-clients/edit-clients/e
 import { EditProfileComponent } from './_components/account/edit-profile/edit-profile.component';
 import { CreateAdministrativeComponent } from './_components/manage-administratives/create-administratives/create-administrative.component';
 import { EditAdministrativesComponent } from './_components/manage-administratives/edit-administratives/edit-administratives.component';
+import { ReserveRoomidComponent } from './_components/reserve-roomid/reserve-roomid.component';
+import { ReserveRoomComponent } from './_components/reserve-room/reserve-room.component';
 
 const routes: Routes = [
 
@@ -41,7 +43,8 @@ const routes: Routes = [
     runGuardsAndResolvers: 'always',
     canActivate: [ClientAuthGuard],
     children: [
-    
+      { path: 'client/schedule', component: ReserveRoomComponent },
+      { path: 'client/reserve/:id', component: ReserveRoomidComponent },
     ]
   },
   {
