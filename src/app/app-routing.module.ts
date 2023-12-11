@@ -19,6 +19,7 @@ import { DeleteRoomComponent } from './_components/manage-rooms/delete-rooms/del
 import { ReserveRoomComponent } from './_components/reserve-room/reserve-room.component';
 import { ReserveRoomidComponent } from './_components/reserve-roomid/reserve-roomid.component';
 import { EditReserveComponent } from './_components/manage-reserves/edit-reserves/edit-reserve.component';
+import { DeleteReserveComponent } from './_components/manage-reserves/delete-reserves/delete-reserve.component';
 
 
 const routes: Routes = [
@@ -47,6 +48,7 @@ const routes: Routes = [
       {path: 'manage-rooms/:id', component: EditRoomComponent },
       {path: 'manage-rooms/delete/:id', component: DeleteRoomComponent },
       {path: 'manage-reserves/:id', component: EditReserveComponent },
+      {path: 'manage-reserves/delete/:id', component: DeleteReserveComponent },
     ]
   },
   {

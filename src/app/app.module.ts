@@ -31,6 +31,8 @@ import { DeleteRoomComponent } from './_components/manage-rooms/delete-rooms/del
 import { ReserveRoomComponent } from './_components/reserve-room/reserve-room.component';
 import { ReserveRoomidComponent } from './_components/reserve-roomid/reserve-roomid.component';
 import { EditReserveComponent } from './_components/manage-reserves/edit-reserves/edit-reserve.component';
+import { DeleteReserveComponent } from './_components/manage-reserves/delete-reserves/delete-reserve.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,7 +55,8 @@ import { EditReserveComponent } from './_components/manage-reserves/edit-reserve
     DeleteRoomComponent,
     ReserveRoomComponent,
     ReserveRoomidComponent,
-    EditReserveComponent
+    EditReserveComponent,
+    DeleteReserveComponent,
   ],
   imports: [
     BrowserModule,

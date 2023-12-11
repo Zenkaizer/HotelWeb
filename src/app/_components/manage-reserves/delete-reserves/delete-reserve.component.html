@@ -5,10 +5,10 @@
         <div class="text-center mb-3">
             <p>¿Estás seguro que deseas eliminar la reserva {{ reserveDetails?.id }}?</p>
             <ul class="list-group">
-                <li class="list-group-item"><strong>Cliente:</strong> {{ roomDetails?.firstName }} {{ roomDetails?.lastName }}</li>
-                <li class="list-group-item"><strong>Precio:</strong> {{ roomDetails?.price }}</li>
-                <li class="list-group-item"><strong>CheckIn:</strong> {{ roomDetails?.checkIn }}</li>
-                <li class="list-group-item"><strong>CheckOut:</strong> {{ roomDetails?.checkOut }}</li>
+                <li class="list-group-item"><strong>Cliente:</strong> {{ reserveDetails?.firstName }} {{ reserveDetails?.lastName }}</li>
+                <li class="list-group-item"><strong>Precio:</strong> {{ reserveDetails?.price }}</li>
+                <li class="list-group-item"><strong>CheckIn:</strong> {{ reserveDetails?.checkIn }}</li>
+                <li class="list-group-item"><strong>CheckOut:</strong> {{ reserveDetails?.checkOut }}</li>
             </ul>
         </div>
         <div class="d-flex justify-content-center">
