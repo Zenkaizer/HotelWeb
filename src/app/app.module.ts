@@ -28,6 +28,7 @@ import { CreateClientComponent } from './_components/manage-clients/create-clien
 import { CreateRoomComponent } from './_components/manage-rooms/create-rooms/create-room.component';
 import { EditRoomComponent } from './_components/manage-rooms/edit-rooms/edit-room.component';
 import { DeleteRoomComponent } from './_components/manage-rooms/delete-rooms/delete-room.component';
+import { ReserveRoomComponent } from './_components/reserve-room/reserve-room.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { DeleteRoomComponent } from './_components/manage-rooms/delete-rooms/del
     CreateClientComponent,
     CreateRoomComponent,
     EditRoomComponent,
-    DeleteRoomComponent
+    DeleteRoomComponent,
+    ReserveRoomComponent
   ],
   imports: [
     BrowserModule,
